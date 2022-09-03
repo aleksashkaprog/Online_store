@@ -19,7 +19,7 @@ build:
     DOCKER_TLS_CERTDIR: ""
   before_script:
     - docker info
-    - docker-compose info
+    - docker-compose version
   stage: test
   script:
     - docker-compose up -d --build
