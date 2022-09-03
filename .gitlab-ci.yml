@@ -8,15 +8,14 @@ flake8:
   script:
     - flake8 --verbose .
 
-unit-test:
+build:
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
   before_script:
     - docker version
     - docker-compose version
-  build:
-    stage: build
-    script:
-      - docker build -t my-docker-image .
-      - docker run my-docker-image python manage.py test
+  stage: test
+  script:
+    - docker-compose up -d --build
+    - docker exec -it python_django_team14-web python manage.py test
