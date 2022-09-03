@@ -13,8 +13,8 @@ build:
   when: manual
   image: docker:20.10.16
   services:
-    - name:docker:20.10.16-dind
-        - alias: thedockerhost
+    - name: docker:20.10.16-dind
+      alias: thedockerhost
   variables:
     DOCKER_HOST: tcp://thedockerhost:2375
     DOCKER_DRIVER: overlay2
