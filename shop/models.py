@@ -7,7 +7,7 @@ class Shop(models.Model):
     """Магазин"""
 
     name = models.CharField(max_length=512, verbose_name=_("название"))
-    holder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="vendor", verbose_name=_("владелец"))
+    holder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="shops", verbose_name=_("владелец"))
     address = models.TextField(blank=True, null=True, verbose_name=_("адрес"))
     email = models.EmailField(blank=True, null=True, verbose_name=_("почта"))
     phone = models.CharField(max_length=16, blank=True, null=True, verbose_name=_("телефон"))
@@ -23,10 +23,10 @@ class ShopProduct(models.Model):
     """Модель продукта магазина"""
 
     store = models.ForeignKey(
-        "Shop", on_delete=models.CASCADE, related_name="vendor_products", verbose_name=_("магазин")
+        "Shop", on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("магазин")
     )
     product = models.ForeignKey(
-        "Product", on_delete=models.CASCADE, related_name="vendor_product", verbose_name=_("продукт")
+        "Product", on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("продукт")
     )
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_("цена"))
     amount = models.IntegerField(default=0, verbose_name=_("количество"))
