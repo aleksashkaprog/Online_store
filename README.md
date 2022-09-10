@@ -23,7 +23,7 @@ docker ps
 ```
 * Войти внутрь контейнера, например в консоль сервиса web (где код)
 ```commandline
-docker exec -it <имя контейнера, см.предыдущую команду> bash
+docker exec -it python_django_team14-web bash
 ```
 ## Участники проекта
 Участник | Часовой пояс
