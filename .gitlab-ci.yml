@@ -10,7 +10,6 @@ flake8:
   allow_failure: true
 
 build:
-  when: manual
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
@@ -23,4 +22,5 @@ build:
   stage: test
   script:
     - docker-compose up -d
+    - docker exec python_django_team14-web python manage.py makemigrations
     - docker exec python_django_team14-web python manage.py test
