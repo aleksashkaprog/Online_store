@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from product.models import Product
+
 
 class Shop(models.Model):
     """Магазин"""
@@ -12,7 +14,7 @@ class Shop(models.Model):
     email = models.EmailField(blank=True, null=True, verbose_name=_("почта"))
     phone = models.CharField(max_length=16, blank=True, null=True, verbose_name=_("телефон"))
     description = models.TextField(blank=True, null=True, verbose_name=_("описание"))
-    logo = models.ImageField(upload_to="/logo", null=True, verbose_name=_("логотип"))
+    logo = models.ImageField(upload_to="logo", null=True, verbose_name=_("логотип"))
     slug = models.SlugField(unique=True, verbose_name=_("слаг"))
 
     def __str__(self):
@@ -23,10 +25,10 @@ class ShopProduct(models.Model):
     """Модель продукта магазина"""
 
     store = models.ForeignKey(
-        "Shop", on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("магазин")
+        Shop, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("магазин")
     )
     product = models.ForeignKey(
-        "Product", on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("продукт")
+        Product, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("продукт")
     )
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_("цена"))
     amount = models.IntegerField(default=0, verbose_name=_("количество"))
