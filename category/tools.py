@@ -5,6 +5,7 @@ from . import models
 
 
 def get_path(instance: Type['models.Category'], filename: str) -> str:
+    """Возращает путь к файлу."""
     file_type: str = filename.split('.')[-1]
     return '{}/{}.{}'.format(
         'category',
@@ -14,6 +15,7 @@ def get_path(instance: Type['models.Category'], filename: str) -> str:
 
 
 def get_slug(name: str) -> str:
+    """Возвращает строку slug."""
     slug: str = name
     if detect_language(name) == 'ru':
         slug = translit(name, 'en')
