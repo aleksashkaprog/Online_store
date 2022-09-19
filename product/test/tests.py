@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from django.urls import reverse_lazy
+from django.urls import reverse
 
 from product.models import Product
 from category.models import Category
@@ -24,18 +24,8 @@ class ProductTestCase(TestCase):
                 ('description', 'test_text'),
             )
         } for i in range(x)]
-
-    def create_product(self, count: int = 1) -> Product | List[Product]:
-        if count > 1:
-            products: list = list()
-            for data in self.data(count):
-                products.append(
-                    Product.objects.create(**data)
-                )
-            return products
-        return Product.objects.create(**self.data(count)[0])
+        cls.products: List[Product] = [Product.objects.create(**data) for data in cls.data(x=10)]
 
     def test_product_view(self) -> None:
-        self.create_product(count=10)
-        response = self.client.get(reverse_lazy('products'))
+        response = self.client.get(reverse('products'))
         self.assertTrue(response.status_code == 200)
