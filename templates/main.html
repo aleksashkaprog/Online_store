@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+    {% for my_ban in my_banner %}
+        {{ my_ban.product.name }}
+        {{ my_ban.logo }}
+    {% endfor %}
+
+</body>
+</html>
