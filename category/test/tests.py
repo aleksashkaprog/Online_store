@@ -27,7 +27,7 @@ class CategoryTestCase(TestCase):
                     Category.objects.create(**data)
                 )
             return categories
-        return Category.objects.create(**self.data()[0])
+        return Category.objects.create(**self.data(x=count)[0])
 
     def test_category_view(self) -> None:
         self.create_category(count=10)
