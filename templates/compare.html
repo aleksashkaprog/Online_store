@@ -87,7 +87,7 @@
                       <div class="Rating">
                         <div class="Rating-stars">
 
-                          {% for _ in 5 %}
+                          {% for _ in '12345'|make_list %}
                             <span
                                 class="Rating-star {% if forloop.counter <= product.rating %} Rating-star_view {% endif %}">
                         {# рейтинг должен быть цифрой от 0 до 5 #}
