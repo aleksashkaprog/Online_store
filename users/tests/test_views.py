@@ -65,23 +65,14 @@ class RegisterViewTest(TestCase):
 
 
 class LogInTestView(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.page_name = reverse(viewname='users:login')
-
-    def setUp(self):
-        self.get_response = self.client.get(self.page_name)
-
     def test_view_url_exist_at_desired_location(self):
         response = self.client.get('/my/login/')
         self.assertEqual(response.status_code, 200)
 
-    def test_view_url_accessible_by_name(self):
-        self.assertEqual(self.get_response.status_code, 200)
-
     def test_view_use_correct_template(self):
-        self.assertEqual(self.get_response.status_code, 200)
-        self.assertTemplateUsed(self.get_response, 'users/login.html')
+        response = self.client.get(reverse(viewname='users:login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/login.html')
 
 
 class LogOutTestView(TestCase):
