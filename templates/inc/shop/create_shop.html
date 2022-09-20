@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% load static %} {% block main %}
+
+<div class="Middle-top">
+  <div class="wrap">
+    <div class="Middle-header">
+      <h1 class="Middle-title">Создание магазина</h1>
+      <ul class="breadcrumbs Middle-breadcrumbs">
+        <li class="breadcrumbs-item"><a href="#">Домой</a></li>
+        <li class="breadcrumbs-item breadcrumbs-item_current">
+          <span>Комната продавцов</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="Section Section_column Section_columnLeft">
+  <div class="wrap">
+    <div class="Section-column">
+      <div class="Section-columnSection sticky">
+        <header class="Section-header">
+          <strong class="Section-title">Меню</strong>
+        </header>
+        <div class="Section-columnContent">
+          <div class="NavigateProfile">
+            <ul class="menu menu_vt">
+              <li class="menu-item">
+                <a class="menu-link" href="#">Профиль</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">История заказов</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">Просмотренные продукты</a>
+              </li>
+              <li class="menu-item_ACTIVE menu-item">
+                <a class="menu-link" href="#">Комната продавцов</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Section-content">
+      <form
+        class="block__create-store-form"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div class="block__create-store-left">
+          <div class="form-group">
+            <label class="form-label" for="id_name">Название магазина</label>
+            <input
+              class="form-input border"
+              id="id_name"
+              required
+              name="name"
+              type="text"
+              placeholder="Введите название"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="id_address">Адрес</label>
+            <textarea
+              class="border"
+              name="address"
+              cols="10"
+              rows="4"
+              required
+              maxlength="255"
+              id="id_address"
+              placeholder="Введите адрес"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="id_phone">Телефон</label>
+            <input
+              class="form-input border"
+              id="id_phone"
+              required
+              name="phone"
+              type="text"
+              placeholder="Введите телефон"
+            />
+          </div>
+          <div class="form-group form__email">
+            <label class="form-label" for="id_email">Почта</label>
+            <input
+              class="form-input border"
+              id="id_email"
+              required
+              name="email"
+              type="email"
+              placeholder="Введите почту"
+            />
+          </div>
+        </div>
+        <div class="block__create-store-right">
+          <div class="form-group">
+            <label class="form-label" for="id_description">Описание</label>
+            <textarea
+              class="border"
+              name="description"
+              cols="40"
+              rows="17"
+              maxlength="255"
+              id="id_description"
+              placeholder="Описание"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <div class="Profile-btn">
+              <button class="btn btn_reset" type="reset">Отменить</button>
+              <button class="btn btn_success" type="submit">Создать</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
