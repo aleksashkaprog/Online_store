@@ -65,11 +65,6 @@ class RegisterViewTest(TestCase):
 
 
 class LogInTestView(TestCase):
-    data = {
-        'email': 'test@ya.ru',
-        'password': 'TestPass12',
-    }
-
     @classmethod
     def setUpTestData(cls):
         cls.page_name = reverse(viewname='users:login')
