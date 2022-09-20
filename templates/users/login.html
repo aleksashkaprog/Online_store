@@ -1,14 +1,16 @@
-{#{% extends 'base.html' %}#}
+{% extends 'base.html' %}
 {% load i18n %}
 
-{% block content %}
+{% block main %}
     {% if user.is_authenticated %}
-        <h3>{% trans 'Добро пожаловать' %}</h3>
+        <h3>{% trans 'Вы уже авторизованы на сайте' %}</h3>
     {% else %}
+        <h3>Нет аккаунта? <a href="{% url 'users:register' %}">{% trans 'Регистрация' %}</a></h3>
         <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">{% trans 'Войти' %}</button>
+        <h4><a href="{% url 'users:reset_password' %}">{% trans 'Забыли пароль?' %}</a></h4>
     </form>
     {% endif %}
 {% endblock %}

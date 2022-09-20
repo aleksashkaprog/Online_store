@@ -41,7 +41,7 @@ class RegisterViewTest(TestCase):
 
     def test_can_register_user(self):
         response = self.client.post(self.page_name, self.user)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.assertEqual(CustomUser.objects.all().count(), 1)
         self.assertEqual(CustomUser.objects.all()[0].email, 'test@ya.ru')
 
@@ -54,9 +54,9 @@ class RegisterViewTest(TestCase):
         self.assertNotEqual(response.status_code, 302)
         self.assertEqual(CustomUser.objects.count(), 0)
 
-    # def test_redirect_after_register(self):
-    #     response = self.client.post(self.page_name, self.user)
-    #     self.assertRedirects(response, reverse('/'))
+    def test_redirect_after_register(self):
+        response = self.client.post(self.page_name, self.user)
+        self.assertRedirects(response, reverse('main_page'))
 
     def test_authenticated_after_register(self):
         self.client.post(self.page_name, self.user)

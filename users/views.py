@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse
 
 from users.forms import CustomUserCreationForm, ResetPasswordForm
 from users.services import register_user, password_change
@@ -18,7 +19,7 @@ def register_view(request):
         if form.is_valid():
             register_user(request, user_form=form)
             # Здесь будет редирект на главную
-            return HttpResponse('Заглушка редиректа на главную/в лк')
+            return redirect(to=reverse('main_page'))
 
     return render(request, template_name='users/register.html', context={'form': form})
 
