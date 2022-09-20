@@ -1,13 +1,13 @@
-# from django.shortcuts import render
 import random
 
 from django.shortcuts import render
 from django.views import View
 
-from .models import Banner
+from main_page.models import Banner
 
 
-class MainView(View):
+class MainPageView(View):
+
     def get(self, request):
         banner_list = []
         banner = Banner.objects.all()
