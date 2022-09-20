@@ -1,15 +1,15 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from product.models import Product
+from users.models import CustomUser
 
 
 class Shop(models.Model):
     """Магазин"""
 
     name = models.CharField(max_length=512, verbose_name=_("название"))
-    holder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="shops", verbose_name=_("владелец"))
+    holder = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="shops", verbose_name=_("владелец"))
     address = models.TextField(blank=True, null=True, verbose_name=_("адрес"))
     email = models.EmailField(blank=True, null=True, verbose_name=_("почта"))
     phone = models.CharField(max_length=16, blank=True, null=True, verbose_name=_("телефон"))

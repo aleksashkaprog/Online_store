@@ -1,0 +1,14 @@
+{#{% extends 'base.html' %}#}
+{% load i18n %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3>{% trans 'Добро пожаловать' %}</h3>
+    {% else %}
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans 'Войти' %}</button>
+    </form>
+    {% endif %}
+{% endblock %}
