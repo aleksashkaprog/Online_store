@@ -9,33 +9,13 @@
         <p>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincid  unt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
         </p>
-        <ul class="menu menu_img menu_smallImg Footer-menuSoc">
-          <li class="menu-item">
-            <a class="menu-link" href="#">
-              <img src="{% static 'assets/img/icons/socialFooter/fb.svg' %}" alt="fb.svg"/>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">
-              <img src="{% static 'assets/img/icons/socialFooter/tw.svg' %}" alt="tw.svg"/>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">
-              <img src="{% static 'assets/img/icons/socialFooter/in.svg' %}" alt="in.svg"/>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">
-              <img src="{% static 'assets/img/icons/socialFooter/pt.svg' %}" alt="pt.svg"/>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">
-              <img src="{% static 'assets/img/icons/socialFooter/mail.svg' %}" alt="mail.svg"/>
-            </a>
-          </li>
-        </ul>
+
+        {% block socials %}
+          {% with css_class='Footer-menuSoc' %}
+            {% include 'inc/blocks/socials.html' %}
+          {% endwith %}
+        {% endblock %}
+
       </div>
       <div class="row-block">
         <strong class="Footer-title">Useful Links</strong>
