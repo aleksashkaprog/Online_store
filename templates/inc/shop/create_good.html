@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% load static %} {% block main%}
+<div class="Middle-top">
+  <div class="wrap">
+    <div class="Middle-header">
+      <h1 class="Middle-title">Добавление товара</h1>
+      <ul class="breadcrumbs Middle-breadcrumbs">
+        <li class="breadcrumbs-item"><a href="/">Домой</a></li>
+        <li class="breadcrumbs-item breadcrumbs-item_current">
+          <span>Комната продавцов</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="Section Section_column Section_columnLeft">
+  <div class="wrap">
+    <div class="Section-column">
+      <div class="Section-columnSection sticky">
+        <header class="Section-header">
+          <strong class="Section-title">Меню</strong>
+        </header>
+        <div class="Section-columnContent">
+          <div class="NavigateProfile">
+            <ul class="menu menu_vt">
+              <li class="menu-item">
+                <a class="menu-link" href="#">Профиль</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">История заказов</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">Просмотренные продукты</a>
+              </li>
+              <li class="menu-item_ACTIVE menu-item">
+                <a class="menu-link" href="#">Комната продавцов</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Section-content">
+      <div class="Profile">
+        <form name="category-filter" id="id_add_product" method="GET" action="">
+          <label class="form-label" style="font-size: 20px" for="id_category"
+            >Выберите категорию:</label
+          >
+          <select
+            class="border size_custom"
+            name="category_id"
+            required=""
+            id="id_category"
+          >
+            <option value="" selected="">Выбор категории</option>
+            <option value="">Категория 1</option>
+            <option value="">Категория 2</option>
+            <option value="">Категория 3</option>
+          </select>
+        </form>
+        <form
+          class="form Profile-form"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="row">
+            <div class="row-block">
+              <div class="form-group"></div>
+              <div class="form-group">
+                <label class="form-label" for="id_seller"
+                  >Выберите магазин</label
+                >
+                <select
+                  class="border size_custom"
+                  name="seller"
+                  required=""
+                  id="id_seller"
+                >
+                  <option value="" selected="">Выбор магазина</option>
+                  <option value="">Магазин 1</option>
+                  <option value="">Магазин 2</option>
+                  <option value="">Магазин 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="block__input-numbers">
+            <div>
+              <label class="form-label" for="id_quantity">Количество: </label>
+              <input
+                class="form-input border"
+                type="number"
+                name="quantity"
+                id="id_quantity"
+                required
+                placeholder="Количество"
+              />
+            </div>
+            <div>
+              <label class="form-label" for="id_price">Цена:</label>
+              <input
+                class="form-input border"
+                id="id_price"
+                name="price"
+                type="number"
+                required
+                placeholder="Цена"
+              />
+            </div>
+          </div>
+          <div class="row-block">
+            <div>
+              <div class="Profile-btn">
+                <button class="btn btn_reset" type="reset">Отменить</button>
+                <button class="btn btn_success" type="submit">Создать</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
