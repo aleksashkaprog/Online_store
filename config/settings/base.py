@@ -13,7 +13,7 @@ from environs import Env
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 env = Env()
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'order',
     'personal_account',
     'category',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,22 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates', ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         'DIRS': [BASE_DIR / 'templates'],
@@ -81,19 +97,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
-            ],
-        },
-    },
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.parent / 'templates', ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
                 'category.context_processors.get_categories',
             ],
         },
@@ -152,15 +155,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'config/static'
 STATICFILES_DIRS = (
-    BASE_DIR.parent / 'static',
+    BASE_DIR / 'static',
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.parent / 'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/my/account/'
