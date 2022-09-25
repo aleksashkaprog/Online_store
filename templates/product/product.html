@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block main %}
@@ -9,9 +10,9 @@
           <h1 class="Middle-title">Megano Product
           </h1>
           <ul class="breadcrumbs Middle-breadcrumbs">
-            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">home</a>
+            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">{% trans 'на главную' %}</a>
             </li>
-            <li class="breadcrumbs-item breadcrumbs-item_current"><span>Product</span>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{{ product.name }}</span>
             </li>
           </ul>
         </div>
@@ -23,12 +24,14 @@
           <div class="ProductCard">
             <div class="ProductCard-look">
               <div class="ProductCard-photo">
-                <div class="ProductCard-sale">-15%
-                </div>
+                {% if product.discount %}
+                  <div class="ProductCard-sale">-{{ product.discount }}%
+                  </div>
+                {% endif %}
                 <img src="{{ product.images.0 }}" alt="bigGoods.png"/>
               </div>
               <div class="ProductCard-picts">
-                {% for image in product.images %}
+                {% for image in product.images.all %}
                   <a class="ProductCard-pict {% if forloop.counter0 == 0 %} ProductCard-pict_ACTIVE {% endif %}"
                      href="{{ image }}">
                     <img src="{{ image }}" alt="product_image.png"/>
@@ -50,7 +53,7 @@
                     {% endif %}
                   </div>
                   <div class="ProductCard-compare">
-                    <a class="btn btn_default" href="{% url 'compare' product.id %}">
+                    <a class="btn btn_default" href="{# {% url 'compare' product.id %} #}">
                       <img class="btn-icon" src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
                     </a>
                   </div>
@@ -74,7 +77,7 @@
                   </div>
                 </div>
                 <div class="ProductCard-cartElement">
-                  <a class="btn btn_primary" href="{% url 'cart_add' product.id %}">
+                  <a class="btn btn_primary" href="{# {% url 'cart_add' product.id %} #}">
                     <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}"
                          alt="cart_white.svg"/>
                     <span class="btn-content">Add To Cart</span></a>
@@ -95,7 +98,7 @@
               <a class="Tabs-link_ACTIVE Tabs-link" href="#description"><span>Описание</span></a>
               <a class="Tabs-link" href="#sellers"><span>Продавцы</span></a>
               <a class="Tabs-link" href="#addit"><span>AdditionaL Info</span></a>
-              <a class="Tabs-link" href="#reviews"><span>Reviews (3)</span></a>
+              <a class="Tabs-link" href="#reviews"><span>Reviews ({{ product.reviews.all|length }})</span></a>
             </div>
             <div class="Tabs-wrap">
               <div class="Tabs-block" id="description">
@@ -156,28 +159,31 @@
                   {% endfor %}
                 </div>
               </div>
+
               <div class="Tabs-block" id="addit">
                 {% for property in product.properties %}
                   <div class="Product-props">
-                  <div class="Product-prop">
-                    <strong>{{ property.name }}</strong>
-                    <span> {{ property.description }}</span>
+                    <div class="Product-prop">
+                      <strong>{{ property.name }}</strong>
+                      <span> {{ property.description }}</span>
+                    </div>
                   </div>
                 {% endfor %}
-                </div>
+
               </div>
+
               <div class="Tabs-block" id="reviews">
 
                 <header class="Section-header">
-                  <h3 class="Section-title">{% if product.reviews %}
-                    {{ product.reviews|length }} Reviews
+                  <h3 class="Section-title">{% if product.reviews.all|length > 0 %}
+                    {{ product.reviews.all|length }} Reviews
                   {% else %} Пока нет отзывов на данный продукт
                   {% endif %}
                   </h3>
                 </header>
                 <div class="Comments">
 
-                  {% for review in product.reviews %}
+                  {% for review in product.reviews.all %}
                     <div class="Comment">
                       <div class="Comment-column Comment-column_pict">
                         <div class="Comment-avatar">
@@ -186,8 +192,29 @@
                       <div class="Comment-column">
                         <header class="Comment-header">
                           <div>
-                            <strong class="Comment-title">{{ review.user.name }}
-                            </strong><span class="Comment-date">{{ review.date }}</span>
+                            <div class="Rating">
+                              <div class="Rating-stars">
+
+                                {% for _ in '12345'|make_list %}
+                                  <span
+                                      class="Rating-star {% if forloop.counter <= review.rating %} Rating-star_view {% endif %}">
+                        {# рейтинг должен быть цифрой от 0 до 5 #}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
+                          <g>
+                            <g>
+                              <path fill="#ffc000"
+                                    d="M9.5 14.925L3.629 18l1.121-6.512L0 6.875l6.564-.95L9.5 0l2.936 5.925 6.564.95-4.75 4.613L15.371 18z"></path>
+                            </g>
+                          </g>
+                        </svg></span>
+                                {% endfor %}
+
+                              </div>
+                              <div class="Rating-title">
+                              </div>
+                            </div>
+                            <strong class="Comment-title">{{ review.user.full_name }}
+                            </strong><span class="Comment-date">{{ review.created_at }}</span>
                           </div>
                         </header>
                         <div class="Comment-content">{{ review.text }}
@@ -196,29 +223,27 @@
                     </div>
                   {% endfor %}
                 </div>
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and not user_review %}
                   <header class="Section-header Section-header_product">
-                    <h3 class="Section-title">Add Review
+                    <h3 class="Section-title">{% trans 'Добавить отзыв' %}
                     </h3>
                   </header>
 
                   <div class="Tabs-addComment">
-                    <form class="form" action="#" method="post">
-                      <div class="form-group">
-                        <textarea class="form-textarea" name="review" id="review" placeholder="Review"></textarea>
+                    <form class="form" action="{% url 'product' product.slug product.id %}" method="post">
+                      {% csrf_token %}
+                      <div>
+                        {% for star in '12345'|make_list %}
+                          <input name="rating" type="radio" value="{{ star }}">{{ star }}
+                        {% endfor %}
                       </div>
                       <div class="form-group">
-                        <div class="row">
-                          <div class="row-block">
-                            <input class="form-input" id="name" name="name" type="text" placeholder="Name"/>
-                          </div>
-                          <div class="row-block">
-                            <input class="form-input" id="email" name="email" type="text" placeholder="Email"/>
-                          </div>
-                        </div>
+                        <textarea class="form-textarea" name="text" id="review"
+                                  placeholder="{% trans 'Текст отзыва' %}"></textarea>
                       </div>
+
                       <div class="form-group">
-                        <button class="btn btn_muted" type="submit">Submit Review
+                        <button class="btn btn_muted" type="submit">{% trans 'Отправить отзыв' %}
                         </button>
                       </div>
                     </form>

@@ -1,5 +1,26 @@
-from django.views.generic import TemplateView
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.generic import DetailView
+from .models import Product
+from .services import ProductService
 
 
-class Product(TemplateView):
-    template_name = "inc/product/good_detail.html"
+class ProductDetail(DetailView):
+    model = Product
+    context_object_name = 'product'
+    template_name = "product/product.html"
+
+    def get_queryset(self):
+        queryset = Product.objects.prefetch_related('reviews')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetail, self).get_context_data(**kwargs)
+        context['user_review'] = ProductService.current_user_has_review(self.request.user, self.kwargs['pk'])
+        return context
+
+    def post(self, request, **kwargs):
+        self.object = self.get_object()
+        ProductService.review_form_save(instance=self, request=request)
+        context = self.get_context_data(**kwargs)
+        return redirect(reverse('product', args=(self.kwargs['slug'], self.kwargs['pk'])))
