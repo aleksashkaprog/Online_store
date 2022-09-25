@@ -38,3 +38,6 @@ class Review(models.Model):
     rating = models.SmallIntegerField(validators=(MinValueValidator(1), MaxValueValidator(5)),
                                       verbose_name=_('Оценка'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('дата создания'))
+
+    def __str__(self):
+        return f'{self.user.full_name}: {self.rating}'

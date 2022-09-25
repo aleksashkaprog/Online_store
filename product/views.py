@@ -22,5 +22,4 @@ class ProductDetail(DetailView):
     def post(self, request, **kwargs):
         self.object = self.get_object()
         ProductService.review_form_save(instance=self, request=request)
-        context = self.get_context_data(**kwargs)
         return redirect(reverse('product', args=(self.kwargs['slug'], self.kwargs['pk'])))
