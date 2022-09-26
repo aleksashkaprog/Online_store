@@ -1,9 +1,15 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+import os
 from category.models import Category
 from category.tools import get_slug
+
+
+def load_images(instance, filename):
+    path = "product_images/"
+    file_name = f'{instance.product.slug}_{instance.product.id}.{filename.split(".")[-1]}'
+    return os.path.join(path, file_name)
 
 
 class Product(models.Model):
@@ -13,7 +19,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('цена'))
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     views = models.PositiveIntegerField(default=0, verbose_name=_('просмотры'))
-    # images = models.ManyToManyField('Image', verbose_name=_('изображения'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('дата обновления'))
     description = models.TextField(verbose_name=_('описание'))
@@ -22,10 +27,17 @@ class Product(models.Model):
         self.slug = get_slug(self.name)
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
 
 class Image(models.Model):
-    """Модель изображений товара"""
-    pass
+    file = models.ImageField(upload_to=load_images, verbose_name=_('файл'))
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,
+                                related_name='images', verbose_name=_('продукт'))
+
+    def __str__(self):
+        return f'{self.file.url}'
 
 
 class Review(models.Model):

@@ -28,13 +28,13 @@
                   <div class="ProductCard-sale">-{{ product.discount }}%
                   </div>
                 {% endif %}
-                <img src="{{ product.images.0 }}" alt="bigGoods.png"/>
+                <img src="{{ product.images.all.0.file.url }}" alt="bigGoods.png"/>
               </div>
               <div class="ProductCard-picts">
                 {% for image in product.images.all %}
                   <a class="ProductCard-pict {% if forloop.counter0 == 0 %} ProductCard-pict_ACTIVE {% endif %}"
-                     href="{{ image }}">
-                    <img src="{{ image }}" alt="product_image.png"/>
+                     href="{{ image.file.url }}">
+                    <img src="{{ image.file.url }}" alt="product_image.png"/>
                   </a>
                 {% endfor %}
               </div>
@@ -248,6 +248,8 @@
                       </div>
                     </form>
                   </div>
+                  {% elif not request.user.is_authenticated %}
+                  <a href="#{# {% url 'login' %} #}" class="breadcrumbs-item">Чтобы оставить отзыв, вам нужно авторизоваться</a>
                 {% endif %}
               </div>
             </div>

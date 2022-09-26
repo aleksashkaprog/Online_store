@@ -16,7 +16,7 @@ class ProductDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetail, self).get_context_data(**kwargs)
-        context['user_review'] = ProductService.current_user_has_review(self.request.user, self.kwargs['pk'])
+        context['user_review'] = ProductService.user_has_review(self.request.user, self.kwargs['pk'])
         return context
 
     def post(self, request, **kwargs):
