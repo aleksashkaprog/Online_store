@@ -40,80 +40,101 @@
       </div>
     </div>
     <div class="Section-content">
+      <header class="Section-header margin">
+        <h2 class="Section-title">Добавление товара</h2>
+      </header>
       <div class="Profile">
-        <form name="category-filter" id="id_add_product" method="GET" action="">
-          <label class="form-label" style="font-size: 20px" for="id_category"
-            >Выберите категорию:</label
-          >
-          <select
-            class="border size_custom"
-            name="category_id"
-            required=""
-            id="id_category"
-          >
-            <option value="" selected="">Выбор категории</option>
-            <option value="">Категория 1</option>
-            <option value="">Категория 2</option>
-            <option value="">Категория 3</option>
-          </select>
-        </form>
-        <form
-          class="form Profile-form"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          {% csrf_token %}
-          <div class="row">
-            <div class="row-block">
-              <div class="form-group"></div>
-              <div class="form-group">
-                <label class="form-label" for="id_seller"
-                  >Выберите магазин</label
-                >
-                <select
-                  class="border size_custom"
-                  name="seller"
-                  required=""
-                  id="id_seller"
-                >
-                  <option value="" selected="">Выбор магазина</option>
-                  <option value="">Магазин 1</option>
-                  <option value="">Магазин 2</option>
-                  <option value="">Магазин 3</option>
-                </select>
+        <form class="add-product" id="id_add_product" method="GET" action="">
+          <div class="product__left">
+            <label class="form-label" style="font-size: 20px" for="id_category"
+              >Выберите категорию:</label
+            >
+            <select
+              class="border size_custom"
+              name="category_id"
+              required=""
+              id="id_category"
+            >
+              <option value="" selected="">Выбор категории</option>
+              <option value="">Категория 1</option>
+              <option value="">Категория 2</option>
+              <option value="">Категория 3</option>
+            </select>
+            <div class="row">
+              <div class="row-block">
+                <div class="form-group"></div>
+                <div class="form-group">
+                  <label class="form-label" for="id_seller"
+                    >Выберите магазин</label
+                  >
+                  <select
+                    class="border size_custom"
+                    name="seller"
+                    required=""
+                    id="id_seller"
+                  >
+                    <option value="" selected="">Выбор магазина</option>
+                    <option value="">Магазин 1</option>
+                    <option value="">Магазин 2</option>
+                    <option value="">Магазин 3</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="block__input-numbers">
-            <div>
-              <label class="form-label" for="id_quantity">Количество: </label>
-              <input
-                class="form-input border"
-                type="number"
-                name="quantity"
-                id="id_quantity"
-                required
-                placeholder="Количество"
-              />
-            </div>
-            <div>
-              <label class="form-label" for="id_price">Цена:</label>
-              <input
-                class="form-input border"
-                id="id_price"
-                name="price"
-                type="number"
-                required
-                placeholder="Цена"
-              />
-            </div>
-          </div>
-          <div class="row-block">
-            <div>
-              <div class="Profile-btn">
-                <button class="btn btn_reset" type="reset">Отменить</button>
-                <button class="btn btn_success" type="submit">Создать</button>
+            <div class="block__input-numbers">
+              <div>
+                <label class="form-label" for="id_quantity">Количество: </label>
+                <input
+                  class="form-input border"
+                  type="number"
+                  name="quantity"
+                  id="id_quantity"
+                  required
+                  placeholder="Количество"
+                />
               </div>
+              <div>
+                <label class="form-label" for="id_price">Цена:</label>
+                <input
+                  class="form-input border"
+                  id="id_price"
+                  name="price"
+                  type="number"
+                  required
+                  placeholder="Цена"
+                />
+              </div>
+            </div>
+            <div class="Profile-btn">
+              <button class="btn btn_reset" type="reset">Отменить</button>
+              <button class="btn btn_success" type="submit">Создать</button>
+            </div>
+          </div>
+          <div class="product__right">
+            <div class="form-group">
+              <label class="form-label" for="id_name">Название товара</label>
+              <input
+                class="form-input border"
+                id="id_name"
+                required
+                name="name"
+                type="text"
+                placeholder="Введите название"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="id_description"
+                >Описание товара</label
+              >
+              <textarea
+                class="border"
+                name="description"
+                cols="40"
+                rows="7"
+                maxlength="255"
+                id="id_description"
+                placeholder="Описание"
+              ></textarea>
             </div>
           </div>
         </form>

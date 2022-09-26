@@ -93,7 +93,7 @@ abbr[title] {
   border-bottom: none;
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 /**
  * Prevent the duplicate appliclation of `bolder` by the next rule in Safari 6.
@@ -362,7 +362,7 @@ textarea {
   margin-left: 28px;
 }
 .breadcrumbs-item + .breadcrumbs-item:after {
-  content: '/';
+  content: "/";
   display: block;
   width: 20px;
   height: 20px;
@@ -884,7 +884,7 @@ select + select {
   padding-right: 0px;
 }
 .form .form-selectWrap:after {
-  content: '';
+  content: "";
   display: block;
   pointer-events: none;
   position: absolute;
@@ -943,7 +943,7 @@ select + select {
   z-index: 900;
   display: none;
   padding: 20px 15px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   border: 1px solid #71747a;
   border-radius: 10px;
   width: 200px;
@@ -1006,7 +1006,7 @@ label.toggle {
   margin-right: 4px;
 }
 .toggle .toggle-box:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 11px;
@@ -1078,7 +1078,8 @@ label.toggle {
   position: relative;
   font-weight: normal;
   border-radius: 100px;
-  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica, "Nimbus Sans L", sans-serif;
+  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica,
+    "Nimbus Sans L", sans-serif;
   display: inline-flex !important;
   justify-content: center;
   align-items: center;
@@ -1091,7 +1092,7 @@ label.toggle {
   position: relative;
 }
 .label_new .label-text:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 8px;
@@ -1135,7 +1136,7 @@ label.toggle {
   border-bottom-width: 0;
   z-index: 0;
   -webkit-transform: Rotate(-110deg);
-          transform: Rotate(-110deg);
+  transform: Rotate(-110deg);
 }
 .label_danger {
   background: #f26d7d;
@@ -1250,8 +1251,8 @@ label.toggle {
   padding: 0;
   display: block;
   font-weight: bold;
-/*-----------  Начало стилей для меню  -----------*/
-/*-----------  Вертикальное меню  -----------*/
+  /*-----------  Начало стилей для меню  -----------*/
+  /*-----------  Вертикальное меню  -----------*/
 }
 .menu:before,
 .menu:after {
@@ -1310,13 +1311,13 @@ label.toggle {
   top: 31%;
   margin-top: 0px;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
   box-shadow: none;
   transition: all 0.3s;
 }
 .menuTrigger_OPEN span + span {
   -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  transform: rotate(-45deg);
   margin-top: 0;
 }
 .menuTrigger_OPEN span:last-child {
@@ -1369,7 +1370,7 @@ label.toggle {
   padding-bottom: 5px;
 }
 .menu_vt .menu-link:after {
-  content: '';
+  content: "";
   height: 2px;
   left: 50%;
   bottom: 0;
@@ -1377,7 +1378,8 @@ label.toggle {
   background: #0063d1;
   z-index: -1;
   position: absolute;
-  transition: left 400ms cubic-bezier(0.215, 0.61, 0.355, 1), right 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: left 400ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    right 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 @media screen and (min-width: 990px) {
   .menu_vt .menu-link:hover {
@@ -1387,7 +1389,8 @@ label.toggle {
   .menu_vt .menu-link:hover:after {
     left: 0;
     right: 0;
-    transition: left 400ms cubic-bezier(0.215, 0.61, 0.355, 1), right 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: left 400ms cubic-bezier(0.215, 0.61, 0.355, 1),
+      right 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 }
 .menu_hz,
@@ -1434,7 +1437,7 @@ label.toggle {
   margin-left: 0;
 }
 .menu_split.menu_hz .menu-item:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   background: #71747a;
@@ -1472,13 +1475,13 @@ label.toggle {
 }
 .menu_img .menu-item a img {
   -webkit-transform: scale(0.82);
-          transform: scale(0.82);
+  transform: scale(0.82);
   transition: all 100ms;
 }
 @media screen and (min-width: 990px) {
   .menu_img .menu-item a:hover img {
     -webkit-transform: none;
-            transform: none;
+    transform: none;
     transition: all 100ms;
   }
 }
@@ -1513,12 +1516,12 @@ label.toggle {
 }
 .menu_smallImg .menu-item a img {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 @media screen and (min-width: 990px) {
   .menu_smallImg .menu-item a:hover img {
     -webkit-transform: scale(1.5);
-            transform: scale(1.5);
+    transform: scale(1.5);
   }
 }
 .menu_main {
@@ -1538,7 +1541,7 @@ label.toggle {
   padding: 3px 5px 2px 7px;
 }
 .menu_main .menu-label:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   left: 0;
@@ -1584,7 +1587,7 @@ label.toggle {
   position: relative;
 }
 .menu_main .menu-item_ACTIVE:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   left: 0;
@@ -1597,7 +1600,7 @@ label.toggle {
   background-color: #0080b7;
 }
 .menu_main .menu-item_ACTIVE:before {
-  content: '';
+  content: "";
   width: 0;
   height: 0;
   border-right: 7px solid transparent;
@@ -1607,7 +1610,7 @@ label.toggle {
   bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .menu_main .menu-item_ACTIVE a {
   color: #fff;
@@ -1619,7 +1622,8 @@ label.toggle {
 .menu_main .menu-link {
   color: #333;
   text-transform: uppercase;
-  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica, "Nimbus Sans L", sans-serif;
+  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica,
+    "Nimbus Sans L", sans-serif;
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
@@ -1666,7 +1670,7 @@ label.toggle {
   transition: all 300ms;
   color: #fff;
   display: block;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   text-decoration: none;
   font-weight: normal;
   padding: 0 8px 0px;
@@ -1708,7 +1712,7 @@ label.toggle {
   display: flex;
 }
 .modal-window {
-  box-shadow: 0 0 5px 1px rgba(0,0,0,0.52);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.52);
   border-radius: 10px;
   padding: 35px 60px;
   background-color: #fff;
@@ -1773,7 +1777,8 @@ label.toggle {
   display: block;
   width: 23px;
   height: 19px;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAACjUlEQVQ4T6VVTWjTcBT/vaS6CupBmxQ8eBG7w1w78SB40LvgdGNTJuJh6Iapw+FgMrxUEMSPCbo2wwkDFRHcdE5Fr3pQ8CBryyZM8eCxSSf4AW6Y9Mk/LDZtk62wHBLy/u/93sfvvfcnLD8tWiHFoIacqlxEikquvO5viqUW07xcYlrK68olYUfiFdeMDgIei38GTdvgE3O6+rte4CbN2BgCPQD4CABm4GheVycd8IRmPAXQ5oIRkCeyWmcy276t5mBPz/ftlmw9ByFR1qVnOV1pc8A7O1n+opjDDJzzgBkEbsvq0fdBDlq0wj4GTQFQPTq3Y6ZyfmKCbAe8XHfzNIMzANYty5YY3JPXo/erHcS1wkkCjQFoWD77S0xns6OKkDlPBbgQ7D5jHigRTwKIeNK8llMjQw7RKZYSRvEKwIPuOQMLkkQd2bTyxhtEDbg43NVX2CHb0jTATR7lFyGLeq0Q3wFw6L+c+JMtoXV2JPq1OjtfcKG0t29h8x/bfkTAQY/RIoCwJ+3XshXq+ji25YcfL4HgLtGfFeMqQAM1xsQ3Y4Y6KIgLInxFcGGUSBrdYIhShDwgFgi9uYw6HgTsS6irLNrTJ2oxuVIZkIdjpnohKHrfyAPqPVsiJCVGGkCzp1NebZDlrg8jW3+uSqhvpzBeLi7R8flx5Vdjt7kpHOaHFR0DmrPl0uHqjqmIvDlp7JcYT7w9zkzXG4uRoYrUfXodQFFi6pgZVd7WDFE8aZ4ilDJgWu9OJzF6s6PqvSDSfKcUlMzqyl2HUEHcfMS8QYR+D4hBErdn09F3K3WDOPPbLwTc2mkqA5TQDFGGdk8qdW9E18Z/M2KK1rrLXQfVO50YxxxC13wLuR6qbqN/11wW2NlNjIkAAAAASUVORK5CYII=") center center no-repeat;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAACjUlEQVQ4T6VVTWjTcBT/vaS6CupBmxQ8eBG7w1w78SB40LvgdGNTJuJh6Iapw+FgMrxUEMSPCbo2wwkDFRHcdE5Fr3pQ8CBryyZM8eCxSSf4AW6Y9Mk/LDZtk62wHBLy/u/93sfvvfcnLD8tWiHFoIacqlxEikquvO5viqUW07xcYlrK68olYUfiFdeMDgIei38GTdvgE3O6+rte4CbN2BgCPQD4CABm4GheVycd8IRmPAXQ5oIRkCeyWmcy276t5mBPz/ftlmw9ByFR1qVnOV1pc8A7O1n+opjDDJzzgBkEbsvq0fdBDlq0wj4GTQFQPTq3Y6ZyfmKCbAe8XHfzNIMzANYty5YY3JPXo/erHcS1wkkCjQFoWD77S0xns6OKkDlPBbgQ7D5jHigRTwKIeNK8llMjQw7RKZYSRvEKwIPuOQMLkkQd2bTyxhtEDbg43NVX2CHb0jTATR7lFyGLeq0Q3wFw6L+c+JMtoXV2JPq1OjtfcKG0t29h8x/bfkTAQY/RIoCwJ+3XshXq+ji25YcfL4HgLtGfFeMqQAM1xsQ3Y4Y6KIgLInxFcGGUSBrdYIhShDwgFgi9uYw6HgTsS6irLNrTJ2oxuVIZkIdjpnohKHrfyAPqPVsiJCVGGkCzp1NebZDlrg8jW3+uSqhvpzBeLi7R8flx5Vdjt7kpHOaHFR0DmrPl0uHqjqmIvDlp7JcYT7w9zkzXG4uRoYrUfXodQFFi6pgZVd7WDFE8aZ4ilDJgWu9OJzF6s6PqvSDSfKcUlMzqyl2HUEHcfMS8QYR+D4hBErdn09F3K3WDOPPbLwTc2mkqA5TQDFGGdk8qdW9E18Z/M2KK1rrLXQfVO50YxxxC13wLuR6qbqN/11wW2NlNjIkAAAAASUVORK5CYII=")
+    center center no-repeat;
 }
 
 /*-----------  Обертка картинки  -----------*/
@@ -1888,7 +1893,7 @@ label.toggle {
   height: 4px;
 }
 .range .irs-bar:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0px;
   right: 0px;
@@ -1932,7 +1937,7 @@ label.toggle {
   background-color: #0063d1;
 }
 .range .irs-handle > i:first-child:after {
-  content: '';
+  content: "";
   left: 3px;
   bottom: 3px;
   top: 3px;
@@ -2047,7 +2052,7 @@ label.toggle {
   width: 102%;
   height: 100%;
   cursor: default;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   z-index: 2;
 }
 .lt-ie9 .range .irs-disable-mask {
@@ -2101,6 +2106,24 @@ label.toggle {
   width: 90% !important;
 }
 
+.profile__border {
+  border-radius: 15px;
+  width: 100%;
+}
+
+.profile__form {
+  margin-bottom: 12px;
+}
+
+.profile__form-telephone {
+  margin-bottom: 22px;
+}
+
+.profile__avatar-custom {
+  height: 170px !important;
+  margin-bottom: 10px;
+}
+
 .form__email {
   margin-top: 18px !important;
 }
@@ -2110,6 +2133,8 @@ label.toggle {
   color: #fff;
   background: #c94c2c;
   transition: all 200ms;
+  cursor: pointer;
+  /* margin-bottom: 10px; */
 }
 
 .btn_reset:hover {
@@ -2123,7 +2148,8 @@ label.toggle {
 
 .block__input-numbers {
   display: flex;
-  width: 35%;
+  width: 95%;
+  margin-bottom: 10px;
 }
 
 .margin {
@@ -2138,8 +2164,28 @@ label.toggle {
   margin-bottom: 15px;
 }
 
+.add-product {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product__left,
+.product__right {
+  width: 47%;
+}
+
+.Account__avatar {
+  height: 125px;
+  padding: 30px;
+  border: 1px solid black;
+  border-radius: 80px;
+}
 .margin__menu {
   margin-bottom: 200px;
+}
+
+.margin__menu-right {
+  margin-right: 12px;
 }
 
 .size {
@@ -2157,9 +2203,13 @@ label.toggle {
 
 .btns {
   display: flex;
+  flex-direction: column;
 }
-.size_custom {
-  width: 40% !important;
+.Profile-btn {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
 }
 
 .btn_muted:hover {
@@ -2167,9 +2217,23 @@ label.toggle {
   color: white !important;
 }
 
+.margin__bottom {
+  margin-bottom: 5px;
+}
+
 .sticky {
   position: sticky !important;
   top: 10px;
+}
+
+.profile__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.profile__right,
+.profile__left {
+  width: 49%;
 }
 
 /*-----------  Строки  -----------*/
@@ -2401,7 +2465,8 @@ html {
   height: 100%;
   width: 100%;
   display: block;
-  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica, "Nimbus Sans L", sans-serif;
+  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica,
+    "Nimbus Sans L", sans-serif;
 }
 body {
   min-height: 100%;
@@ -2419,7 +2484,8 @@ body {
   box-sizing: border-box;
 }
 .fontAddit {
-  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica, "Nimbus Sans L", sans-serif;
+  font-family: Roboto, Verdana, Arial, "Helvetica CY", Helvetica,
+    "Nimbus Sans L", sans-serif;
 }
 /* Использовать только одиночные теги
 в редких случаях допускается использовать классы,
@@ -2428,7 +2494,7 @@ a {
   text-decoration: none;
   color: #0063d1;
   border-bottom: 1px solid #84beff;
-  border-bottom: 1px solid rgba(0,99,209,0);
+  border-bottom: 1px solid rgba(0, 99, 209, 0);
   padding-bottom: 0;
   cursor: pointer;
 }
@@ -2462,7 +2528,7 @@ ul li {
   list-style: none;
 }
 ul li:after {
-  content: ' ';
+  content: " ";
   width: 4px;
   height: 4px;
   position: absolute;
@@ -2539,7 +2605,7 @@ table tr:first-child th {
 .link {
   color: #0063d1;
   border-bottom: 1px solid #84beff;
-  border-bottom: 1px solid rgba(0,99,209,0);
+  border-bottom: 1px solid rgba(0, 99, 209, 0);
   padding-bottom: 0;
   cursor: pointer;
 }
@@ -2558,7 +2624,7 @@ button.link {
 .link_text {
   color: #424650;
   border-bottom: 1px solid #adb1bc;
-  border-bottom: 1px solid rgba(66,70,80,0);
+  border-bottom: 1px solid rgba(66, 70, 80, 0);
   padding-bottom: 0;
   cursor: pointer;
 }
@@ -2576,7 +2642,7 @@ button.link {
 .link_muted {
   color: #a3afb5;
   border-bottom: 1px solid #4e5b61;
-  border-bottom: 1px solid rgba(163,175,181,0);
+  border-bottom: 1px solid rgba(163, 175, 181, 0);
   padding-bottom: 0;
   cursor: pointer;
 }
