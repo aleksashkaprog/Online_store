@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import Group
 
 from users.models import CustomUser
 
@@ -8,7 +9,9 @@ class RegisterViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        Group.objects.create(name='customer').save()
         cls.page_name = reverse(viewname='users:register')
+
         cls.user = {
             'email': 'test@ya.ru',
             'password1': 'TestPass12',
@@ -41,9 +44,17 @@ class RegisterViewTest(TestCase):
 
     def test_can_register_user(self):
         response = self.client.post(self.page_name, self.user)
+        user = CustomUser.objects.get(email='test@ya.ru')
+
         self.assertEqual(response.status_code, 302)
         self.assertEqual(CustomUser.objects.all().count(), 1)
-        self.assertEqual(CustomUser.objects.all()[0].email, 'test@ya.ru')
+        self.assertEqual(user.email, 'test@ya.ru')
+
+    def test_add_user_to_customer_group(self):
+        self.client.post(self.page_name, self.user)
+        user = CustomUser.objects.get(email='test@ya.ru')
+
+        self.assertTrue(user.groups.filter(name='customer').exists())
 
     def test_cant_register(self):
         response = self.client.post(self.page_name, self.user_short_password)
