@@ -1,9 +1,9 @@
-import random
+# import random
 
 from django.shortcuts import render
 from django.views import View
 
-from main_page.models import Banner
+# from main_page.models import Banner
 
 
 class MainPageView(View):
