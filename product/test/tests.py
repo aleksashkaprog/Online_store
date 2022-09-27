@@ -33,10 +33,12 @@ class ProductTestCase(TestCase):
 
     def test_product_view(self) -> None:
         self.client.get(reverse('product', kwargs={'pk': 1}))
+        self.client.get(reverse('product', kwargs={'pk': 1}))
         self.assertTemplateUsed('product/product.html')
 
     def test_add_review(self) -> None:
         self.client.login(username='admin@ya.ru', password='TestPass12')
         self.client.post(reverse('product', kwargs={'pk': 1}), self.review)
+        self.client.get(reverse('product', kwargs={'pk': 1}))
         self.client.get(reverse('product', kwargs={'pk': 1}))
         # self.assertTrue(response.status_code == 200)
