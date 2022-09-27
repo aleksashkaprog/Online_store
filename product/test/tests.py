@@ -16,6 +16,7 @@ class ProductTestCase(TestCase):
             key: value for key, value in (
                 ('name', 'test_product_{}'.format(i)),
                 ('price', (50 + i) * 10),
+                ('old_price', (60 + i) * 10),
                 (
                     'category', Category.objects.create(
                         name='test_category_{}'.format(i),
