@@ -2077,6 +2077,101 @@ label.toggle {
   border-color: transparent !important;
 }
 
+.block__create-store-form {
+  display: flex;
+}
+.block__create-store-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.block__create-store-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.border-custom {
+  border-radius: 15px !important;
+}
+
+.border {
+  border-radius: 15px !important;
+  width: 90% !important;
+}
+
+.form__email {
+  margin-top: 18px !important;
+}
+
+.btn_reset {
+  border-color: #c94c2c;
+  color: #fff;
+  background: #c94c2c;
+  transition: all 200ms;
+}
+
+.btn_reset:hover {
+  background-color: #c94c2c;
+  opacity: 80%;
+}
+
+.сustom-width {
+  width: 85% !important;
+}
+
+.block__input-numbers {
+  display: flex;
+  width: 35%;
+}
+
+.margin {
+  margin-top: 5px !important;
+}
+
+.seller-logo {
+  width: 500px;
+  height: 300px;
+  border-radius: 15px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.margin__menu {
+  margin-bottom: 200px;
+}
+
+.size {
+  font-size: 20px !important;
+}
+
+.menu-item.size > a {
+  color: #000 !important;
+}
+
+.Account-editLink.Account-editLink_view > a {
+  color: #000 !important;
+  font-size: 30px !important;
+}
+
+.btns {
+  display: flex;
+}
+.size_custom {
+  width: 40% !important;
+}
+
+.btn_muted:hover {
+  background-color: #98addc !important;
+  color: white !important;
+}
+
+.sticky {
+  position: sticky !important;
+  top: 10px;
+}
+
 /*-----------  Строки  -----------*/
 .row {
   width: 100%;

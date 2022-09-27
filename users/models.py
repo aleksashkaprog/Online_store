@@ -13,13 +13,6 @@ def update_avatar(instance, filename):
     return os.path.join(path, file_name)
 
 
-ROLE = (
-    ('admin', _('Администратор')),
-    ('seller', _('Продавец')),
-    ('customer', _('Покупатель'))
-)
-
-
 class CustomUser(AbstractUser):
     """
     Модель кастомного пользователя
@@ -33,8 +26,6 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(verbose_name=_('работник'), default=False)
     is_active = models.BooleanField(verbose_name=_('флаг активности'), default=True)
 
-    role = models.CharField(max_length=15, choices=ROLE, default='customer')
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -43,6 +34,10 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = _('пользователь')
         verbose_name_plural = _('пользователи')
+
+        permissions = (
+            ('can_do_order', _('Может делать заказ')),
+        )
 
     def __str__(self):
         return self.email

@@ -21,5 +21,5 @@ class ComposeTestCase(TestCase):
         self.assertRedirects(response, reverse('compare'))
 
     def test_compose_delete_session(self) -> None:
-        response = self.client.get(reverse('delete_from_compare', kwargs={'pk': 1}))
+        self.client.get(reverse('delete_from_compare', kwargs={'pk': 1}))
         self.assertTrue(1 not in self.client.session.get('compare'))

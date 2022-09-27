@@ -1,9 +1,17 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MaxValueValidator
+
+from django.core.validators import MaxValueValidator, MinValueValidator
+import os
 
 from category.models import Category
 from category.tools import get_slug
+
+
+def load_images(instance, filename):
+    path = "product_images/"
+    file_name = f'{instance.product.slug}_{instance.product.id}.{filename.split(".")[-1]}'
+    return os.path.join(path, file_name)
 
 
 class Product(models.Model):
@@ -30,3 +38,27 @@ class Product(models.Model):
     def get_characteristic(self) -> dict:
         dict_characteristic: dict = {i.split(' - ')[0]: i.split(' - ')[1] for i in self.characteristic.split(', ')}
         return dict_characteristic
+
+
+class Image(models.Model):
+    file = models.ImageField(upload_to=load_images, verbose_name=_('файл'))
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,
+                                related_name='images', verbose_name=_('продукт'))
+
+    def __str__(self):
+        return f'{self.file.url}'
+
+
+class Review(models.Model):
+
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,
+                                related_name='reviews', verbose_name=_('товар'))
+    user = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE,
+                             related_name='reviews', verbose_name=_('пользователь'))
+    text = models.CharField(max_length=1000, verbose_name=_('текст отзыва'))
+    rating = models.SmallIntegerField(validators=(MinValueValidator(1), MaxValueValidator(5)),
+                                      verbose_name=_('Оценка'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('дата создания'))
+
+    def __str__(self):
+        return f'{self.user.full_name}: {self.rating}'
