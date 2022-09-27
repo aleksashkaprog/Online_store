@@ -1,10 +1,25 @@
-# from django.shortcuts import render
-from django.db.models import QuerySet
-from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.generic import DetailView
+from .models import Product
+from .services import ProductService
 
-from . import models
 
+class ProductDetail(DetailView):
+    model = Product
+    context_object_name = 'product'
+    template_name = "product/product.html"
 
-def product_view(request) -> HttpResponse:
-    products: QuerySet = models.Product.objects.all()
-    return HttpResponse(products)
+    def get_queryset(self):
+        queryset = super().get_queryset().prefetch_related('reviews')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetail, self).get_context_data(**kwargs)
+        context['user_review'] = ProductService.user_has_review(self.request.user, self.kwargs['pk'])
+        return context
+
+    def post(self, request, **kwargs):
+        self.object = self.get_object()
+        ProductService.review_form_save(instance=self, request=request)
+        return redirect(reverse('product', args=(self.kwargs['slug'], self.kwargs['pk'])))

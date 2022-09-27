@@ -18,7 +18,7 @@ def register_view(request):
 
         if form.is_valid():
             register_user(request, user_form=form)
-            # Здесь будет редирект на главную
+
             return redirect(to=reverse('main_page'))
 
     return render(request, template_name='users/register.html', context={'form': form})

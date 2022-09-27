@@ -1,8 +1,19 @@
 from django.contrib import admin
 
-from . import models
+from .models import Product, Review, Image
 
 
-@admin.register(models.Product)
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 0
+
+
 class ProductAdmin(admin.ModelAdmin):
-    pass
+    exclude = ['id']
+    inlines = [ImageInline]
+    list_display = ['id', 'category', 'name', 'price']
+
+
+admin.site.register(Product, ProductAdmin)
+
+admin.site.register(Review)
