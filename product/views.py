@@ -11,7 +11,7 @@ class ProductDetail(DetailView):
     template_name = "product/product.html"
 
     def get_queryset(self):
-        queryset = Product.objects.prefetch_related('reviews')
+        queryset = super().get_queryset().prefetch_related('reviews')
         return queryset
 
     def get_context_data(self, **kwargs):
