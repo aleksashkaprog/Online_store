@@ -26,6 +26,9 @@ urlpatterns = [
     path('product/compare/', include('compare.urls')),
     path('', include('main_page.urls')),
     path('my/', include('users.urls', namespace='users')),
+    path('category/', include('category.urls')),
+    path('seller/', include('shop.urls')),
+    path('account/', include('personal_account.urls'))
 ]
 
 if settings.DEBUG:
