@@ -1,0 +1,136 @@
+{% extends 'base.html' %} {% load static %} {% block main%}
+
+<div class="Middle-top">
+  <div class="wrap">
+    <div class="Middle-header">
+      <h1 class="Middle-title">Профиль</h1>
+      <ul class="breadcrumbs Middle-breadcrumbs">
+        <li class="breadcrumbs-item"><a href="/">ДОМОЙ</a></li>
+        <li class="breadcrumbs-item breadcrumbs-item_current">
+          <span>Профиль</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="Section Section_column">
+  <div class="wrap">
+    <div class="Section-column">
+      <div class="Section-columnSection sticky margin__menu-right">
+        <header class="Section-header">
+          <strong class="Section-title">Меню</strong>
+        </header>
+        <div class="Section-columnContent">
+          <div class="NavigateProfile">
+            <ul class="menu menu_vt">
+              <li class="menu-item">
+                <a class="menu-link" href="#">Профиль</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">История заказов</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="#">Просмотренные продукты</a>
+              </li>
+              <li class="menu-item_ACTIVE menu-item">
+                <a class="menu-link" href="#">Комната продавцов</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Section-content">
+      <header class="Section-header margin">
+        <h2 class="Section-title">Ваш профиль</h2>
+      </header>
+      <div class="Profile">
+        <form
+          class="profile__container"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="profile__left">
+            <label class="form-label">Фото профиля</label>
+            <div class="Profile-avatar profile__avatar-custom profile__border">
+              <label class="Profile-fileLabel" for="avatar"
+                >Выбрать аватар</label
+              >
+              <input
+                class="Profile-file form-input"
+                id="avatar"
+                accept="image/*"
+                name="avatar"
+                type="file"
+              />
+            </div>
+
+            <div class="profile__form">
+              <label class="form-label" for="first_name">Имя</label>
+              <input
+                class="form-input profile__border"
+                id="first_name"
+                placeholder="Имя"
+                type="text"
+              />
+            </div>
+            <div class="profile__form">
+              <label class="form-label" for="last_name">Фамилия</label>
+              <input
+                class="form-input profile__border"
+                id="last_name"
+                placeholder="Фамилия"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="profile__right">
+            <div class="profile__form-telephone">
+              <label class="form-label" for="id_phone">Телефон</label>
+              <input
+                class="form-input profile__border"
+                placeholder="Телефон"
+                required
+                type="text"
+              />
+            </div>
+            <div class="profile__form">
+              <label class="form-label" for="address">Адрес</label>
+              <input
+                class="form-input profile__border"
+                placeholder="Адрес"
+                required
+                type="text"
+              />
+            </div>
+            <div class="profile__form">
+              <label class="form-label" for="id_phone">Пароль</label>
+              <input
+                class="form-input profile__border"
+                placeholder="Пароль"
+                required
+                type="text"
+              />
+            </div>
+            <div class="profile__form">
+              <label class="form-label" for="id_phone"
+                >Подтверждение пароля</label
+              >
+              <input
+                class="form-input profile__border"
+                placeholder="Повторите пароль"
+                required
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
+            <button class="btn btn_success" type="submit">Изменить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
