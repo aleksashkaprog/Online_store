@@ -5,6 +5,9 @@ services:
   web:
     build:
       context: .
+      depends_on:
+        - db
+        - redis
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - .env
@@ -39,7 +42,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     container_name: python_django_team14-postgres_db
 
-  redis_db:
+  redis:
     image: redis:alpine
     volumes:
       - redis_data:/data
