@@ -1,10 +1,12 @@
 # import random
+import datetime
+import random
 
 from django.shortcuts import render
-from django.utils import timezone
 from django.views import View
 
 from catalog.models import Favourite, DayOffer, Top, Hot, Limit
+from main_page.models import Banner
 
 
 # from main_page.models import Banner
@@ -13,17 +15,19 @@ from catalog.models import Favourite, DayOffer, Top, Hot, Limit
 class MainPageView(View):
 
     def get(self, request):
-        # banner_list = []
-        # banner = Banner.objects.all()
-        # for ban in banner:
-        #     banner_list.append(ban)
-        # banners = random.sample(banner_list, 3)
-        banners = None
+        banner_list = []
+        banner = Banner.objects.all()
+        if banner:
+            for ban in banner:
+                banner_list.append(ban)
+            banners = random.sample(banner_list, 3)
+        else:
+            banners = None
         if request.user:
-            favourite_categories = Favourite.objects.filter(user=request.user)
+            favourite_categories = Favourite.objects.filter(user=request.user.id)
         else:
             favourite_categories = None
-        day_offer = DayOffer.objects.filter(day=timezone.now().date())
+        day_offer = DayOffer.objects.filter(day=datetime.date.today())
         top_products = Top.objects.all()
         hot_offers = Hot.objects.all()
         limited_offers = Limit.objects.all()
