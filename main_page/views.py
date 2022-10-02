@@ -1,4 +1,3 @@
-# import random
 import datetime
 import random
 
@@ -7,9 +6,6 @@ from django.views import View
 
 from catalog.models import Favourite, DayOffer, Top, Hot, Limit
 from main_page.models import Banner
-
-
-# from main_page.models import Banner
 
 
 class MainPageView(View):
