@@ -25,8 +25,10 @@ class Top(models.Model):
 
 
 class Hot(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE, related_name='hots', verbose_name=_('продукт'))
+    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+                                related_name='hots', verbose_name=_('продукт'))
 
 
 class Limit(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE, related_name='limits', verbose_name=_('продукт'))
+    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+                                related_name='limits', verbose_name=_('продукт'))
