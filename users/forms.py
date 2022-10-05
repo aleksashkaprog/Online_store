@@ -39,7 +39,7 @@ class ResetPasswordForm(forms.Form):
 class LogInForm(forms.Form):
     """Форма для авторизации"""
     email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(label=_('Пароль'), widget=forms.PasswordInput)
 
     def clean(self):
         cleaned_data = super().clean()

@@ -24,12 +24,12 @@ class Cart(object):
 
             self.session = Session.objects.only('pk').get(session_key=request.session.session_key)
             self.cart = self.session.session_carts.all().prefetch_related(
-                'product__shop_products__store', 'product__images')
+                'product__shop_products__store', 'product__images', 'product__reviews')
 
         else:
             self.user = request.user
             self.cart = self.user.user_carts.all().prefetch_related(
-                'product__shop_products__store', 'product__images')
+                'product__shop_products__store', 'product__images', 'product__reviews')
 
     def add(self, product: Product, shop_product: ShopProduct, quantity: int = 1,
             update_quantity: bool = False) -> None:
