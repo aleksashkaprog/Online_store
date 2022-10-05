@@ -68,7 +68,11 @@ class Cart(object):
         if self.auth:
             cart_product = get_object_or_404(klass=ProductInCart, user=self.user, product_id=product.id)
         else:
-            cart_product = get_object_or_404(klass=ProductInCartAnon, session_id=self.session.pk, product_id=product.id)
+            cart_product = get_object_or_404(
+                klass=ProductInCartAnon,
+                session_id=self.session.pk,
+                product_id=product.id
+            )
 
         cart_product.delete()
 
