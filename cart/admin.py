@@ -1,3 +1,13 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import ProductInCart, ProductInCartAnon
+
+
+@admin.register(ProductInCart)
+class ProductInCartAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProductInCartAnon)
+class ProductInCartAnonAdmin(admin.ModelAdmin):
+    pass

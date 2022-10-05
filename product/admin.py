@@ -11,7 +11,7 @@ class ImageInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     exclude = ['id']
     inlines = [ImageInline]
-    list_display = ['id', 'category', 'name', 'price']
+    list_display = ['id', 'category', 'name']
 
 
 admin.site.register(Product, ProductAdmin)

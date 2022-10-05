@@ -47,7 +47,7 @@ class RegisterViewTest(TestCase):
         user = CustomUser.objects.get(email='test@ya.ru')
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(CustomUser.objects.all().count(), 1)
+        self.assertEqual(CustomUser.objects.count(), 1)
         self.assertEqual(user.email, 'test@ya.ru')
 
     def test_add_user_to_customer_group(self):
@@ -76,14 +76,31 @@ class RegisterViewTest(TestCase):
 
 
 class LogInTestView(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        data = {'email': 'test@ya.ru', 'password': 'test1'}
+        cls.user = CustomUser.objects.create_user(email=data['email'], password=data['password'])
+        cls.invalid_data = {'email': 'test@ya.ru', 'password': 'test'}
+        cls.data = data
+        cls.page_name = reverse(viewname='users:login')
+
     def test_view_url_exist_at_desired_location(self):
         response = self.client.get('/my/login/')
         self.assertEqual(response.status_code, 200)
 
     def test_view_use_correct_template(self):
-        response = self.client.get(reverse(viewname='users:login'))
+        response = self.client.get(self.page_name)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/login.html')
+
+    def test_authenticate(self):
+        response = self.client.post(self.page_name, data=self.data)
+        self.assertRedirects(response, expected_url=reverse(viewname='main_page'), status_code=302)
+        self.assertTrue(self.client.request().context['user'].is_authenticated)
+
+    def test_invalid_authenticate(self):
+        response = self.client.post(self.page_name, data=self.invalid_data)
+        self.assertContains(response, text='Не найдено пары E-mail/пароль')
 
 
 class LogOutTestView(TestCase):
@@ -110,7 +127,7 @@ class ResetPasswordTestView(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.page_name = reverse(viewname='users:reset_password')
-        CustomUser.objects.create(email='testuser@ya.ru', password='testpass123')
+        CustomUser.objects.create_user(email='test@ya.ru', password='test1')
 
     def setUp(self):
         self.get_response = self.client.get(self.page_name)
@@ -127,7 +144,11 @@ class ResetPasswordTestView(TestCase):
         self.assertTemplateUsed(self.get_response, 'users/reset_password.html')
 
     def test_reset_password(self):
-        response = self.client.post(self.page_name, data={'email': 'testuser@ya.ru'})
+        response = self.client.post(self.page_name, data={'email': 'test@ya.ru'})
         self.assertEqual(response.status_code, 200)
-        user = CustomUser.objects.get(email='testuser@ya.ru')
+        user = CustomUser.objects.get(email='test@ya.ru')
         self.assertTrue(user.check_password('qwerty1234'))
+
+    def test_try_reset_password_with_invalid_email(self):
+        response = self.client.post(self.page_name, data={'email': 'invalid_mail@ya.ru'})
+        self.assertContains(response, text='Пользователь не найден')

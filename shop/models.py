@@ -30,7 +30,8 @@ class ShopProduct(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("продукт")
     )
-    price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_("цена"))
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('цена'))
+    old_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('старая цена'))
     amount = models.IntegerField(default=0, verbose_name=_("количество"))
     add_at = models.DateField(auto_now_add=True, verbose_name=_("дата добавления"))
 

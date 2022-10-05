@@ -18,8 +18,6 @@ class Product(models.Model):
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
     slug = models.SlugField(blank=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('цена'))
-    old_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('старая цена'))
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     views = models.PositiveIntegerField(default=0, verbose_name=_('просмотры'))
     rating = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), ], verbose_name=_('рейтинг'))
