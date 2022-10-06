@@ -22,13 +22,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('category/', include('category.urls')),
     path('catalog/', include('catalog.urls')),
-    path('products/', include('product.urls')),
+    path('product/', include('product.urls')),
     path('product/compare/', include('compare.urls')),
     path('', include('main_page.urls')),
     path('my/', include('users.urls', namespace='users')),
     path('category/', include('category.urls')),
     path('seller/', include('shop.urls')),
-    path('account/', include('personal_account.urls'))
+    path('account/', include('personal_account.urls')),
+    path('cart/', include('cart.urls', namespace='cart')),
 ]
 
 if settings.DEBUG:

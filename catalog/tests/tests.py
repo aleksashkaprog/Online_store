@@ -14,8 +14,6 @@ class CatalogTestCase(TestCase):
         )
         cls.products: list = [Product.objects.create(
             name='test_name_{}'.format(_),
-            price=(60 + _) * 10,
-            old_price=(70 + _) * 10,
             category=cls.category,
         ) for _ in range(10)]
 
