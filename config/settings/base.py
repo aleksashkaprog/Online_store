@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'order',
     'personal_account',
     'category',
+    'discount',
     'users',
 ]
 

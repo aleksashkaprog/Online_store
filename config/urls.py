@@ -26,7 +26,8 @@ urlpatterns = [
     path('my/', include('users.urls', namespace='users')),
     path('category/', include('category.urls')),
     path('seller/', include('shop.urls')),
-    path('account/', include('personal_account.urls'))
+    path('account/', include('personal_account.urls')),
+    path('discounts/', include('discount.urls')),
 ]
 
 if settings.DEBUG:
