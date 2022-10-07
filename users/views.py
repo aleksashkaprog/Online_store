@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.urls import reverse
 
-from users.forms import CustomUserCreationForm, ResetPasswordForm
-from users.services import register_user, password_change
+from users.forms import CustomUserCreationForm, ResetPasswordForm, LogInForm
+from .services import register_user, password_change, login_user
 
 
 def register_view(request):
@@ -24,8 +24,18 @@ def register_view(request):
     return render(request, template_name='users/register.html', context={'form': form})
 
 
-class LogInView(LoginView):
-    template_name = 'users/login.html'
+def user_login(request):
+    form = LogInForm()
+
+    if request.method == 'POST':
+        form = LogInForm(request.POST)
+
+        if form.is_valid():
+            login_user(request, form)
+
+            return redirect(to=reverse(viewname='main_page'))
+
+    return render(request, 'users/login.html', {'form': form})
 
 
 class LogOutView(LogoutView):
@@ -36,6 +46,8 @@ def reset_password(request):
     """
     Представление с регистрацией пользователя
     """
+    form = ResetPasswordForm()
+
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST)
 
@@ -44,7 +56,5 @@ def reset_password(request):
             # Здесь будет редирект на главную
             return HttpResponse('Заглушка.'
                                 'Ваш новый пароль qwerty1234.')
-
-    form = ResetPasswordForm()
 
     return render(request, template_name='users/reset_password.html', context={'form': form})

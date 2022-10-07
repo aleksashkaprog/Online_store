@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-7ljcff0x1vz2$y)7byy!3!&ys1%f(wfu*zkwb)twdt%z1&ox(u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'order',
     'personal_account',
     'category',
+    'compare',
     'discount',
     'users',
 ]
@@ -87,6 +88,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'category.context_processors.get_categories',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -103,6 +105,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'category.context_processors.get_categories',
+                'cart.context_processors.cart',
             ],
         },
     },

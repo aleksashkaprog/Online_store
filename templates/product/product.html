@@ -45,10 +45,10 @@
                 </h2>
                 <div class="ProductCard-info">
                   <div class="ProductCard-cost">
-                    <div class="ProductCard-price">{{ product.price }}
+                    <div class="ProductCard-price">{{ product.get_avg_price }}
                     </div>
                     {% if product.old_price %}
-                      <div class="ProductCard-priceOld">{{ product.old_price }}
+                      <div class="ProductCard-priceOld">{{ product.get_avg_old_price }}
                       </div>
                     {% endif %}
                   </div>
@@ -66,23 +66,25 @@
                   {% endfor %}
                 </ul>
               </div>
-              <div class="ProductCard-cart">
-                <div class="ProductCard-cartElement ProductCard-cartElement_amount">
-                  <div class="Amount Amount_product">
-                    <button class="Amount-remove" type="button">
-                    </button>
-                    <input class="Amount-input form-input" name="amount" type="text" value="1"/>
-                    <button class="Amount-add" type="button">
-                    </button>
-                  </div>
-                </div>
-                <div class="ProductCard-cartElement">
-                  <a class="btn btn_primary" href="{# {% url 'cart_add' product.id %} #}">
-                    <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}"
-                         alt="cart_white.svg"/>
-                    <span class="btn-content">Add To Cart</span></a>
-                </div>
-              </div>
+                <form action="{% url 'cart:cart_random_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="ProductCard-cart">
+                      <div class="ProductCard-cartElement ProductCard-cartElement_amount">
+                        <div class="Amount Amount_product">
+                            <button class="Amount-remove" type="button"></button>
+                            {{ form.quantity }}
+                            <button class="Amount-add" type="button"></button>
+                        </div>
+                        </div>
+                            <div class="ProductCard-cartElement">
+                            <button class="btn btn_primary">
+                                <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}"
+                                     alt="cart_white.svg"/>
+                                <span class="btn-content">{% trans 'Добавить в корзину' %}</span>
+                            </button>
+                      </div>
+                    </div>
+                </form>
               <div class="ProductCard-footer">
                 <div class="ProductCard-tags">
                   <strong class="ProductCard-tagsTitle">Tags:</strong>
@@ -135,12 +137,11 @@
               </div>
               <div class="Tabs-block" id="sellers">
                 <div class="Categories Categories_product">
-                  {% for seller in product.sellers %}
+                  {% for seller in product.shop_products.all %}
                     <div class="Categories-row">
                       <div class="Categories-block Categories-block_info">
                         <div class="Categories-info">
-                          <strong>{{ seller.name }}
-                          </strong>
+                          <strong>{{ seller.store.name }}</strong>
                         </div>
                       </div>
                       <div class="Categories-splitProps">
@@ -149,7 +150,7 @@
                         <strong>{{ seller.price }}</strong>
                       </div>
                       <div class="Categories-block Categories-button">
-                        <a class="btn btn_primary" href="{% url 'cart_add' product.id seller.id %}">
+                        <a class="btn btn_primary" href="{% url 'cart:cart_add' product.id seller.id %}">
                           <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}"
                                alt="cart_white.svg"/>
                           <span class="btn-content">Купить</span>
@@ -249,7 +250,7 @@
                     </form>
                   </div>
                   {% elif not request.user.is_authenticated %}
-                  <a href="#{# {% url 'login' %} #}" class="breadcrumbs-item">Чтобы оставить отзыв, вам нужно авторизоваться</a>
+                  <a href="{ {% url 'users:login' %} }" class="breadcrumbs-item">{% trans 'Чтобы оставить отзыв, вам нужно авторизоваться' %}</a>
                 {% endif %}
               </div>
             </div>
