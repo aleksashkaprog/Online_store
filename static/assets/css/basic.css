@@ -2231,11 +2231,36 @@ label.toggle {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .profile__right,
 .profile__left {
   width: 49%;
 }
 
+.historyOrder {
+  display: none;
+}
+
+.btn__show-history {
+  color: black;
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.btn__close {
+  color: black;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.btn__show-history_HIDDEN {
+  display: none;
+}
+
+.historyOrder_ACTIVE {
+  display: block;
+  align-items: flex-start;
+}
 /*-----------  Строки  -----------*/
 .row {
   width: 100%;
