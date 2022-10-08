@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'personal_account',
     'category',
     'compare',
+    'discount',
     'users',
 ]
 
