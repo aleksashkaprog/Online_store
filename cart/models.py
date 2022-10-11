@@ -1,10 +1,8 @@
-from django.contrib.sessions.models import Session
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from users.models import CustomUser
 from shop.models import ShopProduct
-from product.models import Product
 
 
 class ProductInCart(models.Model):
