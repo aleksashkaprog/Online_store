@@ -5,9 +5,9 @@ from .forms import AddReviewForm
 class ProductService:
 
     @staticmethod
-    def user_has_review(user, product_id):
+    def user_has_review(user, product: Product):
         if user.is_authenticated:
-            reviews = Product.objects.get(id=product_id).reviews.all()
+            reviews = product.reviews.all()
             curr_usr_review = reviews.filter(user=user).exists()
             if curr_usr_review:
                 return True
@@ -15,7 +15,7 @@ class ProductService:
 
     @staticmethod
     def review_form_save(instance, request):
-        if not ProductService.user_has_review(instance.request.user, instance.kwargs['pk'])\
+        if not ProductService.user_has_review(instance.request.user, instance.object)\
                 and instance.request.user.is_authenticated:
             review_form = AddReviewForm(request.POST)
             if review_form.is_valid():
