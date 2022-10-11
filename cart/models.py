@@ -19,18 +19,11 @@ class ProductInCart(models.Model):
         verbose_name=_('владелец корзины')
     )
 
-    product = models.ForeignKey(
-        to=Product,
-        on_delete=models.CASCADE,
-        related_name='user_cart_products',
-        verbose_name=_('товар')
-    )
-
     shop_product = models.ForeignKey(
         to=ShopProduct,
         on_delete=models.CASCADE,
         related_name='user_cart_shops',
-        verbose_name=_('магазин')
+        verbose_name=_('модель, связывающая товар и магазин')
     )
 
     quantity = models.PositiveIntegerField(verbose_name=_('количество'))
@@ -40,40 +33,4 @@ class ProductInCart(models.Model):
         verbose_name_plural = _('корзины пользователей')
 
     def __str__(self):
-        return f'Товар {self.product.name} в корзине у {self.user.email}'
-
-
-class ProductInCartAnon(models.Model):
-    """
-    Модель товара, хранящегося в корзине у анонимного пользователя
-    """
-
-    session = models.ForeignKey(
-        to=Session,
-        on_delete=models.CASCADE,
-        related_name='session_carts',
-        verbose_name=_('сессия анонимного пользователя')
-    )
-
-    product = models.ForeignKey(
-        to=Product,
-        on_delete=models.CASCADE,
-        related_name='anon_cart_products',
-        verbose_name=_('товар')
-    )
-
-    shop_product = models.ForeignKey(
-        to=ShopProduct,
-        on_delete=models.CASCADE,
-        related_name='anon_cart_shops',
-        verbose_name=_('магазин')
-    )
-
-    quantity = models.PositiveIntegerField(verbose_name=_('количество'))
-
-    class Meta:
-        verbose_name = _('корзины анонимного пользователя')
-        verbose_name_plural = _('корзины анонимных пользователей')
-
-    def __str__(self):
-        return f'Товар {self.product.name} в корзине у анонимного пользователя'
+        return f'Товар {self.shop_product.product.name} в корзине у {self.user.email}'
