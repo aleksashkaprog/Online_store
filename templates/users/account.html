@@ -198,111 +198,52 @@
           </div>
 
           <div class="Account-group">
-            <div class="Account-column Account-column_full">
-              <header class="Section-header">
-                <h2 class="Section-title">История просмотров</h2>
-              </header>
-
-              <div class="Cards Cards_account">
-                <div class="Card">
-                  <a class="Card-picture" href="#"
-                    ><img
-                      src="{% static 'assets/img/content/home/card.jpg' %}"
-                      alt="card.jpg"
-                  /></a>
-                  <div class="Card-content">
-                    <strong class="Card-title"><a href="#">Продукт</a> </strong>
-                    <div class="Card-description">
-                      <div class="Card-cost">
-                        <span class="Card-priceOld">$5.00</span
-                        ><span class="Card-price">$4.50</span>
+              <div class="Account-column Account-column_full">
+                <header class="Section-header">
+                  <h2 class="Section-title">История просмотров
+                  </h2>
+                </header>
+                {% if user.viewshistorys %}
+                  <div class="Cards Cards_account">
+                    {% for product in user.viewshistorys %}
+                      <div class="Card
+                        {% if forloop.counter == 2 %}hide_700{% endif %}
+                        {% if forloop.counter == 3 %}hide_md{% endif %} ">
+                        <a class="Card-picture" href="#"><img src="{{ product.image }}" alt="card.jpg"/></a>
+                        <div class="Card-content">
+                          <strong class="Card-title"><a href="#">{{ product.name }}</a></strong>
+                          <div class="Card-description">
+                            <div class="Card-cost">
+                              {% if product.old_price %}
+                                <span class="Card-priceOld">{{ product.old_price }}</span>
+                              {% endif %}
+                              <span class="Card-price">{{ product.price }}</span>
+                            </div>
+                            <div class="Card-category">{{ product.category }}
+                            </div>
+                            <div class="Card-hover">
+                              <a class="Card-btn" href="{% url 'product' product.slug product.id %}">
+                                <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
+                              </a>
+                              <a class="Card-btn" href="{% url 'cart_add' product.id %}">
+                                <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                              </a>
+                              <a class="Card-btn" href="{% url 'compare' product.id %}">
+                                <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        {% if product.discount %}
+                          <div class="Card-sale">-{{ product.discount }}%</div>
+                        {% endif %}
                       </div>
-                      <div class="Card-category">Категория</div>
-                      <div class="Card-hover">
-                        <a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/bookmark.svg' %}"
-                            alt="bookmark.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/cart.svg' %}"
-                            alt="cart.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/change.svg' %}"
-                            alt="change.svg"
-                        /></a>
-                      </div>
-                    </div>
+                    {% endfor %}
                   </div>
-                  <div class="Card-sale">-10%</div>
-                </div>
-                <div class="Card hide_700">
-                  <a class="Card-picture" href="#"
-                    ><img
-                      src="{% static 'assets/img/content/home/card.jpg' %}"
-                      alt="card.jpg"
-                  /></a>
-                  <div class="Card-content">
-                    <strong class="Card-title"><a href="#">Продукт</a> </strong>
-                    <div class="Card-description">
-                      <div class="Card-cost">
-                        <span class="Card-priceOld">$15.00</span
-                        ><span class="Card-price">$12.00</span>
-                      </div>
-                      <div class="Card-category">Категория</div>
-                      <div class="Card-hover">
-                        <a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/bookmark.svg' %}"
-                            alt="bookmark.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/cart.svg' %}"
-                            alt="cart.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/change.svg' %}"
-                            alt="change.svg"
-                        /></a>
-                      </div>
-                    </div>
+                  <div class="Account-editLink Account-editLink_view">
+                    <a href="{% url 'view_history' %}">Перейти на полный список</a>
                   </div>
-                  <div class="Card-sale">-20%</div>
-                </div>
-                <div class="Card hide_md">
-                  <a class="Card-picture" href="#"
-                    ><img
-                      src="{% static 'assets/img/content/home/card.jpg' %}"
-                      alt="card.jpg"
-                  /></a>
-                  <div class="Card-content">
-                    <strong class="Card-title"><a href="#">Продукт</a> </strong>
-                    <div class="Card-description">
-                      <div class="Card-cost">
-                        <span class="Card-priceOld">$5.00</span
-                        ><span class="Card-price">$2.50</span>
-                      </div>
-                      <div class="Card-category">Категория</div>
-                      <div class="Card-hover">
-                        <a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/bookmark.svg' %}"
-                            alt="bookmark.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/cart.svg' %}"
-                            alt="cart.svg" /></a
-                        ><a class="Card-btn" href="#"
-                          ><img
-                            src="{% static 'assets/img/icons/card/change.svg' %}"
-                            alt="change.svg"
-                        /></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="Card-sale">-50%</div>
-                </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -310,5 +251,4 @@
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

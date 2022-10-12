@@ -1,3 +1,10 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from main_page.models import Banner
+
+
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ['product', 'description', 'logo']
+
+
+admin.site.register(Banner, BannerAdmin)
