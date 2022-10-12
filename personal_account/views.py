@@ -19,10 +19,7 @@ class ProfileView(TemplateView):
 class HistoryView(View):
     def get(self, request):
         viewed_product = ViewsHistory.objects.filter(user=request.user.id)
-
-        context ={
+        context = {
             'viewed_product': viewed_product
         }
-
         return render(request, 'view_history.html', context)
-    
