@@ -863,8 +863,8 @@ select + select {
   width: 100%;
   height: 56px;
   box-sizing: border-box;
-  padding: 5px 21px;
-  border-radius: 0px;
+  padding: 15px;
+  border-radius: 0;
   border: 1px solid #e0e0e0;
   background: #f9fafc;
   background: transparent;
@@ -880,9 +880,6 @@ select + select {
   position: relative;
   width: 100%;
 }
-.form .form-selectWrap .form-select {
-  padding-right: 0px;
-}
 .form .form-selectWrap:after {
   content: "";
   display: block;
@@ -893,7 +890,6 @@ select + select {
   bottom: 1px;
   border-radius: 0 3px 3px 0;
   width: 40px;
-  background: #f9fafc url("../img/icons/arrowMuted.svg") center center no-repeat;
 }
 .form .form-btn {
   margin-top: 20px;
@@ -2231,11 +2227,36 @@ label.toggle {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .profile__right,
 .profile__left {
   width: 49%;
 }
 
+.historyOrder {
+  display: none;
+}
+
+.btn__show-history {
+  color: black;
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.btn__close {
+  color: black;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.btn__show-history_HIDDEN {
+  display: none;
+}
+
+.historyOrder_ACTIVE {
+  display: block;
+  align-items: flex-start;
+}
 /*-----------  Строки  -----------*/
 .row {
   width: 100%;

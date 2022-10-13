@@ -1,10 +1,9 @@
-from typing import List, Optional
+from typing import Optional
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import Group
 
 from cart.models import ProductInCart
-from cart.services import Cart
 from users.models import CustomUser
 
 
@@ -53,47 +52,42 @@ def password_change(request, user_form) -> None:
     user.save()
 
 
-def get_cart_from_anonim(request) -> Optional[List[dict]]:
+def get_cart_from_anonim(request) -> Optional[dict]:
     """
     Функция, возвращает корзину не авторизованного пользователя
     """
-    cart = Cart(request)
-
+    cart = request.session.get('cart')
     if cart:
-        cart_list = []
-        for product_cart in cart:
-            data = {
-                'product': product_cart.product,
-                'quantity': product_cart.quantity,
-                'shop_product': product_cart.shop_product
+        data = {}
+        for key, values in cart.items():
+            data[key] = {
+                'shop_product_id': values['shop_product_id'],
+                'quantity': values['quantity'],
+                'price': values['price'],
             }
-            cart_list.append(data)
 
-        return cart_list
+        return data
 
 
-def move_cart_from_session(cart: list, user: CustomUser) -> None:
+def move_cart_from_session(cart: dict, user: CustomUser) -> None:
     """
     Функция, преобразует корзину неавторизованного пользователя в корзину авторизованного,
     если у пользователя уже были такие товары в корзине, суммирует количество
     """
-    if cart is not None and cart:
-        for product_cart in cart:
+    for product_id, data in cart.items():
+        try:
+            product = ProductInCart.objects.get(user=user, shop_product__product__id=product_id)
 
-            try:
-                product = ProductInCart.objects.get(product=product_cart['product'], user=user)
+            if product.shop_product.id == data['shop_product_id']:
+                product.quantity += data['quantity']
+                product.save()
+            else:
+                product.delete()
+                raise ProductInCart.DoesNotExist
 
-                if product.shop_product == product_cart['shop_product']:
-                    product.quantity += product_cart['quantity']
-                    product.save()
-                else:
-                    product.delete()
-                    raise ProductInCart.DoesNotExist
-
-            except ProductInCart.DoesNotExist:
-                ProductInCart.objects.create(
-                    user=user,
-                    product=product_cart['product'],
-                    shop_product=product_cart['shop_product'],
-                    quantity=product_cart['quantity']
-                )
+        except ProductInCart.DoesNotExist:
+            ProductInCart.objects.create(
+                user=user,
+                shop_product_id=data['shop_product_id'],
+                quantity=data['quantity']
+            )

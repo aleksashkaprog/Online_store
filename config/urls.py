@@ -30,6 +30,7 @@ urlpatterns = [
     path('seller/', include('shop.urls')),
     path('account/', include('personal_account.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
+    path('discounts/', include('discount.urls')),
 ]
 
 if settings.DEBUG:
