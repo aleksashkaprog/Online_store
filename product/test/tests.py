@@ -15,12 +15,11 @@ class ProductTestCase(TestCase):
             'slug': 'test',
             'category': Category.objects.create(name='test', image='category.svg'),
             'description': 'test_text',
-            'characteristic': 'test',
         }
 
         user = CustomUser.objects.create_user(email='admin@ya.ru', password='TestPass12')
         shop = Shop.objects.create(name='test', holder=user, address='test',
-                                   email='test@ya.ru', description='test', logo='logo.svg')
+                                   email='test@ya.ru', logo='logo.svg')
         product = Product.objects.create(**data)
         ShopProduct.objects.create(store=shop, product=product, price=1, old_price=2, amount=1)
 

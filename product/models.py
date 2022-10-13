@@ -1,11 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Avg
 
 from django.core.validators import MaxValueValidator, MinValueValidator
+from typing import Callable
 import os
 
 from category.models import Category
 from category.tools import get_slug
+
+
+property_decorator: Callable = property
 
 
 def load_images(instance, filename):
@@ -20,11 +25,11 @@ class Product(models.Model):
     slug = models.SlugField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     views = models.PositiveIntegerField(default=0, verbose_name=_('просмотры'))
-    rating = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), ], verbose_name=_('рейтинг'))
+    # rating = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), ], verbose_name=_('рейтинг'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('дата обновления'))
     description = models.TextField(verbose_name=_('описание'))
-    characteristic = models.TextField(verbose_name=_('характеристика'))
+    property = models.ManyToManyField('Property', through='ProductProperty', verbose_name=_('характеристики'))
 
     def __str__(self) -> str:
         return self.name
@@ -33,9 +38,39 @@ class Product(models.Model):
         self.slug: str = get_slug(self.name)
         return super().save(*args, **kwargs)
 
-    def get_characteristic(self) -> dict:
-        dict_characteristic: dict = {i.split(' - ')[0]: i.split(' - ')[1] for i in self.characteristic.split(', ')}
-        return dict_characteristic
+    @property_decorator
+    def rating(self) -> int:
+        return self.reviews.aggregate(Avg('rating')).get('rating__avg', 0)
+
+    class Meta:
+        verbose_name = _('продукт')
+        verbose_name_plural = _('продукция')
+
+
+class ProductProperty(models.Model):
+    """Свойства продукта"""
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    property = models.ForeignKey('Property', on_delete=models.PROTECT)
+    value = models.CharField(max_length=128, verbose_name=_('значение'))
+
+    def __str__(self):
+        return 'product_property_{}'.format(self.pk)
+
+    class Meta:
+        verbose_name = _('характеристика продукта')
+        verbose_name_plural = _('характеристики продукта')
+
+
+class Property(models.Model):
+    """Свойства"""
+    name = models.CharField(max_length=512, verbose_name='характеристики')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('характеристика')
+        verbose_name_plural = _('характеристики')
 
 
 class Image(models.Model):
@@ -45,6 +80,10 @@ class Image(models.Model):
 
     def __str__(self):
         return f'{self.file.url}'
+
+    class Meta:
+        verbose_name = _('изображение продукта')
+        verbose_name_plural = _('изображения продукта')
 
 
 class Review(models.Model):
@@ -60,3 +99,7 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.user.full_name}: {self.rating}'
+
+    class Meta:
+        verbose_name = _('отзыв')
+        verbose_name_plural = _('отзывы')

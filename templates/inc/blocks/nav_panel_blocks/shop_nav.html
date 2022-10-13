@@ -1,25 +1,26 @@
+{% load i18n %}
 <nav class="row-block row-block_right Header-menu">
   <div class="menuModal" id="navigate">
     <ul class="menu menu_main">
       <li class="menu-item">
-        <a class="menu-link" href="index.html">Home</a>
+        <a class="menu-link" href="index.html">{% translate 'Главная страница' %}</a>
       </li>
       <li class="menu-item">
-        <span class="menu-label menu-label_danger">New</span>
-        <a class="menu-link" href="shop.html">Shop</a>
+        <span class="menu-label menu-label_danger">{% translate 'Новинки' %}</span>
+        <a class="menu-link" href="shop.html">{% translate 'Магазин' %}</a>
       </li>
       <li class="menu-item">
-        <a class="menu-link" href="sale.html">Blog</a>
+        <a class="menu-link" href="sale.html">{% translate 'Блог' %}</a>
       </li>
       <li class="menu-item">
-        <span class="menu-label menu-label_success">Hot</span>
-        <a class="menu-link" href="product.html">Gallery</a>
+        <span class="menu-label menu-label_success">{% translate 'горячее' %}</span>
+        <a class="menu-link" href="product.html">{% translate 'Галлерея' %}</a>
       </li>
       <li class="menu-item">
-        <a class="menu-link" href="contacts.html">Contacts</a>
+        <a class="menu-link" href="contacts.html">{% translate 'Контакты' %}</a>
       </li>
       <li class="menu-item">
-        <a class="menu-link" href="catalog.html">Purchase</a>
+        <a class="menu-link" href="catalog.html">{% translate 'Продукция' %}</a>
       </li>
     </ul>
   </div>

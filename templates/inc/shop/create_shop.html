@@ -1,13 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block main %}
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block main %}
 
 <div class="Middle-top">
   <div class="wrap">
     <div class="Middle-header">
-      <h1 class="Middle-title">Создание магазина</h1>
+      <h1 class="Middle-title">{% translate 'Создание магазина' %}</h1>
       <ul class="breadcrumbs Middle-breadcrumbs">
-        <li class="breadcrumbs-item"><a href="#">Домой</a></li>
+        <li class="breadcrumbs-item"><a href="#">{% translate 'Домой' %}</a></li>
         <li class="breadcrumbs-item breadcrumbs-item_current">
-          <span>Комната продавцов</span>
+          <span>{% translate 'Комната продавцов' %}</span>
         </li>
       </ul>
     </div>
@@ -18,22 +21,22 @@
     <div class="Section-column">
       <div class="Section-columnSection sticky">
         <header class="Section-header">
-          <strong class="Section-title">Меню</strong>
+          <strong class="Section-title">{% translate 'Меню' %}</strong>
         </header>
         <div class="Section-columnContent">
           <div class="NavigateProfile">
             <ul class="menu menu_vt">
               <li class="menu-item">
-                <a class="menu-link" href="#">Профиль</a>
+                <a class="menu-link" href="#">{% translate 'Профиль' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">История заказов</a>
+                <a class="menu-link" href="#">{% translate 'История заказов' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">Просмотренные продукты</a>
+                <a class="menu-link" href="#">{% translate 'Просмотренные продукты' %}</a>
               </li>
               <li class="menu-item_ACTIVE menu-item">
-                <a class="menu-link" href="#">Комната продавцов</a>
+                <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
               </li>
             </ul>
           </div>
@@ -49,18 +52,18 @@
         {% csrf_token %}
         <div class="block__create-store-left">
           <div class="form-group">
-            <label class="form-label" for="id_name">Название магазина</label>
+            <label class="form-label" for="id_name">{% translate 'Название магазина' %}</label>
             <input
               class="form-input border"
               id="id_name"
               required
               name="name"
               type="text"
-              placeholder="Введите название"
+              placeholder="{% translate 'Введите название' %}"
             />
           </div>
           <div class="form-group">
-            <label class="form-label" for="id_address">Адрес</label>
+            <label class="form-label" for="id_address">{% translate 'Адрес' %}</label>
             <textarea
               class="border"
               name="address"
@@ -69,36 +72,36 @@
               required
               maxlength="255"
               id="id_address"
-              placeholder="Введите адрес"
+              placeholder="{% translate 'Введите адрес' %}"
             ></textarea>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="id_phone">Телефон</label>
+            <label class="form-label" for="id_phone">{% translate 'Телефон' %}</label>
             <input
               class="form-input border"
               id="id_phone"
               required
               name="phone"
               type="text"
-              placeholder="Введите телефон"
+              placeholder="{% translate 'Введите телефон' %}"
             />
           </div>
           <div class="form-group form__email">
-            <label class="form-label" for="id_email">Почта</label>
+            <label class="form-label" for="id_email">{% translate 'Почта' %}</label>
             <input
               class="form-input border"
               id="id_email"
               required
               name="email"
               type="email"
-              placeholder="Введите почту"
+              placeholder="{% translate 'Введите почту' %}"
             />
           </div>
         </div>
         <div class="block__create-store-right">
           <div class="form-group">
-            <label class="form-label" for="id_description">Описание</label>
+            <label class="form-label" for="id_description">{% translate 'Описание' %}</label>
             <textarea
               class="border"
               name="description"
@@ -106,13 +109,13 @@
               rows="17"
               maxlength="255"
               id="id_description"
-              placeholder="Описание"
+              placeholder="{% translate 'Описание' %}"
             ></textarea>
           </div>
           <div class="form-group">
             <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">Отменить</button>
-              <button class="btn btn_success" type="submit">Создать</button>
+              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+              <button class="btn btn_success" type="submit">{% translate 'Создать' %}</button>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@
     <div class="row-block">
         {% if user.is_authenticated %}
 {#          <a style="margin-right: 20px" class="ControlPanel-title" href="{% url 'users:account' %}">{% trans 'Личный кабинет' %}</a>#}
-            <span>Личный кабинет(В разработке)</span>
+            <span>{% translate 'Личный кабинет' %}(В разработке)</span>
             <a class="ControlPanel-title" href="{% url 'users:logout' %}">{% trans 'Выйти из системы' %}</a>
         {% else %}
             <a class="ControlPanel-title" href="{% url 'users:login' %}">{% trans 'Вход/Регистрация' %}</a>

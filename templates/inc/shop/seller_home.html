@@ -1,14 +1,17 @@
-{% extends 'base.html' %} {% load static %} {% block main %}
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block main %}
 
 <div class="Middle Middle_top">
   <div class="Middle-top">
     <div class="wrap">
       <div class="Middle-header">
-        <h1 class="Middle-title">Комната продавца</h1>
+        <h1 class="Middle-title">{% translate 'Комната продавца' %}</h1>
         <ul class="breadcrumbs Middle-breadcrumbs">
-          <li class="breadcrumbs-item"><a href="/">Домой</a></li>
+          <li class="breadcrumbs-item"><a href="/">{% translate 'Домой' %}</a></li>
           <li class="breadcrumbs-item breadcrumbs-item_current">
-            <span>Комната продавца</span>
+            <span>{% translate 'Комната продавца' %}</span>
           </li>
         </ul>
       </div>
@@ -19,40 +22,40 @@
       <div class="Section-column">
         <div class="Section-columnSection sticky">
           <header class="Section-header">
-            <strong class="Section-title">Меню</strong>
+            <strong class="Section-title">{% translate 'Меню' %}</strong>
           </header>
           <div class="Section-columnContent">
             <div class="NavigateProfile margin__menu">
               <ul class="menu menu_vt">
                 <li class="menu-item">
-                  <a class="menu-link" href="#">Профиль</a>
+                  <a class="menu-link" href="#">{% translate 'Профиль' %}</a>
                 </li>
                 <li class="menu-item">
-                  <a class="menu-link" href="#">История заказов</a>
+                  <a class="menu-link" href="#">{% translate 'История заказов' %}</a>
                 </li>
                 <li class="menu-item">
-                  <a class="menu-link" href="#">Просмотренные продукты</a>
+                  <a class="menu-link" href="#">{% translate 'Просмотренные продукты' %}</a>
                 </li>
                 <li class="menu-item_ACTIVE menu-item">
-                  <a class="menu-link" href="#">Комната продавцов</a>
+                  <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
                 </li>
               </ul>
             </div>
           </div>
 
           <header class="Section-header">
-            <strong class="Section-title">Создание</strong>
+            <strong class="Section-title">{% translate 'Создание' %}</strong>
           </header>
           <div class="menu__creation">
             <ul class="menu menu_vt">
               <li class="menu-item size">
                 <a href="{% url 'create-shop' %}">
-                  <span class="seller-text">Добавить магазин</span>
+                  <span class="seller-text">{% translate 'Добавить магазин' %}</span>
                 </a>
               </li>
               <li class="menu-item size">
                 <a href="{% url 'create-good' %}">
-                  <span class="seller-text-2">Добавить продукт</span>
+                  <span class="seller-text-2">{% translate 'Добавить продукт' %}</span>
                 </a>
               </li>
             </ul>
@@ -61,19 +64,19 @@
       </div>
       <div class="Section-content">
         <header class="Section-header margin">
-          <h2 class="Section-title">Ваш магазин</h2>
+          <h2 class="Section-title">{% translate 'Ваш магазин' %}</h2>
         </header>
         <div class="Seller-wrap" style="justify-content: center">
           <div class="store">
-            <h3 class="seller-title custom_align-center">Название магазина</h3>
+            <h3 class="seller-title custom_align-center">{% translate 'Название магазина' %}</h3>
             <div class="seller-logo">
               <img src="#" class="seller-icon" />
             </div>
             <form action="#" method="get">
               <input type="hidden" name="id" value="" />
-              <button type="submit" class="btn btn_reset">Удалить</button>
+              <button type="submit" class="btn btn_reset">{% translate 'Удалить' %}</button>
               <a href="#">
-                <button type="submit" class="btn btn_success">Изменить</button>
+                <button type="submit" class="btn btn_success">{% translate 'Изменить' %}</button>
               </a>
             </form>
           </div>
@@ -81,11 +84,11 @@
           <div class="Account-group">
             <div class="Account-column Account-column_full">
               <header class="Section-header">
-                <h2 class="Section-title">Ваши продукты</h2>
+                <h2 class="Section-title">{% translate 'Ваши продукты' %}</h2>
               </header>
               <div class="Cards Cards_account" style="position: relative">
                 <div class="Account-editLink Account-editLink_view">
-                  <a href="#">Показать все продукты</a>
+                  <a href="#">{% translate 'Показать все продукты' %}</a>
                 </div>
               </div>
             </div>
@@ -94,15 +97,15 @@
           <div class="Account-group">
             <div class="Account-column Account-column_full">
               <header class="Section-header">
-                <h2 class="Section-title">Скидки на товары</h2>
+                <h2 class="Section-title">{% translate 'Скидки на товары' %}</h2>
               </header>
               <div class="Cards Cards_account">
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Продукт </strong>
+                    <strong class="Card-title">{% translate 'Продукт' %} </strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
 
@@ -113,18 +116,18 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Продукт </strong>
+                    <strong class="Card-title">{% translate 'Продукт' %} </strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
                   <form action="" method="get">
@@ -134,18 +137,18 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Продукт </strong>
+                    <strong class="Card-title">{% translate 'Продукт' %} </strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
                   <form action="" method="get">
@@ -155,9 +158,9 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>
@@ -168,15 +171,15 @@
           <div class="Account-group">
             <div class="Account-column Account-column_full">
               <header class="Section-header">
-                <h2 class="Section-title">Скидка группе товаров</h2>
+                <h2 class="Section-title">{% translate 'Скидка группе товаров' %}</h2>
               </header>
               <div class="Cards Cards_account">
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Имя</strong>
+                    <strong class="Card-title">{% translate 'Имя' %}</strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
                   <form action="#" method="get">
@@ -186,18 +189,18 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Имя</strong>
+                    <strong class="Card-title">{% translate 'Имя' %}</strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
                   <form action="#" method="get">
@@ -207,18 +210,18 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>
                 <div class="Card">
                   <a class="Card-picture" href="#"><img src="#" alt="" /></a>
                   <div class="Card-content">
-                    <strong class="Card-title">Имя</strong>
+                    <strong class="Card-title">{% translate 'Имя' %}</strong>
                     <div class="Card-description">
-                      <div class="Card-category">Описание</div>
+                      <div class="Card-category">{% translate 'Описание' %}</div>
                     </div>
                   </div>
                   <form action="#" method="get">
@@ -228,9 +231,9 @@
                         type="Submit"
                         class="btn btn_reset margin__bottom"
                       >
-                        Удалить
+                        {% translate 'Удалить' %}
                       </button>
-                      <a class="btn btn_success" href="#"> Изменить </a>
+                      <a class="btn btn_success" href="#"> {% translate 'Изменить' %} </a>
                     </div>
                   </form>
                 </div>

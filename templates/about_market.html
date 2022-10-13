@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block main %}
   <div class="Middle Middle_top">
     <div class="Middle-top">
       <div class="wrap">
         <div class="Middle-header">
-          <h1 class="Middle-title">About Megano
-          </h1>
+          <h1 class="Middle-title">{% translate 'О приложении' %}</h1>
           <ul class="breadcrumbs Middle-breadcrumbs">
-            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">home</a>
+            <li class="breadcrumbs-item">
+              <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
             </li>
-            <li class="breadcrumbs-item breadcrumbs-item_current"><span>About Us</span>
+            <li class="breadcrumbs-item breadcrumbs-item_current">
+              <span>{% translate 'О нас' %}</span>
             </li>
           </ul>
         </div>
@@ -21,26 +23,26 @@
         <div class="Section-column">
           <div class="Section-columnSection Section-columnSection_mark">
             <div class="media media_advantage">
-              <div class="media-image"><img src="{% static 'assets/img/icons/advantages/shipping.svg' %}"
-                                            alt="shipping.svg"/>
+              <div class="media-image">
+                <img src="{% static 'assets/img/icons/advantages/shipping.svg' %}" alt="shipping.svg"/>
               </div>
               <div class="media-content">
-                <strong class="media-title">Shipping & Returns
-                </strong>
-                <p class="media-text">World wide shipping
+                <strong class="media-title">{% translate 'доставка и возврат' %}</strong>
+                <p class="media-text">
+                  {% translate 'Доставка по всему миру' %}
                 </p>
               </div>
             </div>
           </div>
           <div class="Section-columnSection Section-columnSection_mark">
             <div class="media media_advantage">
-              <div class="media-image"><img src="{% static 'assets/img/icons/advantages/moneyBack.svg' %}"
-                                            alt="moneyBack.svg"/>
+              <div class="media-image">
+                <img src="{% static 'assets/img/icons/advantages/moneyBack.svg' %}" alt="moneyBack.svg"/>
               </div>
               <div class="media-content">
-                <strong class="media-title">Money Back
-                </strong>
-                <p class="media-text">Guaranteed payments
+                <strong class="media-title">{% translate 'возврат денег' %}</strong>
+                <p class="media-text">
+                  {% translate 'Гарантированная оплата' %}
                 </p>
               </div>
             </div>
@@ -51,9 +53,9 @@
                 <img src="{% static 'assets/img/icons/advantages/support.svg' %}" alt="support.svg"/>
               </div>
               <div class="media-content">
-                <strong class="media-title">Support Policy
-                </strong>
-                <p class="media-text">Fast support team
+                <strong class="media-title">{% translate 'техническая поддержка' %}</strong>
+                <p class="media-text">
+                  {% translate 'Комманда поддержки быстро ответит вам' %}
                 </p>
               </div>
             </div>
@@ -64,31 +66,36 @@
                 <img src="{% static 'assets/img/icons/advantages/quality.svg' %}" alt="quality.svg"/>
               </div>
               <div class="media-content">
-                <strong class="media-title">Quality Guarantee
-                </strong>
-                <p class="media-text">Best guaranted items
+                <strong class="media-title">{% translate 'гаратнтия качества' %}</strong>
+                <p class="media-text">
+                  {% translate 'Гарантия на лучшие товары' %}
                 </p>
               </div>
             </div>
           </div>
           <div class="Section-columnSection">
             <header class="Section-header">
-              <strong class="Section-title">Follow Us
-              </strong>
+              <strong class="Section-title">{% translate 'подпишись на нас' %}</strong>
             </header>
             <div class="Section-columnContent">
               <div class="Footer-payments Footer-payments_column">
-                <div><img src="{% static 'assets/img/icons/socialContent/fb.png' %}" alt="fb.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/fb.png' %}" alt="fb.png"/>
                 </div>
-                <div><img src="{% static 'assets/img/icons/socialContent/tw.png' %}" alt="tw.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/tw.png' %}" alt="tw.png"/>
                 </div>
-                <div><img src="{% static 'assets/img/icons/socialContent/gg.png' %}" alt="gg.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/gg.png' %}" alt="gg.png"/>
                 </div>
-                <div><img src="{% static 'assets/img/icons/socialContent/in.png' %}" alt="in.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/in.png' %}" alt="in.png"/>
                 </div>
-                <div><img src="{% static 'assets/img/icons/socialContent/pt.png' %}" alt="pt.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/pt.png' %}" alt="pt.png"/>
                 </div>
-                <div><img src="{% static 'assets/img/icons/socialContent/ml.png' %}" alt="ml.png"/>
+                <div>
+                  <img src="{% static 'assets/img/icons/socialContent/ml.png' %}" alt="ml.png"/>
                 </div>
               </div>
             </div>
@@ -99,8 +106,7 @@
             <div class="Article-section">
               <div class="row row_verticalCenter row_maxHalf">
                 <div class="row-block">
-                  <h2>Why Choose Megano?
-                  </h2>
+                  <h2>{% translate 'Почему нужно выбирать нас?' %}</h2>
                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula eget dolor.
                     Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient montesti, nascetur
                     ridiculus mus. Donec quam felis, ultricies nec, pellentesque eutu, pretiumem.
@@ -111,11 +117,13 @@
                     vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae ligula eget dolor.
                     Aenean massa. Cumtipsu sociis natoque pena tibusetm t semper ni.
                   </p>
-                  <div><a class="btn btn_primary" href="#">Get Started</a>
+                  <div>
+                    <a class="btn btn_primary" href="#">{% translate 'Перейти в маазин' %}</a>
                   </div>
                 </div>
                 <div class="row-block">
-                  <div class="pict"><img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png"/>
+                  <div class="pict">
+                    <img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png"/>
                   </div>
                 </div>
               </div>
@@ -123,28 +131,34 @@
             <div class="Article-section">
               <div class="row row_verticalCenter row_maxHalf">
                 <div class="row-block">
-                  <div class="pict"><img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png"/>
+                  <div class="pict">
+                    <img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png"/>
                   </div>
                 </div>
                 <div class="row-block">
-                  <h2>Megano Store Hystory
-                  </h2>
+                  <h2>{% translate 'История магазина' %}</h2>
                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula eget dolor.
                     Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient montesti, nascetur
                     ridiculus mus. Donec quam felis, ultricies nec, pellentesque eutu, pretiumem.
                   </p>
                   <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetuer
+                    <li>
+                      Lorem ipsum dolor sit amet, consectetuer
                     </li>
-                    <li>adipiscing elit doli. Aenean commodo ligula
+                    <li>
+                      adipiscing elit doli. Aenean commodo ligula
                     </li>
-                    <li>eget dolor. Aenean massa. Cumtipsu sociis
+                    <li>
+                      eget dolor. Aenean massa. Cumtipsu sociis
                     </li>
-                    <li>natoque penatibus et magnis dis parturient
+                    <li>
+                      natoque penatibus et magnis dis parturient
                     </li>
-                    <li>montesti, nascetur ridiculus mus. Donec
+                    <li>
+                      montesti, nascetur ridiculus mus. Donec
                     </li>
-                    <li>quam felis, ultricies nec, pellentesque eutu
+                    <li>
+                      quam felis, ultricies nec, pellentesque eutu
                     </li>
                   </ul>
                 </div>

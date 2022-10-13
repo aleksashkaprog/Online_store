@@ -1,12 +1,15 @@
-{% extends 'base.html' %} {% load static %} {% block main%}
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block main%}
 <div class="Middle-top">
   <div class="wrap">
     <div class="Middle-header">
-      <h1 class="Middle-title">Изменение товара</h1>
+      <h1 class="Middle-title">{% translate 'Изменение товара' %}</h1>
       <ul class="breadcrumbs Middle-breadcrumbs">
-        <li class="breadcrumbs-item"><a href="/">Домой</a></li>
+        <li class="breadcrumbs-item"><a href="/">{% translate 'Домой' %}</a></li>
         <li class="breadcrumbs-item breadcrumbs-item_current">
-          <span>Комната продавцов</span>
+          <span>{% translate 'Комната продавцов' %}</span>
         </li>
       </ul>
     </div>
@@ -17,22 +20,22 @@
     <div class="Section-column">
       <div class="Section-columnSection sticky">
         <header class="Section-header">
-          <strong class="Section-title">Меню</strong>
+          <strong class="Section-title">{% translate 'Меню' %}</strong>
         </header>
         <div class="Section-columnContent">
           <div class="NavigateProfile">
             <ul class="menu menu_vt">
               <li class="menu-item">
-                <a class="menu-link" href="#">Профиль</a>
+                <a class="menu-link" href="#">{% translate 'Профиль' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">История заказов</a>
+                <a class="menu-link" href="#">{% translate 'История заказов' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">Просмотренные продукты</a>
+                <a class="menu-link" href="#">{% translate 'Просмотренные продукты' %}</a>
               </li>
               <li class="menu-item_ACTIVE menu-item">
-                <a class="menu-link" href="#">Комната продавцов</a>
+                <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
               </li>
             </ul>
           </div>
@@ -41,13 +44,13 @@
     </div>
     <div class="Section-content">
       <header class="Section-header margin">
-        <h2 class="Section-title">Изменение товара</h2>
+        <h2 class="Section-title">{% translate 'Изменение товара' %}</h2>
       </header>
       <div class="Profile">
         <form class="add-product" id="id_add_product" method="GET" action="">
           <div class="product__left">
             <label class="form-label" style="font-size: 20px" for="id_category"
-              >Выберите категорию:</label
+              >{% translate 'Выберите категорию' %}:</label
             >
             <select
               class="border size_custom"
@@ -55,17 +58,17 @@
               required=""
               id="id_category"
             >
-              <option value="" selected="">Выбор категории</option>
-              <option value="">Категория 1</option>
-              <option value="">Категория 2</option>
-              <option value="">Категория 3</option>
+              <option value="" selected="">{% translate 'Выбор категории' %}</option>
+              <option value="">{% translate 'Категория 1' %}</option>
+              <option value="">{% translate 'Категория 2' %}</option>
+              <option value="">{% translate 'Категория 3' %}</option>
             </select>
             <div class="row">
               <div class="row-block">
                 <div class="form-group"></div>
                 <div class="form-group">
                   <label class="form-label" for="id_seller"
-                    >Выберите магазин</label
+                    >{% translate 'Выберите магазин' %}</label
                   >
                   <select
                     class="border size_custom"
@@ -73,58 +76,58 @@
                     required=""
                     id="id_seller"
                   >
-                    <option value="" selected="">Выбор магазина</option>
-                    <option value="">Магазин 1</option>
-                    <option value="">Магазин 2</option>
-                    <option value="">Магазин 3</option>
+                    <option value="" selected="">{% translate 'Выбор магазина' %}</option>
+                    <option value="">{% translate 'Магазин 1' %}</option>
+                    <option value="">{% translate 'Магазин 2' %}</option>
+                    <option value="">{% translate 'Магазин 3' %}</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="block__input-numbers">
               <div>
-                <label class="form-label" for="id_quantity">Количество: </label>
+                <label class="form-label" for="id_quantity">{% translate 'Количество' %}: </label>
                 <input
                   class="form-input border"
                   type="number"
                   name="quantity"
                   id="id_quantity"
                   required
-                  placeholder="Количество"
+                  placeholder="{% translate 'Количество' %}"
                 />
               </div>
               <div>
-                <label class="form-label" for="id_price">Цена:</label>
+                <label class="form-label" for="id_price">{% translate 'Цена' %}:</label>
                 <input
                   class="form-input border"
                   id="id_price"
                   name="price"
                   type="number"
                   required
-                  placeholder="Цена"
+                  placeholder="{% translate 'Цена' %}"
                 />
               </div>
             </div>
             <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">Отменить</button>
-              <button class="btn btn_success" type="submit">Изменить</button>
+              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+              <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
             </div>
           </div>
           <div class="product__right">
             <div class="form-group">
-              <label class="form-label" for="id_name">Название товара</label>
+              <label class="form-label" for="id_name">{% translate 'Название товара' %}</label>
               <input
                 class="form-input border"
                 id="id_name"
                 required
                 name="name"
                 type="text"
-                placeholder="Введите название"
+                placeholder="{% translate 'Введите название' %}"
               />
             </div>
             <div class="form-group">
               <label class="form-label" for="id_description"
-                >Описание товара</label
+                >{% translate 'Описание товара' %}</label
               >
               <textarea
                 class="border"

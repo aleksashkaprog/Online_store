@@ -1,13 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block main %}
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block main %}
 <div class="Middle Middle_top">
   <div class="Middle-top">
     <div class="wrap">
       <div class="Middle-header">
-        <h1 class="Middle-title">Name</h1>
+        <h1 class="Middle-title">{% translate 'Название товара' %}</h1>
         <ul class="breadcrumbs Middle-breadcrumbs">
-          <li class="breadcrumbs-item"><a href="/">home</a></li>
+          <li class="breadcrumbs-item"><a href="/">{% translate 'Главаня страница' %}</a></li>
           <li class="breadcrumbs-item breadcrumbs-item_current">
-            <span>Product Detail</span>
+            <span>{% translate 'Продукт' %}</span>
           </li>
         </ul>
       </div>
@@ -24,10 +27,10 @@
           </div>
           <div class="ProductCard-desc">
             <div class="ProductCard-header">
-              <h2 class="ProductCard-title">Имя товара</h2>
+              <h2 class="ProductCard-title">{% translate 'Имя товара' %}</h2>
               <div class="ProductCard-info">
                 <div class="ProductCard-cost">
-                  <div class="ProductCard-price">Цена</div>
+                  <div class="ProductCard-price">{% translate 'Цена' %}</div>
                 </div>
                 <div class="ProductCard-compare">
                   <a class="btn btn_default" href="#">
@@ -36,7 +39,7 @@
                 </div>
               </div>
             </div>
-            <div class="ProductCard-text">Описание товара</div>
+            <div class="ProductCard-text">{% translate 'Описание товара' %}</div>
             <div class="ProductCard-cart">
               <form
                 style="
@@ -68,7 +71,7 @@
                       class="btn-icon"
                       src="/static/assets/img/icons/card/cart_white.svg"
                       alt=""
-                    /><span class="btn-content">Добавить в корзину</span>
+                    /><span class="btn-content">{% translate 'Добавить в корзину' %}</span>
                   </button>
                 </div>
               </form>
@@ -76,39 +79,39 @@
 
             <div class="ProductCard-footer">
               <div class="ProductCard-tags">
-                <strong class="ProductCard-tagsTitle">Теги: </strong>
-                <a href="#">Тег</a>
+                <strong class="ProductCard-tagsTitle">{% translate 'Теги' %}: </strong>
+                <a href="#">{% translate 'Тег' %}</a>
               </div>
             </div>
           </div>
         </div>
         <div class="Tabs Tabs_default">
           <div class="Tabs-links">
-            <a class="Tabs-link" href="#description"><span>Описание</span></a>
-            <a class="Tabs-link" href="#sellers"><span>Магазины</span></a>
+            <a class="Tabs-link" href="#description"><span>{% translate 'Описание' %}</span></a>
+            <a class="Tabs-link" href="#sellers"><span>{% translate 'Магазины' %}</span></a>
             <a class="Tabs-link" href="#addit"
-              ><span>Дополнительная информация</span></a
+              ><span>{% translate 'Дополнительная информация' %}</span></a
             >
             <a class="Tabs-link Tabs-link_ACTIVE" href="#reviews"
               ><span
-                >Комментарии (<span class="count_reviews">0</span>)</span
+                >{% translate 'Комментарии' %} (<span class="count_reviews">0</span>)</span
               ></a
             >
           </div>
           <div class="Tabs-wrap">
             <div class="Tabs-block" id="description" style="display: none">
-              Описание
+              {% translate 'Описание' %}
               <div class="clearfix"></div>
               <div class="table">
                 <table>
                   <tbody>
                     <tr>
-                      <th>Характеристика</th>
-                      <th>Значение</th>
+                      <th>{% translate 'Характеристика' %}</th>
+                      <th>{% translate 'Значение' %}</th>
                     </tr>
                     <tr>
-                      <td>Любая Характеристика</td>
-                      <td>Значение этой характеристики</td>
+                      <td>{% translate 'Любая Характеристика' %}</td>
+                      <td>{% translate 'Значение этой характеристики' %}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -119,12 +122,12 @@
                 <div class="Categories-row">
                   <div class="Categories-block Categories-block_info">
                     <div class="Categories-info">
-                      <a href="#"><strong>Название магазина</strong></a>
+                      <a href="#"><strong>{% translate 'Название магазина' %}</strong></a>
                     </div>
                   </div>
                   <div class="Categories-splitProps"></div>
                   <div class="Categories-block Categories-price">
-                    <span>От меньшей цены к большей</span><strong> $ </strong>
+                    <span>{% translate 'От меньшей цены к большей' %}</span><strong> $ </strong>
                   </div>
                   <div class="Categories-block Categories-button">
                     <a class="btn btn_primary" href="#}"
@@ -132,19 +135,19 @@
                         class="btn-icon"
                         src="/static/assets/img/icons/card/cart_white.svg"
                         alt=""
-                      /><span class="btn-content">Добавить в корзину</span></a
+                      /><span class="btn-content">{% translate 'Добавить в корзину' %}</span></a
                     >
                   </div>
                 </div>
                 <div class="Categories-row">
                   <div class="Categories-block Categories-block_info">
                     <div class="Categories-info">
-                      <a href="#"><strong>Название магазина</strong></a>
+                      <a href="#"><strong>{% translate 'Название магазина' %}</strong></a>
                     </div>
                   </div>
                   <div class="Categories-splitProps"></div>
                   <div class="Categories-block Categories-price">
-                    <span>От меньшей цены к большей</span><strong> $ </strong>
+                    <span>{% translate 'От меньшей цены к большей' %}</span><strong> $ </strong>
                   </div>
                   <div class="Categories-block Categories-button">
                     <a class="btn btn_primary" href="#}"
@@ -152,19 +155,19 @@
                         class="btn-icon"
                         src="/static/assets/img/icons/card/cart_white.svg"
                         alt=""
-                      /><span class="btn-content">Добавить в корзину</span></a
+                      /><span class="btn-content">{% translate 'Добавить в корзину' %}</span></a
                     >
                   </div>
                 </div>
                 <div class="Categories-row">
                   <div class="Categories-block Categories-block_info">
                     <div class="Categories-info">
-                      <a href="#"><strong>Название магазина</strong></a>
+                      <a href="#"><strong>{% translate 'Название магазина' %}</strong></a>
                     </div>
                   </div>
                   <div class="Categories-splitProps"></div>
                   <div class="Categories-block Categories-price">
-                    <span>От меньшей цены к большей</span><strong> $ </strong>
+                    <span>{% translate 'От меньшей цены к большей' %}</span><strong> $ </strong>
                   </div>
                   <div class="Categories-block Categories-button">
                     <a class="btn btn_primary" href="#}"
@@ -172,7 +175,7 @@
                         class="btn-icon"
                         src="/static/assets/img/icons/card/cart_white.svg"
                         alt=""
-                      /><span class="btn-content">Добавить в корзину</span></a
+                      /><span class="btn-content">{% translate 'Добавить в корзину' %}</span></a
                     >
                   </div>
                 </div>
@@ -180,13 +183,13 @@
             </div>
             <div class="Tabs-block" id="addit" style="display: none">
               <div class="Product-props">
-                <div class="Product-prop">БЛОК</div>
+                <div class="Product-prop">{% translate 'БЛОК' %}</div>
               </div>
             </div>
             <div class="Tabs-block" id="reviews">
               <header class="Section-header">
                 <h3 class="Section-title">
-                  <span class="count_reviews">0</span>Комментариев
+                  <span class="count_reviews">0</span>{% translate 'Комментариев' %}
                 </h3>
               </header>
               <form class="form" name="page-filter" action="#" method="get">
@@ -206,18 +209,18 @@
                       <div class="Comment-column">
                         <header class="Comment-header">
                           <div>
-                            <strong class="Comment-title">Автор </strong
-                            ><span class="Comment-date">Время</span>
+                            <strong class="Comment-title">{% translate 'Автор' %} </strong
+                            ><span class="Comment-date">{% translate 'Время' %}</span>
                           </div>
                         </header>
-                        <div class="Comment-content">Свой комментарий</div>
+                        <div class="Comment-content">{% translate 'Свой комментарий' %}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </form>
               <header class="Section-header Section-header_product">
-                <h3 class="Section-title">Добавить комментарий</h3>
+                <h3 class="Section-title">{% translate 'Добавить комментарий' %}</h3>
               </header>
               <div class="Tabs-addCommentreview-form">
                 <form class="form" id="comment-form" method="post">
@@ -231,7 +234,7 @@
                       name="content"
                       id="content"
                       required
-                      placeholder="Комментарий"
+                      placeholder="{% translate 'Комментарий' %}"
                       style="width: 1143px; height: 117px"
                     ></textarea>
                   </div>
@@ -243,7 +246,7 @@
                           id="author"
                           name="author"
                           type="text"
-                          placeholder="Имя"
+                          placeholder="{% translate 'Имя' %}"
                           required
                         />
                       </div>
@@ -254,17 +257,17 @@
                           name="email"
                           type="text"
                           value=""
-                          placeholder="Почта"
+                          placeholder="{% translate 'Почта' %}"
                         />
                       </div>
                     </div>
                   </div>
                   <div class="form-group custom_register_name-block">
                     <button class="btn btn_muted" type="submit">
-                      Подтвердить
+                      {% translate 'Подтвердить' %}
                     </button>
                     <div class="input-rating">
-                      <span>Рейтинг: </span>
+                      <span>{% translate 'Рейтинг' %}: </span>
                       <div class="rating">
                         <input
                           id="star5"
@@ -301,10 +304,10 @@
                   </div>
                 </form>
                 <div>
-                  Пожалуйста
-                  <a href="№">войдите</a>
-                  или
-                  <a href="#"> зарегистрируйтесь.</a>
+                  {% translate 'Пожалуйста' %}
+                  <a href="№">{% translate 'войдите' %}</a>
+                  {% translate 'или' %}
+                  <a href="#"> {% translate 'зарегистрируйтесь' %}.</a>
                 </div>
               </div>
             </div>

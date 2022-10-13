@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block main %}
 
   <div class="Middle Middle_top">
     <div class="Middle-top">
       <div class="wrap">
         <div class="Middle-header">
-          <h1 class="Middle-title">Заказ №{{ order.number }}
-          </h1>
+          <h1 class="Middle-title">{% translate 'Заказ' %} №{{ order.number }}</h1>
           <ul class="breadcrumbs Middle-breadcrumbs">
-            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">home</a>
+            <li class="breadcrumbs-item">
+              <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
             </li>
-            <li class="breadcrumbs-item"><a href="{% url 'order_history' %}">История заказов</a>
+            <li class="breadcrumbs-item">
+              <a href="{% url 'order_history' %}">{% translate 'История заказов' %}</a>
             </li>
-            <li class="breadcrumbs-item breadcrumbs-item_current"><span>Заказ №{{ order.number }}</span>
+            <li class="breadcrumbs-item breadcrumbs-item_current">
+              <span>{% translate 'Заказ' %} №{{ order.number }}</span>
             </li>
           </ul>
         </div>
@@ -31,59 +33,77 @@
                 <div class="row">
                   <div class="row-block">
                     <div class="Order-info Order-info_date">
-                      <div class="Order-infoType">Дата заказа:
+                      <div class="Order-infoType">
+                        {% translate 'Дата заказа' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.date }}
-                      </div>
-                    </div>
-                    <div class="Order-info">
-                      <div class="Order-infoType">ФИО:
-                      </div>
-                      <div class="Order-infoContent">{{ order.user.name }}
+                      <div class="Order-infoContent">
+                        {{ order.date }}
                       </div>
                     </div>
                     <div class="Order-info">
-                      <div class="Order-infoType">Телефон:
+                      <div class="Order-infoType">
+                        {% translate 'ФИО' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.user.number }}
+                      <div class="Order-infoContent">
+                        {{ order.user.name }}
                       </div>
                     </div>
                     <div class="Order-info">
-                      <div class="Order-infoType">E-mail:
+                      <div class="Order-infoType">
+                        {% translate 'Телефон' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.user.email }}
+                      <div class="Order-infoContent">
+                        {{ order.user.number }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">
+                        {% translate 'Электронная почта' %}:
+                      </div>
+                      <div class="Order-infoContent">
+                        {{ order.user.email }}
                       </div>
                     </div>
                   </div>
                   <div class="row-block">
                     <div class="Order-info Order-info_delivery">
-                      <div class="Order-infoType">Тип доставки:
+                      <div class="Order-infoType">
+                        {% translate 'Тип доставки' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.delvery_type }}
-                      </div>
-                    </div>
-                    <div class="Order-info">
-                      <div class="Order-infoType">Город:
-                      </div>
-                      <div class="Order-infoContent">{{ order.delivery_city }}
+                      <div class="Order-infoContent">
+                        {{ order.delvery_type }}
                       </div>
                     </div>
                     <div class="Order-info">
-                      <div class="Order-infoType">Адрес:
+                      <div class="Order-infoType">
+                        {% translate 'Город' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.delivery_address }}
+                      <div class="Order-infoContent">
+                        {{ order.delivery_city }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">
+                        {% translate 'Адрес' %}:
+                      </div>
+                      <div class="Order-infoContent">
+                        {{ order.delivery_address }}
                       </div>
                     </div>
                     <div class="Order-info Order-info_pay">
-                      <div class="Order-infoType">Оплата:
+                      <div class="Order-infoType">
+                        {% translate 'Оплата' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.payment.method }}
+                      <div class="Order-infoContent">
+                        {{ order.payment.method }}
                       </div>
                     </div>
                     <div class="Order-info Order-info_status">
-                      <div class="Order-infoType">Статус:
+                      <div class="Order-infoType">
+                        {% translate 'Статус' %}:
                       </div>
-                      <div class="Order-infoContent">{{ order.payment.status }}
+                      <div class="Order-infoContent">
+                        {{ order.payment.status }}
                       </div>
                     </div>
                     {% if order.payment.status != 'paid' %}
@@ -119,10 +139,15 @@
                     </div>
                     <div class="Cart-block Cart-block_row">
                       <div class="Cart-block Cart-block_seller">
-                        <div>Продавец:</div>
-                        <div>{{ product.seller }}</div>
+                        <div>
+                          {% translate 'Продавец' %}:
+                        </div>
+                        <div>
+                          {{ product.seller }}
+                        </div>
                       </div>
-                      <div class="Cart-block Cart-block_amount">{{ product.amount }}
+                      <div class="Cart-block Cart-block_amount">
+                        {{ product.amount }}
                       </div>
                     </div>
                   </div>
@@ -137,7 +162,8 @@
                     </strong>
                   </div>
                   {% if order.payment.status != 'paid' %}
-                    <div class="Cart-block"><a class="btn btn_primary btn_lg" href="#">Оплатить</a>
+                    <div class="Cart-block">
+                    <a class="btn btn_primary btn_lg" href="#">{% translate 'Оплатить' %}</a>
                   {% endif %}
                   </div>
                 </div>

@@ -18,7 +18,7 @@ class CustomUser(AbstractUser):
     Модель кастомного пользователя
     """
     username = None
-    email = models.EmailField(verbose_name=_('e-mail'), max_length=128, unique=True)
+    email = models.EmailField(verbose_name=_('электронная почта'), max_length=128, unique=True)
     phone_number = models.CharField(verbose_name=_('телефон'), max_length=12, blank=True)
     full_name = models.CharField(verbose_name=_('ФИО'), max_length=256, blank=True)
     avatar = models.ImageField(verbose_name=_('аватар'), upload_to=update_avatar)
