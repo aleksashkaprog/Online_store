@@ -13,12 +13,12 @@ class ProductDetail(DetailView):
     template_name = "product/product.html"
 
     def get_queryset(self):
-        queryset = super().get_queryset().prefetch_related('reviews')
+        queryset = super().get_queryset().prefetch_related('reviews__user', 'shop_products__store', 'images')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetail, self).get_context_data(**kwargs)
-        context['user_review'] = ProductService.user_has_review(self.request.user, self.kwargs['pk'])
+        context['user_review'] = ProductService.user_has_review(self.request.user, self.object)
         context['form'] = CartAddProductForm()
         return context
 

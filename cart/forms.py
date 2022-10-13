@@ -4,7 +4,6 @@ from django import forms
 class CartAddProductForm(forms.Form):
     """Форма для добавления товара в корзину"""
     quantity = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'Amount-input form-input', 'value': 1}))
-    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
     def clean_quantity(self):
         """

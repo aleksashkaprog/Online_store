@@ -22,62 +22,56 @@
       <div class="wrap">
         {% if cart %}
           <form class="form Cart" action="#" method="post">
-            {% for cart_product in cart %}
+            {% for item in cart %}
+              {% with product=item.shop_product.product shop=item.shop_product.store shop_product=item.shop_product %}
               <div class="Cart-product">
                 <div class="Cart-block Cart-block_row">
                   <div class="Cart-block Cart-block_pict">
-                    <a class="Cart-pict" href="#">
-                      <img class="Cart-img" src="{{ cart_product.product.images.all.0 }}" alt="card.jpg"/>
+                    <a class="Cart-pict" href="{% url 'product' product.slug product.pk %}">
+                      <img class="Cart-img" src="{{ product.images.all.0 }}" alt="card.jpg"/>
                     </a>
                   </div>
-                  <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{{ cart_product.product.name }}</a>
-                    <div class="Cart-desc">{{ cart_product.product.description }}
+                  <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{{ product.name }}</a>
+                    <div class="Cart-desc">{{ product.description }}
                     </div>
                   </div>
                   <div class="Cart-block Cart-block_price">
-                    {% if cart_product.shop_product.old_price %}
-                      <div class="Cart-price Cart-price_old">{{ cart_product.shop_product.old_price }}</div>
+                    {% if shop_product.old_price %}
+                      <div class="Cart-price Cart-price_old">{{ shop_product.old_price }}</div>
                     {% endif %}
-                    <div class="Cart-price">{{ cart_product.shop_product.price }}
+                    <div class="Cart-price">{{ shop_product.price }}
                     </div>
                   </div>
                 </div>
                 <div class="Cart-block Cart-block_row">
                   <div class="Cart-block Cart-block_seller">
                     <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
-                    <select class="form-select">
-                      {% for seller in cart_product.product.shop_products.all %}
-                        <option value="{{ seller.store.id }}"
-                            {% if seller.store.id == cart_product.shop_product.store.id %} selected="selected" {% endif %}>
-                          {{ seller.store.name }}
-                        </option>
-                      {% endfor %}
-                    </select>
+                  <div class="form-select">{{ shop.name }}</div>
                   </div>
                   <div class="Cart-block Cart-block_amount">
                     <div class="Cart-amount">
                       <div class="Amount">
-                        <button class="Amount-remove" type="button"></button>
-                        <input class="Amount-input form-input" name="amount" type="text" value="{{ cart_product.quantity }}"/>
-                        <button class="Amount-add" type="button">
-                        </button>
+                          <a href="{% url 'cart:change' shop_product.id '-1' %}" class="Amount-remove-cart" type="button"></a>
+                          <span class="Amount-input form-input">{{ item.quantity }}</span>
+                          <a href="{% url 'cart:change' shop_product.id '+1' %}" class="Amount-add-cart" type="button"></a>
                       </div>
                     </div>
                   </div>
                   <div class="Cart-block Cart-block_delete">
-                    <a class="Cart-delete" href="{% url 'cart:cart_remove' cart_product.product.id %}">
+                    <a class="Cart-delete" href="{% url 'cart:remove' product.id %}">
                       <img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/>
                     </a>
                   </div>
                 </div>
               </div>
+              {% endwith %}
             {% endfor %}
             <div class="Cart-total">
               <div class="Cart-block Cart-block_total">
                 <strong class="Cart-title">{% trans 'Итого' %}:</strong>
                 <span class="Cart-price">{{ cart.get_total_price }}</span>
                 {% if user.cart.discount %}
-                  <span class="Cart-price_old">{{ user.cart.total_price_old }}</span>
+                  <span class="Cart-price_old">{{ cart.total_price_old }}</span>
                 {% endif %}
               </div>
               <div class="Cart-block"><a class="btn btn_success btn_lg" href="{#% url 'order' %#}">{% trans 'Оформить заказ' %}</a>

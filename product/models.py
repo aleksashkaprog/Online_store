@@ -1,31 +1,20 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Avg
-
 from django.core.validators import MaxValueValidator, MinValueValidator
-from typing import Callable
-import os
 
 from category.models import Category
 from category.tools import get_slug
 
-
-property_decorator: Callable = property
-
-
-def load_images(instance, filename):
-    path = "product_images/"
-    file_name = f'{instance.product.slug}_{instance.product.id}.{filename.split(".")[-1]}'
-    return os.path.join(path, file_name)
+from . import tools
+from . import utility
 
 
-class Product(models.Model):
+class Product(utility.ProductRatingMixin, models.Model):
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
     slug = models.SlugField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     views = models.PositiveIntegerField(default=0, verbose_name=_('просмотры'))
-    # rating = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5), ], verbose_name=_('рейтинг'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('дата обновления'))
     description = models.TextField(verbose_name=_('описание'))
@@ -37,10 +26,6 @@ class Product(models.Model):
     def save(self, *args, **kwargs) -> 'Product':
         self.slug: str = get_slug(self.name)
         return super().save(*args, **kwargs)
-
-    @property_decorator
-    def rating(self) -> int:
-        return self.reviews.aggregate(Avg('rating')).get('rating__avg', 0)
 
     class Meta:
         verbose_name = _('продукт')
@@ -74,7 +59,7 @@ class Property(models.Model):
 
 
 class Image(models.Model):
-    file = models.ImageField(upload_to=load_images, verbose_name=_('файл'))
+    file = models.ImageField(upload_to=tools.load_images, verbose_name=_('файл'))
     product = models.ForeignKey('Product', on_delete=models.CASCADE,
                                 related_name='images', verbose_name=_('продукт'))
 
