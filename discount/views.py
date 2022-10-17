@@ -1,9 +1,7 @@
 from django.views.generic import ListView, DetailView
 from .models import CartDiscount, PackDiscount, ProductDiscount
-from .tools import get_discounts_queryset
 from itertools import chain
-from .services import DiscountServices
-from product.models import Product
+from .services import get_discounts_queryset
 
 
 class DiscountsView(ListView):
@@ -16,8 +14,6 @@ class DiscountsView(ListView):
         pack_discounts = get_discounts_queryset(PackDiscount)
         cart_discounts = get_discounts_queryset(CartDiscount)
         queryset = list(chain(product_discounts, pack_discounts, cart_discounts))
-        products = Product.objects.all()
-        DiscountServices.get_all_discounts(*products)
         return queryset
 
 
