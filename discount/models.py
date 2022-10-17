@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
-import os
+from .tools import load_images
 
 DISCOUNT_TYPE_CHOICES = (
     ('percent', _('процент')),
@@ -21,27 +21,16 @@ CART_CONDITION_CHOICES = (
 )
 
 
-def load_images(instance, filename):
-    path = "discount_images/"
-    file_name = f'{instance.title}.{filename.split(".")[-1]}'
-    return os.path.join(path, file_name)
-
-
 class BaseDiscount(models.Model):
     """ Базовый класс скидки """
 
-    # def validate_percents(self):
-    #     message = _('значение процентной скидки %(show_value)s не может быть выше 99')
-    #     code = "max_value"
-    #     params = {'show_value': self.value}
-    #     if self.type == 'percent' and self.value > 99:
-    #         raise ValidationError(message, code=code, params=params)
     title = models.CharField(max_length=100, verbose_name=_('заголовок'))
     description = models.CharField(max_length=1000, verbose_name=_('описание'))
     start = models.DateTimeField(verbose_name=_('время начала'), blank=True, null=True)
     end = models.DateTimeField(verbose_name=_('время окончания'), blank=True, null=True)
     type = models.CharField(max_length=20, choices=DISCOUNT_TYPE_CHOICES, verbose_name=_('тип скидки'))
-    value = models.PositiveIntegerField(validators=(MinValueValidator(1),), verbose_name=_('значение скидки'))
+    value = models.DecimalField(
+        decimal_places=2, max_digits=8, validators=(MinValueValidator(1),), verbose_name=_('значение скидки'))
     priority = models.PositiveSmallIntegerField(validators=(MaxValueValidator(100),),
                                                 default=0, verbose_name=_('приоритет скидки'))
     active = models.BooleanField(default=True, verbose_name=_('активность'))
@@ -117,10 +106,16 @@ class DiscountedPackProduct(BasePackRelation):
     product = models.ForeignKey('product.Product', related_name='pack_discounts',
                                 on_delete=models.CASCADE, verbose_name=_('продукт'))
 
+    def __str__(self):
+        return f'продукт {self.product_id}, скидка {self.discount_id} группа {self.group}'
+
 
 class DiscountedPackCategory(BasePackRelation):
     category = models.ForeignKey('category.Category', related_name='pack_discounts',
                                  on_delete=models.CASCADE, verbose_name=_('категория'))
+
+    def __str__(self):
+        return f'категория {self.category_id}, скидка {self.discount_id} группа {self.group}'
 
 
 class CartDiscount(BaseDiscount):

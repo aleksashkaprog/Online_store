@@ -1,7 +1,8 @@
-from django.utils import timezone
-from django.db.models import Q
+import os
 
 
-def get_discounts_queryset(discounts_model):
-    discounts = discounts_model.objects.filter(Q(end__gte=timezone.now()) | Q(end=None), active=True)
-    return discounts
+def load_images(instance, filename) -> str:
+    """Помещает картинки скидок в отдельную папку"""
+    path = "discount_images/"
+    file_name = f'{instance.title}.{filename.split(".")[-1]}'
+    return os.path.join(path, file_name)
