@@ -79,7 +79,7 @@ class CheckPackDiscountTest(BaseTest):
         """Тест алгоритма поиска скидки для корзины, применима менее приоритетная скидка """
         self.cart.add(self.shop_product_1, 5)
         get_discount = get_discount_for_cart(self.cart)
-        self.assertEqual(get_discount, ('pack', self.pack_discount, (1, 2)))
+        self.assertEqual(get_discount, ('pack', self.pack_discount, (self.product_1.id, self.product_2.id)))
 
     def test_no_valid_discounts_for_cart(self):
         """Тест алгоритма поиска скидки для корзины, нет применимых скидок """
