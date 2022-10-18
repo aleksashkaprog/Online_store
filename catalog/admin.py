@@ -3,28 +3,25 @@ from . import models
 
 
 @admin.register(models.Favourite)
-class CategoryModelAdmin(admin.ModelAdmin):
+class FavouriteModelAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.DayOffer)
-class CategoryModelAdmin(admin.ModelAdmin):
+class DayOfferModelAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Hot)
-class CategoryModelAdmin(admin.ModelAdmin):
+class HotModelAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Limit)
-class CategoryModelAdmin(admin.ModelAdmin):
+class LimitModelAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Top)
-class CategoryModelAdmin(admin.ModelAdmin):
+class TopModelAdmin(admin.ModelAdmin):
     pass
-
-
-
