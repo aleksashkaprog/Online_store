@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import AccountView, ProfileView, HistoryView
+from .views import AccountView, ProfileView
 
 urlpatterns = [
     path("", AccountView.as_view(), name="account"),
     path("profile/", ProfileView.as_view(), name="profile"),
-    path("history/", HistoryView.as_view(), name='history-view')
 ]
