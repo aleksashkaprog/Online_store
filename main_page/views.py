@@ -35,4 +35,4 @@ class MainPageView(View):
             'hot_offers': hot_offers,
             'limited_offers': limited_offers
         }
-        return render(request, 'main_page.html', context)
+        return render(request, 'main_page/main_page.html', context)

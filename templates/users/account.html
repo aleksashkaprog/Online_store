@@ -32,7 +32,7 @@
                   <a class="menu-link" href="{% url 'history-order' %}">История заказов</a>
                 </li>
                 <li class="menu-item">
-                  <a class="menu-link" href="#">Просмотренные продукты</a>
+                  <a class="menu-link" href="{% url 'users:view_history' %}">Просмотренные продукты</a>
                 </li>
                 <li class="menu-item menu-item">
                   <a class="menu-link" href="#">Комната продавцов</a>
@@ -243,6 +243,8 @@
                   <div class="Account-editLink Account-editLink_view">
                     <a href="{% url 'view_history' %}">Перейти на полный список</a>
                   </div>
+                {% else %}
+                    <p>Ваша история просмотров пока пуста</p>
                 {% endif %}
               </div>
             </div>
