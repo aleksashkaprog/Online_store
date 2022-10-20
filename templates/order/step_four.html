@@ -53,115 +53,158 @@
               <header class="Section-header Section-header_sm">
                 <h2 class="Section-title">Шаг 4. Подтверждение заказа</h2>
               </header>
-                <div class="Order-infoBlock">
+              <div class="Order-infoBlock">
                 <div class="Order-personal">
                   <div class="row">
                     <div class="row-block">
                       <div class="Order-info">
-                        <div class="Order-infoType">ФИО:
-                        </div>
-                        <div class="Order-infoContent">Фамилия Имя Отчество
-                        </div>
-                      </div>
-                      <div class="Order-info">
-                        <div class="Order-infoType">Телефон:
-                        </div>
-                        <div class="Order-infoContent">+7000000000
+                        <div class="Order-infoType">ФИО:</div>
+                        <div class="Order-infoContent">
+{#                          Фамилия Имя Отчество#}
+                            {{ order.first_second_names }}
                         </div>
                       </div>
                       <div class="Order-info">
-                        <div class="Order-infoType">E-mail:
+                        <div class="Order-infoType">Телефон:</div>
+                        <div class="Order-infoContent">
+{#                            +7000000000#}
+                            {{ order.phone }}
                         </div>
-                        <div class="Order-infoContent">test@test.test
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">E-mail:</div>
+                        <div class="Order-infoContent">
+{#                            test@test.test#}
+                            {{ order.email }}
                         </div>
                       </div>
                     </div>
                     <div class="row-block">
                       <div class="Order-info Order-info_delivery">
-                        <div class="Order-infoType">Тип доставки:
-                        </div>
-                        <div class="Order-infoContent">Обычная доставка
-                        </div>
-                      </div>
-                      <div class="Order-info">
-                        <div class="Order-infoType">Город:
-                        </div>
-                        <div class="Order-infoContent">Город
+                        <div class="Order-infoType">Тип доставки:</div>
+                        <div class="Order-infoContent">
+{#                            Обычная доставка#}
+                            {{ order.delivery }}
                         </div>
                       </div>
                       <div class="Order-info">
-                        <div class="Order-infoType">Адрес:
+                        <div class="Order-infoType">Город:</div>
+                        <div class="Order-infoContent">
+{#                            Город#}
+                        {{ order.city }}
                         </div>
-                        <div class="Order-infoContent">Какой-то адрес
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">Адрес:</div>
+                        <div class="Order-infoContent">
+{#                            Какой-то адрес#}
+                        {{ order.address }}
                         </div>
                       </div>
                       <div class="Order-info Order-info_pay">
-                        <div class="Order-infoType">Оплата:
-                        </div>
-                        <div class="Order-infoContent">Наличными
-                        </div>
+                        <div class="Order-infoType">Оплата:</div>
+                        <div class="Order-infoContent">Наличными</div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="Cart Cart_order">
-                  <div class="Cart-product">
-                    <div class="Cart-block Cart-block_row">
-                      <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{%  static 'assets/img/content/home/card.jpg' %}" alt="card.jpg"/></a>
-                      </div>
-                      <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Ноутбук</a>
-                        <div class="Cart-desc">Ноутбук
+{#                  <div class="Cart-product">#}
+{#                    <div class="Cart-block Cart-block_row">#}
+{#                      <div class="Cart-block Cart-block_pict">#}
+{#                        <a class="Cart-pict" href="#"#}
+{#                          ><img#}
+{#                            class="Cart-img"#}
+{#                            src="{%  static 'assets/img/content/home/card.jpg' %}"#}
+{#                            alt="card.jpg"#}
+{#                        /></a>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_info">#}
+{#                        <a class="Cart-title" href="#">Ноутбук</a>#}
+{#                        <div class="Cart-desc">Ноутбук</div>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_price">#}
+{#                        <div class="Cart-price">10.00$</div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="Cart-block Cart-block_row">#}
+{#                      <div class="Cart-block Cart-block_seller">#}
+{#                        <div>Продавец:</div>#}
+{#                        <div>Продавец</div>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_amount">1 шт.</div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div class="Cart-product">#}
+{#                    <div class="Cart-block Cart-block_row">#}
+{#                      <div class="Cart-block Cart-block_pict">#}
+{#                        <a class="Cart-pict" href="#"#}
+{#                          ><img#}
+{#                            class="Cart-img"#}
+{#                            src="{%  static 'assets/img/content/sale/product.png' %}"#}
+{#                            alt="product.png"#}
+{#                        /></a>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_info">#}
+{#                        <a class="Cart-title" href="#">Планшет</a>#}
+{#                        <div class="Cart-desc">Планшет</div>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_price">#}
+{#                        <div class="Cart-price_old">20.00$</div>#}
+{#                        <div class="Cart-price">10.00$</div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="Cart-block Cart-block_row">#}
+{#                      <div class="Cart-block Cart-block_seller">#}
+{#                        <div>Продавец:</div>#}
+{#                        <div>Продавец</div>#}
+{#                      </div>#}
+{#                      <div class="Cart-block Cart-block_amount">1 шт.</div>#}
+{#                    </div>#}
+{#                  </div>#}
+                     {% for good in order.order_goods.all %}
+                        <div class="Cart-product">
+                        <div class="Cart-block Cart-block_row">
+                          <div class="Cart-block Cart-block_pict">
+                            <a class="Cart-pict" href="#"
+                              ><img
+                                class="Cart-img"
+                                src="{%  static 'assets/img/content/home/card.jpg' %}"
+                                alt="card.jpg"
+                            /></a>
+                          </div>
+                          <div class="Cart-block Cart-block_info">
+                            <a class="Cart-title" href="#">{{ good.seller_good.product.name }}</a>
+                            <div class="Cart-desc">{{ good.seller_good.product.description }}</div>
+                          </div>
+                          <div class="Cart-block Cart-block_price">
+                              <div class="Cart-price_old">{{ good.seller_good.price }}</div>
+                            <div class="Cart-price">{{ good.price_eventual }}</div>
+                          </div>
+                        </div>
+                        <div class="Cart-block Cart-block_row">
+                          <div class="Cart-block Cart-block_seller">
+                            <div>Продавец:</div>
+                            <div>{{ good.seller_good.store.name }}</div>
+                          </div>
+                          <div class="Cart-block Cart-block_amount">1 шт.</div>
                         </div>
                       </div>
-                      <div class="Cart-block Cart-block_price">
-                        <div class="Cart-price">10.00$
-                        </div>
-                      </div>
-                    </div>
-                    <div class="Cart-block Cart-block_row">
-                      <div class="Cart-block Cart-block_seller">
-                        <div>Продавец:
-                        </div>
-                        <div>Продавец
-                        </div>
-                      </div>
-                      <div class="Cart-block Cart-block_amount">1 шт.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="Cart-product">
-                    <div class="Cart-block Cart-block_row">
-                      <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{%  static 'assets/img/content/sale/product.png' %}" alt="product.png"/></a>
-                      </div>
-                      <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Планшет</a>
-                        <div class="Cart-desc">Планшет
-                        </div>
-                      </div>
-                      <div class="Cart-block Cart-block_price">
-                        <div class="Cart-price_old">20.00$
-                        </div>
-                        <div class="Cart-price">10.00$
-                        </div>
-                      </div>
-                    </div>
-                    <div class="Cart-block Cart-block_row">
-                      <div class="Cart-block Cart-block_seller">
-                        <div>Продавец:
-                        </div>
-                        <div>Продавец
-                        </div>
-                      </div>
-                      <div class="Cart-block Cart-block_amount">1 шт.
-                      </div>
-                    </div>
-                  </div>
+                    {% endfor %}
                   <div class="Cart-total">
+                      <div class="Cart-block Cart-block_total">
+                      <strong class="Cart-title">Доставка:
+                      </strong>
+                        <span class="Cart-price">{{ order.cost_delivery }}</span>
+                    </div>
                     <div class="Cart-block Cart-block_total">
-                      <strong class="Cart-title">Итого:
-                      </strong><span class="Cart-price">20.00$</span><span class="Cart-price_old">30.00$</span>
+                      <strong class="Cart-title">Итого: </strong
+                      ><span class="Cart-price">{{ order.all_goods_price_disc_delivery }}</span
+                      ><span class="Cart-price_old">{{ order.all_goods_price }}</span>
                     </div>
                     <div class="Cart-block">
-                      <button class="btn btn_primary btn_lg" type="submit">Оплатить
+                      <button class="btn btn_primary btn_lg" type="submit">
+                        Оплатить
                       </button>
                     </div>
                   </div>
