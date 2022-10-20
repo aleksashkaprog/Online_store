@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from users.models import CustomUser
-
 
 class PaymentAPIViewTest(TestCase):
     @classmethod
@@ -24,4 +22,3 @@ class PaymentAPIViewTest(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertIn('error', response.json())
-
