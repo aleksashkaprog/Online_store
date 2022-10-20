@@ -1,3 +1,10 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import Cache
+
+
+class CacheAdmin(admin.ModelAdmin):
+    list_display = ('name', 'value')
+
+
+admin.site.register(Cache, CacheAdmin)
