@@ -1,48 +1,10 @@
-import tempfile
-
 from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
 
-from product.models import Product
-from category.models import Category
-from shop.models import Shop, ShopProduct
-from users.models import CustomUser
 from cart.models import ProductInCart
-
-
-def create_product() -> Product:
-    """
-    Функция, создает товар для тестов
-    """
-    return Product.objects.create(
-        name='test',
-        category=Category.objects.create(
-            name='test',
-            image=tempfile.NamedTemporaryFile(suffix=".jpg").name
-        )
-    )
-
-
-def create_user(email: str = 'test@ya.ru') -> CustomUser:
-    """
-    Функция, создает пользователя для тестов
-    """
-    return CustomUser.objects.create_user(email=email, password='test1')
-
-
-def create_shop(user: CustomUser) -> Shop:
-    """
-    Функция, создает магазин для тестов
-    """
-    return Shop.objects.create(name=user.email, slug=user.email, holder=user)
-
-
-def create_shop_product(shop: Shop, product: Product) -> ShopProduct:
-    """
-    Функция, создает товар в корзине у пользователя для тестов
-    """
-    return ShopProduct.objects.create(store=shop, product=product, price=1, old_price=2, amount=1)
+from administration.models import Cache
+from fixtures.test_services.services import create_product, create_user, create_shop, create_shop_product
 
 
 class CartDetailViewTest(TestCase):
@@ -64,6 +26,7 @@ class CartDetailViewTest(TestCase):
 class CartAddViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
+        Cache.objects.create(name='Main cache', value=3600)
         product = create_product()
         user = create_user()
         shop = create_shop(user)

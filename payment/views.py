@@ -8,7 +8,7 @@ class PaymentAPIView(APIView):
     """Метод обработки запросов фиктивной оплаты"""
 
     @staticmethod
-    def get(request, order_id: int, card_number: int, cost: int):
+    def get(request, order_id: int, card_number: int, cost: str):
         return_data = {
             'order_id': order_id,
             'cost': cost

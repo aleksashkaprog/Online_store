@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 
+from celery.schedules import crontab
 from environs import Env
 from pathlib import Path
 
@@ -194,3 +195,10 @@ CART_SESSION_ID = 'cart'
 
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
+
+CELERY_BEAT_SCHEDULE = {
+    'send_orders_to_pay': {
+        'task': 'order.tasks.pay_for_orders',
+        'schedule': crontab(hour="*/1"),
+    },
+}
