@@ -4,10 +4,7 @@ import requests
 from requests import Response
 from django.urls import reverse
 from django.db import transaction
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
-from config.settings.dev import INTERNAL_IPS
 from payment.models import PaymentInfo, ErrorMessage
 
 
@@ -41,13 +38,7 @@ class PaymentService:
         """Функция делает запрос к сервису оплаты, возвращает ответ от сервиса"""
         total_cost = str(payment_info.order.all_goods_price + payment_info.order.cost_delivery)
 
-        session = requests.Session()
-        retry = Retry(connect=2, backoff_factor=0.5)
-        adapter = HTTPAdapter(max_retries=retry)
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
-
-        url = 'http://0.0.0.0:8000' + reverse(
+        url = 'http://0.0.0.0:2375' + reverse(
                 viewname='payment:pay',
                 kwargs={
                     'order_id': payment_info.order_id,
@@ -56,7 +47,7 @@ class PaymentService:
                 },
             )
 
-        return session.get(url, verify=False)
+        return requests.get(url)
 
     @staticmethod
     @transaction.atomic
