@@ -38,7 +38,7 @@ class PaymentService:
         """Функция делает запрос к сервису оплаты, возвращает ответ от сервиса"""
         total_cost = str(payment_info.order.all_goods_price + payment_info.order.cost_delivery)
 
-        url = 'http://0.0.0.0:2375' + reverse(
+        url = 'http://0.0.0.0:8000' + reverse(
                 viewname='payment:pay',
                 kwargs={
                     'order_id': payment_info.order_id,
