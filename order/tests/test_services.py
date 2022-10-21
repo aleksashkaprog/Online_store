@@ -1,4 +1,4 @@
-from requests import Response
+# from requests import Response
 from django.test import TestCase
 
 from order.models import Order
