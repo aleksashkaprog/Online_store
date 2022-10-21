@@ -47,7 +47,7 @@ class PaymentService:
         session.mount('http://', adapter)
         session.mount('https://', adapter)
 
-        url = 'http://' + INTERNAL_IPS[0] + ':8000' + reverse(
+        url = 'http://localhost:8000' + reverse(
                 viewname='payment:pay',
                 kwargs={
                     'order_id': payment_info.order_id,
@@ -56,7 +56,7 @@ class PaymentService:
                 },
             )
 
-        return session.get(url)
+        return session.get(url, verify=False)
 
     @staticmethod
     @transaction.atomic
