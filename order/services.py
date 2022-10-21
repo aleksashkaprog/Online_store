@@ -47,7 +47,7 @@ class PaymentService:
         session.mount('http://', adapter)
         session.mount('https://', adapter)
 
-        url = 'http://localhost:8000' + reverse(
+        url = 'http://0.0.0.0:8000' + reverse(
                 viewname='payment:pay',
                 kwargs={
                     'order_id': payment_info.order_id,
