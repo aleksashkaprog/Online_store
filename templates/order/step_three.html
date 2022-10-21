@@ -48,17 +48,24 @@
         </div>
 
         <div class="Section-content">
-          <form class="form" action="#" method="post">
+          <form
+            class="form"
+            action="{% url 'order-step-three' %}"
+            method="post"
+          >
+            {% csrf_token %}
             <div class="Order-block Order-block_OPEN" id="step1">
               <header class="Section-header Section-header_sm">
                 <h2 class="Section-title">Шаг 3. Способ оплаты</h2>
               </header>
               <div class="form-group">
-                    <label>Способ оплаты</label>
-                      {{ form.payment }}
-                </div>
+                <label>Способ оплаты</label>
+                {{ form.payment }}
+              </div>
               <div class="Order-footer">
-                <a class="btn btn_success" href="{% url 'order-step-four' %}">Дальше</a>
+                <button style="cursor: pointer" class="btn btn_success">
+                  Дальше
+                </button>
               </div>
             </div>
           </form>
