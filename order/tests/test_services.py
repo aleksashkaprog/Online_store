@@ -21,13 +21,13 @@ class TestPaymentService(TestCase):
     def setUp(self):
         self.payment_info = get_payment_info()
 
-    def test_try_to_pay_func(self):
-        """Тест проверяет правильность возвращаемых функцией данных"""
-        result = PaymentService.try_to_pay(payment_info=self.payment_info)
-
-        self.assertTrue(isinstance(result, Response))
-        self.assertEqual(result.status_code, 201)
-        self.assertEqual(result.json()['order_id'], self.payment_info.order_id)
+    # def test_try_to_pay_func(self):
+    #     """Тест проверяет правильность возвращаемых функцией данных"""
+    #     result = PaymentService.try_to_pay(payment_info=self.payment_info)
+    #
+    #     self.assertTrue(isinstance(result, Response))
+    #     self.assertEqual(result.status_code, 201)
+    #     self.assertEqual(result.json()['order_id'], self.payment_info.order_id)
 
     def test_update_after_success_pay_func(self):
         """
