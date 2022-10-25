@@ -8,11 +8,9 @@ class PersonalAccount:
         try:
             history_object = ViewsHistory.objects.get(user=user, product=product)
             history_object.delete()
-            history_object = ViewsHistory.objects.create(user=user, product=product)
-            history_object.save()
+            ViewsHistory.objects.create(user=user, product=product)
         except ViewsHistory.DoesNotExist:
-            history_object = ViewsHistory.objects.create(user=user, product=product)
-            history_object.save()
+            ViewsHistory.objects.create(user=user, product=product)
 
     def delete_viewed_product(self, user, product):
         """ Удаление продукта из списка просмотренных """
