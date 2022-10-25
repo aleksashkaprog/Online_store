@@ -18,5 +18,5 @@ def get_slug(name: str) -> str:
     """Возвращает строку slug."""
     slug: str = name
     if detect_language(name) == 'ru':
-        slug = translit(name, 'en')
+        slug = translit(name, reversed=True)
     return slug

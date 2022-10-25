@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import DiscountedProduct, DiscountedCategory, DiscountedPackCategory, \
     DiscountedPackProduct, ProductDiscount, PackDiscount, CartDiscount
 from django.template.defaultfilters import truncatechars
-from .services import PackDiscountServices
+from .services import check_valid_pack_discount
 from django.utils.translation import gettext_lazy as _
 
 
@@ -45,7 +45,7 @@ class PackDiscountAdmin(BaseDiscountAdmin):
     list_display = BaseDiscountAdmin.list_display + ['valid_discount']
 
     def valid_discount(self, obj):
-        valid = PackDiscountServices.valid_discount(obj)
+        valid = check_valid_pack_discount(obj)
         return valid
     valid_discount.short_description = _('валидная скидка')
 

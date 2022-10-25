@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 from .models import CartDiscount, PackDiscount, ProductDiscount
-from .tools import get_discounts_queryset
 from itertools import chain
+from .services import get_discounts_queryset
 
 
 class DiscountsView(ListView):

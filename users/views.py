@@ -2,8 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse
+from django.views import View
 
+from personal_account.models import ViewsHistory
 from users.forms import CustomUserCreationForm, ResetPasswordForm, LogInForm
+
 from .services import register_user, password_change, login_user
 
 
@@ -58,3 +61,12 @@ def reset_password(request):
                                 'Ваш новый пароль qwerty1234.')
 
     return render(request, template_name='users/reset_password.html', context={'form': form})
+
+
+class HistoryView(View):
+    def get(self, request):
+        viewed_product = ViewsHistory.objects.filter(user=request.user.id)
+        context = {
+            'viewed_product': viewed_product
+        }
+        return render(request, 'users/view_history.html', context)

@@ -2,8 +2,6 @@
 {% load static %}
 {% load i18n %}
 {% block main %}
-
-
   <div class="Middle Middle_top">
     <div class="Middle-top">
       <div class="wrap">
@@ -38,8 +36,12 @@
                   <li class="menu-item_ACTIVE menu-item">
                     <a class="menu-link" href="{% url 'order_history' %}">{% translate 'История заказов' %}</a>
                   </li>
+<<<<<<< HEAD
                   <li class="menu-item">
                     <a class="menu-link" href="{% url 'view_history' %}">{% translate 'История просмотра' %}</a>
+=======
+                  <li class="menu-item"><a class="menu-link" href="{% url 'view-history' %}">История просмотра</a>
+>>>>>>> f41099fed545f2214eef15f0e7f7ae15c94c6b25
                   </li>
                 </ul>
               </div>
@@ -83,7 +85,7 @@
                   </div>
                 {% endif %}
               </div>
-
+            {% endfor %}
             </div>
           {% else %}
             <p>{% translate 'Вы пока ничего не смотрели' %}</p>

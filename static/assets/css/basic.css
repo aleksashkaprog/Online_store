@@ -2097,6 +2097,7 @@ label.toggle {
   border-radius: 15px !important;
 }
 
+
 .border {
   border-radius: 15px !important;
   width: 90% !important;
@@ -2171,11 +2172,9 @@ label.toggle {
 }
 
 .Account__avatar {
-  height: 125px;
-  padding: 30px;
-  border: 1px solid black;
   border-radius: 80px;
 }
+
 .margin__menu {
   margin-bottom: 200px;
 }

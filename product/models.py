@@ -13,7 +13,7 @@ class Product(utility.ProductRatingMixin, models.Model):
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
     slug = models.SlugField(blank=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT)
     views = models.PositiveIntegerField(default=0, verbose_name=_('просмотры'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('дата обновления'))

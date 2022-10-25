@@ -9,9 +9,9 @@ class ImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    exclude = ['id']
+    exclude = ['slug']
     inlines = [ImageInline]
-    list_display = ['id', 'category', 'name']
+    list_display = ['id', 'category', 'name', 'slug']
 
 
 @admin.register(Property)

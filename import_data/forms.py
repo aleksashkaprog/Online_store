@@ -1,14 +1,11 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from . import models
+from . import tools
 
-import redis
 import json
 import xmltodict
-
-
-a = locals()
+import importlib
 
 
 class LoadData(forms.Form):
@@ -48,4 +45,6 @@ class LoadData(forms.Form):
         return data
 
     def load(self):
+        data = self.load_data()
+        tools.import_data_to_db.delay(data)
         return None
