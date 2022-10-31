@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -35,6 +36,11 @@ class BaseDiscount(models.Model):
                                                 default=0, verbose_name=_('приоритет скидки'))
     active = models.BooleanField(default=True, verbose_name=_('активность'))
     image = models.ImageField(upload_to=load_images, verbose_name=_('лого'))
+
+    def clean_fields(self, exclude=None):
+        if self.type == 'percent' and self.value > 99:
+            raise ValidationError(_('скидка на процент не может быть больше 99'))
+        super(BaseDiscount, self).clean_fields(self)
 
     class Meta:
         abstract = True
@@ -134,3 +140,8 @@ class CartDiscount(BaseDiscount):
 
     def get_absolute_url(self):
         return reverse('cart-discount', kwargs={'pk': self.pk})
+
+    def clean_fields(self, exclude=None):
+        if self.condition_max_value < self.condition_min_value:
+            raise ValidationError(_('максимальное значение условия должно быть больше или равно минамальному'))
+        super(CartDiscount, self).clean_fields(self)

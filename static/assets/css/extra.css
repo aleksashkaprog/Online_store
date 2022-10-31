@@ -302,6 +302,11 @@
 .Product .Tabs-block img {
   margin-top: 20px;
 }
+
+.Product .Tabs-block .Pagination-element img {
+  margin-top: 0;
+}
+
 .Article .pict img,
 .Product .Tabs-block .pict img {
   margin-top: 0;
