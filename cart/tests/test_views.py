@@ -9,6 +9,7 @@ from category.models import Category
 from shop.models import Shop, ShopProduct
 from users.models import CustomUser
 from cart.models import ProductInCart
+from administration.models import Cache
 
 
 def create_product() -> Product:
@@ -64,6 +65,7 @@ class CartDetailViewTest(TestCase):
 class CartAddViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
+        Cache.objects.create(name='Main cache', value=86400)
         product = create_product()
         user = create_user()
         shop = create_shop(user)
