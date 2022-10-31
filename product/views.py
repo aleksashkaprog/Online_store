@@ -21,7 +21,7 @@ class ProductDetail(DetailView):
         context = super(ProductDetail, self).get_context_data(**kwargs)
         context['user_review'] = ProductService.user_has_review(self.request.user, self.object)
         context['form'] = CartAddProductForm()
-        reviews = Review.objects.filter(product=self.kwargs.get('pk'))
+        reviews = Review.objects.filter(product=self.object)
         paginator = Paginator(reviews, 1)
         page = self.request.GET.get('page')
         context['reviews'] = paginator.get_page(page)
@@ -31,4 +31,4 @@ class ProductDetail(DetailView):
     def post(self, request, **kwargs):
         self.object = self.get_object()
         ProductService.review_form_save(instance=self, request=request)
-        return redirect(reverse(viewname='product', kwargs={'slug': self.kwargs['slug'], 'pk': self.kwargs['pk']}))
+        return redirect(reverse(viewname='product', kwargs={'slug': self.kwargs['slug'], 'pk': self.object.id}))
