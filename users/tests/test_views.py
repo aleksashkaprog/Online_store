@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import Group
 
-from administration.models import Cache
 from users.models import CustomUser
 from administration.models import Cache
 
@@ -11,7 +10,6 @@ class RegisterViewTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Cache.objects.create(name='Main cache', value=3600)
         Group.objects.create(name='customer').save()
         Cache.objects.create(name='Main cache', value=86400)
         cls.page_name = reverse(viewname='users:register')
