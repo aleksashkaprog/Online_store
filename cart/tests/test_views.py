@@ -26,7 +26,7 @@ class CartDetailViewTest(TestCase):
 class CartAddViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        Cache.objects.create(name='Main cache', value=3600)
+        Cache.objects.create(name='Main cache', value=86400)
         product = create_product()
         user = create_user()
         shop = create_shop(user)
