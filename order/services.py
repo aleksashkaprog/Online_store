@@ -41,7 +41,6 @@ class PaymentService:
         url = 'http://0.0.0.0:8000' + reverse(
                 viewname='payment:pay',
                 kwargs={
-                    'order_id': payment_info.order_id,
                     'card_number': payment_info.cart_number,
                     'cost': total_cost
                 },
