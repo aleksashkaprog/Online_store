@@ -74,7 +74,7 @@
                   <span class="Cart-price_old">{{ cart.total_price_old }}</span>
                 {% endif %}
               </div>
-              <div class="Cart-block"><a class="btn btn_success btn_lg" href="{#% url 'order' %#}">{% trans 'Оформить заказ' %}</a>
+              <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'order-step-one' %}">{% trans 'Оформить заказ' %}</a>
               </div>
             </div>
           </form>
