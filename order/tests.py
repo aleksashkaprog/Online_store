@@ -1,8 +1,4 @@
 from django.test import TestCase
-from django.shortcuts import reverse
-from category.models import Category
-from product.models import Product
-from shop.models import ShopProduct, Shop
 from users.models import CustomUser
 
 
