@@ -33,7 +33,8 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('discounts/', include('discount.urls')),
     path('import_data/', include('import_data.urls')),
-    path('order/', include('order.urls'))
+    path('order/', include('order.urls')),
+    path('pay/', include('payment.urls', namespace='payment')),
 ]
 
 if settings.DEBUG:

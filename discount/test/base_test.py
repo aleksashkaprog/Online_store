@@ -1,11 +1,12 @@
 from typing import Union, Type
 from django.test import TestCase
 from django.urls import reverse
+
+from fixtures.test_services.services import create_user, create_shop
 from product.models import Product
 from category.models import Category
 from discount.models import ProductDiscount, DiscountedProduct, PackDiscount, CartDiscount, DiscountedPackProduct
 import tempfile
-from cart.tests.test_views import create_user, create_shop
 from django.utils import timezone
 from shop.models import Shop, ShopProduct
 
