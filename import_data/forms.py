@@ -1,19 +1,18 @@
 from django import forms
+from django.core.validators import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from . import tools
-
-import json
-import xmltodict
-import importlib
+from . import tasks
+from . import data_validators
+from . import redis
 
 
 class LoadData(forms.Form):
-
+    """Класс формы загрузки данных в формате json"""
     file = forms.FileField(
         widget=forms.FileInput(
             attrs={
-                'class': '',
+                'class': 'form-control',
             }
         )
     )
@@ -26,25 +25,23 @@ class LoadData(forms.Form):
     @classmethod
     def methods(cls, key):
         methods_dict = {
-            'json': json.loads,
-            'xml': xmltodict.parse,
+            'json': data_validators.ProductShopData.parse_raw,
         }
         return methods_dict.get(key)
 
+    def clean_file(self):
+        if redis.connection.get('import_data'):
+            raise ValidationError(_('Идет импорт'))
+        if self.check_file(self.cleaned_data['file']) != 'json':
+            raise ValidationError(_('Файл должен быть формата json'))
+        return self.cleaned_data['file']
+
     def import_data(self):
         file = self.cleaned_data.get('file')
-        file_type = self.check_file(file)
-        method = self.methods(file_type)
-
         with file.open() as f:
-            data = method(f.read())
+            data = f.read()
         return data
 
-    def load_data(self):
-        data = self.import_data()
-        return data
-
-    def load(self):
-        data = self.load_data()
-        tools.import_data_to_db.delay(data)
-        return None
+    def load(self, request):
+        data = self.import_data().decode('utf-8')
+        tasks.import_data_to_db.delay(data, request.user.email)

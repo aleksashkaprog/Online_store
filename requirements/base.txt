@@ -10,3 +10,4 @@ django-timestampable==1.0.3
 django-mptt==0.13.4
 transliterate==1.10.2
 xmltodict==0.13.0
+pydantic==1.10.2
