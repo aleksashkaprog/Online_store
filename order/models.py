@@ -13,7 +13,7 @@ class Order(models.Model):
         CustomUser, on_delete=models.CASCADE, related_name="orders", verbose_name=_("потребитель")
     )
     first_second_names = models.TextField(null=True, blank=True, verbose_name=_("ФИО"))
-    phone = models.IntegerField(verbose_name=_("телефон"))
+    phone = models.CharField(max_length=13, verbose_name=_("телефон"))
     email = models.EmailField(verbose_name=_("почта"))
     delivery = models.CharField(max_length=10, default="обычная", choices=DELIVERY_CHOICES, verbose_name=_("доставка"))
     payment = models.CharField(max_length=10, default="картой", choices=PAYMENT_CHOICES, verbose_name=_("оплата"))
