@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block main %}
 
 
@@ -8,12 +8,13 @@
     <div class="Middle-top">
       <div class="wrap">
         <div class="Middle-header">
-          <h1 class="Middle-title">Products on Sale
-          </h1>
+          <h1 class="Middle-title">{% translate 'Товары в продаже' %}</h1>
           <ul class="breadcrumbs Middle-breadcrumbs">
-            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">home</a>
+            <li class="breadcrumbs-item">
+              <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
             </li>
-            <li class="breadcrumbs-item breadcrumbs-item_current"><span>Sale</span>
+            <li class="breadcrumbs-item breadcrumbs-item_current">
+              <span>{% translate 'Распродажа' %}</span>
             </li>
           </ul>
         </div>
@@ -24,7 +25,10 @@
         {% if sale %}
         <div class="Cards Cards_blog">
           {% for product in sale %}
-          <div class="Card"><a class="Card-picture" href="#"><img src="{{ product.image }}" alt="product.png"/></a>
+          <div class="Card">
+            <a class="Card-picture" href="#">
+              <img src="{{ product.image }}" alt="product.png"/>
+            </a>
             <div class="Card-date">
               <strong class="Card-date-number">{% if product.sale.start_date %} {{ product.sale.start_date.date }}
               {% else %} {{ product.sale.end_date.date }} {% endif %}
@@ -33,16 +37,18 @@
             </div>
           {% if product.sale.start_date %}
             <div class="Card-date Card-date_to">
-              <strong class="Card-date-number">{{ product.sale.end_date.date }}
-              </strong><span class="Card-date-month">{{ product.sale.end_date.month }}</span>
+              <strong class="Card-date-number">{{ product.sale.end_date.date }}</strong>
+              <span class="Card-date-month">{{ product.sale.end_date.month }}</span>
             </div>
           {% endif %}
             <div class="Card-pin">
             </div>
             <div class="Card-content">
-              <strong class="Card-title"><a href="#">{{ product.name }}</a>
+              <strong class="Card-title">
+                <a href="#">{{ product.name }}</a>
               </strong>
-              <div class="Card-description">{{ product.description }}
+              <div class="Card-description">
+                {{ product.description }}
               </div>
             </div>
           </div>

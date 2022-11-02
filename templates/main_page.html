@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load cache %}
+{% load i18n %}
 {% block header_slider %}
 
   {% if banners %}
@@ -18,7 +19,7 @@
                     </div>
                     <div class="Slider-footer">
                       <a class="btn btn_primary" href="{% url 'product' banner.product.slug banner.product.id %}">
-                        Get Started
+                        {% translate 'Перейти на страницу' %}
                       </a>
                     </div>
                   </div>
@@ -85,8 +86,7 @@
               <div class="Section-column">
                 <div class="Section-columnSection Section-columnSection_mark">
                   <header class="Section-columnHeader">
-                    <strong class="Section-columnTitle">Limited Deals
-                    </strong>
+                    <strong class="Section-columnTitle">{% translate 'Ограниченные предложения' %}</strong>
                   </header>
 
                   <div class="Card">
@@ -109,28 +109,28 @@
                           <div class="CountDown-wrap">
                             <div class="CountDown-days">
                             </div>
-                            <span class="CountDown-label">days</span>
+                            <span class="CountDown-label">{% translate 'дни' %}</span>
                           </div>
                         </div>
                         <div class="CountDown-block">
                           <div class="CountDown-wrap">
                             <div class="CountDown-hours">
                             </div>
-                            <span class="CountDown-label">hours</span>
+                            <span class="CountDown-label">hours{% translate 'часы' %}</span>
                           </div>
                         </div>
                         <div class="CountDown-block">
                           <div class="CountDown-wrap">
                             <div class="CountDown-minutes">
                             </div>
-                            <span class="CountDown-label">mins</span>
+                            <span class="CountDown-label">{% translate 'минуты' %}</span>
                           </div>
                         </div>
                         <div class="CountDown-block">
                           <div class="CountDown-wrap">
                             <div class="CountDown-secs">
                             </div>
-                            <span class="CountDown-label">secs</span>
+                            <span class="CountDown-label">{% translate 'секунды' %}</span>
                           </div>
                         </div>
                       </div>
@@ -144,17 +144,19 @@
 
             <div class="Section-content">
               <header class="Section-header">
-                <h2 class="Section-title">Popular Products
-                </h2>
+                <h2 class="Section-title">{% translate 'Популярные продукты' %}</h2>
               </header>
               <div class="Cards">
 
                 {% if top_products %}
                   {% for top_product in top_products %}
-                    <div class="Card"><a class="Card-picture" href="#"><img src="{{ top_product.image }}"
-                                                                            alt="card.jpg"/></a> {# альт для карнтинки #}
+                    <div class="Card">
+                      <a class="Card-picture" href="#">
+                        <img src="{{ top_product.image }}" alt="card.jpg"/>
+                      </a> {# альт для карнтинки #}
                       <div class="Card-content">
-                        <strong class="Card-title"><a href="#">{{ top_product.name }}</a>
+                        <strong class="Card-title">
+                          <a href="#">{{ top_product.name }}</a>
                         </strong>
                         <div class="Card-description">
                           <div class="Card-cost">
@@ -163,7 +165,8 @@
                             {% endif %}
                             <span class="Card-price">{{ top_product.price }}</span>
                           </div>
-                          <div class="Card-category">{{ top_product.category }}
+                          <div class="Card-category">
+                            {{ top_product.category }}
                           </div>
                           <div class="Card-hover">
                             <a class="Card-btn" href="{% url 'product' top_product.slug top_product.id %}">
@@ -179,7 +182,8 @@
                         </div>
                       </div>
                       {% if top_product.discount %}
-                        <div class="Card-sale">-{{ top_product.discount }}%
+                        <div class="Card-sale">
+                          -{{ top_product.discount }}%
                         </div>
                       {% endif %}
                     </div>
@@ -196,8 +200,7 @@
             <div class="Section-content">
               <div class="Slider Slider_carousel">
                 <header class="Section-header">
-                  <h2 class="Section-title">Hot Offers
-                  </h2>
+                  <h2 class="Section-title">{% translate 'Горячие предложения' %}</h2>
                   <div class="Section-control">
                     <div class="Slider-navigate">
                     </div>
@@ -213,7 +216,8 @@
                               <img src="{{ hot_offer.image }}" alt="card.jpg"/>
                             </a>
                             <div class="Card-content">
-                              <strong class="Card-title"><a href="#">{{ hot_offer.name }}</a>
+                              <strong class="Card-title">
+                                <a href="#">{{ hot_offer.name }}</a>
                               </strong>
                               <div class="Card-description">
                                 <div class="Card-cost">
@@ -238,7 +242,9 @@
                               </div>
                             </div>
                             {% if hot_offer.discount %}
-                              <div class="Card-sale">-{{ hot_offer.discount }}%</div>
+                              <div class="Card-sale">
+                                -{{ hot_offer.discount }}%
+                              </div>
                             {% endif %}
                           </div>
                         </div>
@@ -260,9 +266,9 @@
                     <img src="{% static 'assets/img/icons/advantages/shipping.svg' %}" alt="shipping.svg"/>
                   </div>
                   <div class="media-content">
-                    <strong class="media-title">Shipping & Returns
-                    </strong>
-                    <p class="media-text">World wide shipping
+                    <strong class="media-title">{% translate 'доставка и возврат' %}</strong>
+                    <p class="media-text">
+                      {% translate 'Доставка по всему миру' %}
                     </p>
                   </div>
                 </div>
@@ -273,9 +279,9 @@
                     <img src="{% static 'assets/img/icons/advantages/moneyBack.svg' %}" alt="moneyBack.svg"/>
                   </div>
                   <div class="media-content">
-                    <strong class="media-title">Money Back
-                    </strong>
-                    <p class="media-text">Guaranted payments
+                    <strong class="media-title">{% translate 'возврат денег' %}</strong>
+                    <p class="media-text">
+                      {% translate 'Гарантированная оплата' %}
                     </p>
                   </div>
                 </div>
@@ -286,9 +292,9 @@
                     <img src="{% static 'assets/img/icons/advantages/support.svg' %}" alt="support.svg"/>
                   </div>
                   <div class="media-content">
-                    <strong class="media-title">Support Policy
-                    </strong>
-                    <p class="media-text">Fast support team
+                    <strong class="media-title">{% translate 'техническая поддержка' %}</strong>
+                    <p class="media-text">
+                      {% translate 'Комманда поддержки быстро ответит вам' %}
                     </p>
                   </div>
                 </div>
@@ -299,9 +305,9 @@
                     <img src="{% static 'assets/img/icons/advantages/quality.svg' %}" alt="quality.svg"/>
                   </div>
                   <div class="media-content">
-                    <strong class="media-title">Quality Guarantee
-                    </strong>
-                    <p class="media-text">Best guaranted items
+                    <strong class="media-title">{% translate 'гарантия качества' %}</strong>
+                    <p class="media-text">
+                      {% translate 'Гарантия на лучшие товары' %}
                     </p>
                   </div>
                 </div>
@@ -311,8 +317,7 @@
             <div class="Section-content">
               <div class="Slider Slider_carousel">
                 <header class="Section-header Section-header_close">
-                  <h2 class="Section-title">Limited edition
-                  </h2>
+                  <h2 class="Section-title">{% translate 'Ограниченное количество' %}</h2>
                   <div class="Section-control">
                     <div class="Slider-navigate">
                     </div>
@@ -326,7 +331,8 @@
                           <div class="Card"><a class="Card-picture" href="#"><img src="{{ limited.image }}"
                                                                                   alt="card.jpg"/></a>
                             <div class="Card-content">
-                              <strong class="Card-title"><a href="#">{{ limited.name }}</a>
+                              <strong class="Card-title">
+                                <a href="#">{{ limited.name }}</a>
                               </strong>
                               <div class="Card-description">
                                 <div class="Card-cost">

@@ -6,7 +6,7 @@
         {% if user.is_authenticated %}
             <h3>{% trans 'Вы уже авторизованы на сайте' %}</h3>
         {% else %}
-            <h3>Нет аккаунта? <a href="{% url 'users:register' %}">{% trans 'Регистрация' %}</a></h3>
+            <h3>{% translate 'Нет аккаунта' %}? <a href="{% url 'users:register' %}">{% trans 'Регистрация' %}</a></h3>
             <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

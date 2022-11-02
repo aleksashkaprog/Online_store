@@ -62,7 +62,7 @@
                 {{ product.name }}
               </div>
               <div class="Compare-feature">
-                <a class="Compare-btn" href="{% url 'delete_from_compare' product.pk %}">
+                <a class="Compare-btn" href="">
                   <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                 </a>
                 <a class="Compare-btn" href="{% url 'delete_from_compare' product.pk %}">
@@ -114,10 +114,10 @@
         {% block characteristic %}
           {% for product in products %}
             {% if forloop.counter <= 1 %}
-              {% for key in product.get_characteristic %}
+              {% for property in product.property.all %}
               <div class="Compare-row">
                 <div class="Compare-title">
-                  {{ key }}
+                  {{ property }}
                 </div>
                 <div class="Compare-products">
                   {% for product in products %}
@@ -126,7 +126,12 @@
                         {{ product.name }}
                       </div>
                       <div class="Compare-feature">
-                        {{ product.get_characteristic|get_value:key }}
+                        {% for productproperty in product.productproperty_set.all %}
+
+                          {% if productproperty.property == property %}
+                            {{ productproperty.value }}
+                          {% endif %}
+                        {% endfor %}
                       </div>
                     </div>
                   {% endfor %}

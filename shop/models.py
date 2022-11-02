@@ -20,6 +20,10 @@ class Shop(models.Model):
     def __str__(self):
         return f"Магазин {self.name}"
 
+    class Meta:
+        verbose_name = _('магазин')
+        verbose_name_plural = _('магазины')
+
 
 class ShopProduct(models.Model):
     """Модель продукта магазина"""

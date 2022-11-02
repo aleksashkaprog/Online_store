@@ -11,7 +11,7 @@ class CustomUserModelTest(TestCase):
 
     def test_labels(self):
         field_label = self.user._meta.get_field('email').verbose_name
-        self.assertEqual(field_label, 'e-mail')
+        self.assertIn(field_label, ('e-mail', 'электронная почта'))
 
         field_label = self.user._meta.get_field('phone_number').verbose_name
         self.assertEqual(field_label, 'телефон')
