@@ -1,7 +1,7 @@
 """Настройки объекта логера"""
 
 
-dict_conf: dict = {
+dict_conf = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {

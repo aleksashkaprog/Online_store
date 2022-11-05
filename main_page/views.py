@@ -3,6 +3,7 @@ import random
 
 from django.shortcuts import render
 from django.views import View
+# from django.core.exceptions import
 
 from administration.models import Cache
 from catalog.models import Favourite, DayOffer, Top, Hot, Limit
@@ -28,7 +29,10 @@ class MainPageView(View):
         top_products = Top.objects.all()
         hot_offers = Hot.objects.all()
         limited_offers = Limit.objects.all()
-        main_cache = Cache.objects.get(name='Main cache').value
+        try:
+            main_cache = Cache.objects.get(name='Main cache')
+        except Cache.DoesNotExist:
+            main_cache = None
         context = {
             'banners': banners,
             'favourite_categories': favourite_categories,
@@ -36,6 +40,6 @@ class MainPageView(View):
             'top_products': top_products,
             'hot_offers': hot_offers,
             'limited_offers': limited_offers,
-            'main_cache': main_cache,
+            'main_cache': main_cache.value if main_cache is not None else main_cache,
         }
         return render(request, 'main_page/main_page.html', context)

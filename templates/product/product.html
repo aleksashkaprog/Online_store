@@ -241,7 +241,7 @@
                   </header>
 
                   <div class="Tabs-addComment">
-                    <form class="form" action="{% url 'product' product.slug product.id %}" method="post">
+                    <form class="form" action="{{ product.get_absolute_url }}" method="post">
                       {% csrf_token %}
                       <div>
                         {% for star in '12345'|make_list %}

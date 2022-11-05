@@ -17,8 +17,7 @@ def cart_add(request, product_pk, shop_product_pk=None):
 
     if request.method == 'GET' or form.is_valid():
         add_product_to_cart(request, product_pk, shop_product_pk, form)
-
-    return redirect(reverse(viewname='product', kwargs={'slug': product.slug, 'pk': product.id}))
+    return redirect(reverse(viewname='product', kwargs={'slug': product.slug}))
 
 
 def change_count(request, shop_product_pk, quantity):
