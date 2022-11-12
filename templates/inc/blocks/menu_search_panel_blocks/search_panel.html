@@ -12,7 +12,7 @@
         {% url 'catalog' %}
       {% endif %}" method="get">
       <input class="search-input" id="query" name="query" type="text" placeholder="{% translate 'Что вы ищете' %} ..."/>
-      <button class="search-button" type="submit" name="search" id="search">
+      <button class="search-button" type="submit" id="search">
         <img src="{% static 'assets/img/icons/search.svg' %}" alt="search.svg"/>{% translate 'Поиск' %}
       </button>
     </form>

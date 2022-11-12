@@ -26,11 +26,11 @@
               <strong class="Section-title">{% translate 'Фильтр' %}</strong>
             </header>
             <div class="Section-columnContent">
-              <form class="form" action="#" method="post">
+              <form class="form" method="get">
                 <div class="form-group">
                   <div class="range Section-columnRange">
-                    <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="7"
-                           data-max="50" data-from="7" data-to="27"/>
+                    <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="50"
+                           data-max="5000" data-from="7" data-to="27"/>
                     <div class="range-price">Price:&#32;
                       <div class="rangePrice">
                       </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
-                  <select class="form-select">
+                  <select class="form-select" name="seller">
                     <option value="seller" selected="selected" disabled="disabled">
                       {% translate 'Продавец' %}
                     </option>
@@ -56,19 +56,20 @@
                 </div>
                 <div class="form-group">
                   <label class="toggle">
-                    <input type="checkbox"/>
+                    <input type="checkbox" name="is_exist"/>
                     <span class="toggle-box"></span><span class="toggle-text">{% translate 'Только товары в наличии' %}</span>
                   </label>
                 </div>
                 <div class="form-group">
                   <label class="toggle">
-                    <input type="checkbox"/>
+                    <input type="checkbox" name="free_delivery"/>
                     <span class="toggle-box"></span><span class="toggle-text">{% translate 'С бесплатной доставкой' %}</span>
                   </label>
                 </div>
                 <div class="form-group">
                   <div class="buttons">
-                    <a class="btn btn_square btn_dark btn_narrow" href="#">{% translate 'Фильтр' %}</a>
+                    <button class="btn btn_square btn_dark btn_narrow">{% translate 'Фильтр' %}</button>
+{#                    <a class="btn btn_square btn_dark btn_narrow" href="#">{% translate 'Фильтр' %}</a>#}
                   </div>
                 </div>
               </form>
@@ -99,17 +100,32 @@
               {% if category_slug %}
                 {% url 'catalog_category_order_by_views' category_slug %}
               {% else %}
-                {% url 'catalog_order_views' %}
-               {% endif %}
+                {% url 'catalog_order_by_views' %}
+              {% endif %}
               ">{% translate 'Популярности' %}</a>
-              <a class="Sort-sortBy" href="#">{% translate 'Цене' %}</a>
-              <a class="Sort-sortBy" href="#">{% translate 'Отзывам' %}</a>
+
+              <a class="Sort-sortBy" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_price' category_slug %}
+               {% else %}
+                {% url 'catalog_order_by_price' %}
+              {% endif %}">{% translate 'Цене' %}</a>
+
+
+              <a class="Sort-sortBy" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_rating' category_slug %}
+              {% else %}
+                {% url 'catalog_order_by_rating' %}
+              {% endif %}
+              ">{% translate 'Отзывам' %}</a>
+
               <a class="Sort-sortBy Sort-sortBy_inc" href="
               {% if category_slug %}
                 {% url 'catalog_category_order_by_date' category_slug %}
               {% else %}
                 {% url 'catalog_order_by_date' %}
-               {% endif %}
+              {% endif %}
               ">{% translate 'Новизне' %}</a> {# ссылки сортировки #}
             </div>
           </div>

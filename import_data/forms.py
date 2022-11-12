@@ -1,4 +1,3 @@
-import copy
 
 from django import forms
 from django.core.validators import ValidationError
