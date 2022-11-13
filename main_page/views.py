@@ -1,12 +1,13 @@
 import datetime
 import random
-
+from product.models import Product
 from django.shortcuts import render
 from django.views import View
-
 from administration.models import Cache
 from catalog.models import Favourite, DayOffer, Top, Hot, Limit
 from main_page.models import Banner
+from discount.models import ProductDiscount
+from discount.services import get_discounts_queryset
 
 
 class MainPageView(View):
@@ -24,9 +25,10 @@ class MainPageView(View):
             favourite_categories = Favourite.objects.filter(user=request.user.id)
         else:
             favourite_categories = None
-        day_offer = DayOffer.objects.filter(day=datetime.date.today())
-        top_products = Top.objects.all()
-        hot_offers = Hot.objects.all()
+        day_offer = DayOffer.objects.first()
+        top_products = Top.objects.all()[:8]
+        active_discounts = get_discounts_queryset(ProductDiscount)
+        hot_offers = Product.objects.filter(discounts__discount__in=active_discounts)
         limited_offers = Limit.objects.all()
         main_cache = Cache.objects.get(name='Main cache').value
         context = {
@@ -39,3 +41,8 @@ class MainPageView(View):
             'main_cache': main_cache,
         }
         return render(request, 'main_page/main_page.html', context)
+
+
+class ContactsView(View):
+    def get(self, request):
+        return render(request, 'main_page/contacts.html')
