@@ -1,29 +1,46 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 import datetime
-from .models import Order
+from .models import Order, OrderGood
 from .forms import StepOneForm, StepTwoForm, StepThreeForm
+from cart.models import ProductInCart
 
 
-class OrderHistory(TemplateView):
+class OrderHistory(View):
     template_name = "order/historyorder.html"
 
+    def get(self, request, *args, **kwargs):
+        orders = Order.objects.all().filter(consumer=request.user)
+        return render(request, self.template_name, {"orders": orders})
 
-class OrderView(TemplateView):
+
+class OrderView(DetailView):
+    # model = Order
     template_name = "order/order.html"
+    # context_object_name = "goods_in_order"
+
+    def get(self, request, *args, **kwargs):
+        goods_in_order = Order.objects.get(pk=kwargs["order_pk"])
+        return render(request, self.template_name, {"goods_in_order": goods_in_order})
 
 
 class StepOne(View):
     template_name = "order/step_one.html"
 
     def get(self, request, *args, **kwargs):
-        form = StepOneForm
-        return render(request, self.template_name, {"form": form})
+        if request.user.is_authenticated:
+            form = StepOneForm
+            return render(request, self.template_name, {"form": form})
+        else:
+            return redirect("users:register")
 
     def post(self, request, *args, **kwargs):
         form = StepOneForm(request.POST)
         order = Order.objects.create(consumer=request.user, order_in=False)
+        q = ProductInCart.objects.filter(user=request.user).select_related("shop_product__product")
+        for good in q:
+            OrderGood.objects.create(good_in_order=order, good_in_cart=good)
         if form.is_valid():
             order.first_second_names = form.cleaned_data["first_second_names"]
             order.email = form.cleaned_data["email"]
@@ -41,7 +58,7 @@ class StepTwo(View):
         return render(request, self.template_name, {"form": form})
 
     def post(self, request, *args, **kwargs):
-        form = StepOneForm(request.POST)
+        form = StepTwoForm(request.POST)
         order = Order.objects.get(consumer=request.user, order_in=False)
         if form.is_valid():
             order.delivery = form.cleaned_data["delivery"]
@@ -60,12 +77,13 @@ class StepThree(TemplateView):
         return render(request, self.template_name, {"form": form})
 
     def post(self, request, *args, **kwargs):
-        form = StepOneForm(request.POST)
+        form = StepThreeForm(request.POST)
         order = Order.objects.get(consumer=request.user, order_in=False)
         if form.is_valid():
-            order.payment = form.cleaned_data["payment_method"]
+            order.payment = form.cleaned_data["payment"]
             order.order_in = True
             order.ordered = datetime.datetime.today()
+            order.save()
             return redirect("order-step-four")
         return render(request, self.template_name, {"form": form})
 
@@ -76,4 +94,3 @@ class StepFour(View):
     def get(self, request, *args, **kwargs):
         order = Order.objects.filter(consumer=request.user, order_in=True).last()
         return render(request, self.template_name, {"order": order})
-        # return render(request, self.template_name)

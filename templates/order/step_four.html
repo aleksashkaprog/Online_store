@@ -103,7 +103,7 @@
                       </div>
                       <div class="Order-info Order-info_pay">
                         <div class="Order-infoType">Оплата:</div>
-                        <div class="Order-infoContent">Наличными</div>
+                        <div class="Order-infoContent">{{ order.payment }}</div>
                       </div>
                     </div>
                   </div>
@@ -174,18 +174,18 @@
                             /></a>
                           </div>
                           <div class="Cart-block Cart-block_info">
-                            <a class="Cart-title" href="#">{{ good.seller_good.product.name }}</a>
-                            <div class="Cart-desc">{{ good.seller_good.product.description }}</div>
+                            <a class="Cart-title" href="#">{{ good.good_in_cart.shop_product.product.name }}</a>
+                            <div class="Cart-desc">{{ good.good_in_cart.shop_product.product.description }}</div>
                           </div>
                           <div class="Cart-block Cart-block_price">
-                              <div class="Cart-price_old">{{ good.seller_good.price }}</div>
-                            <div class="Cart-price">{{ good.price_eventual }}</div>
+                              <div class="Cart-price_old">{{ good.good_in_cart.shop_product.old_price }}</div>
+                            <div class="Cart-price">{{ good.good_in_cart.shop_product.price }}</div>
                           </div>
                         </div>
                         <div class="Cart-block Cart-block_row">
                           <div class="Cart-block Cart-block_seller">
                             <div>Продавец:</div>
-                            <div>{{ good.seller_good.store.name }}</div>
+                            <div>{{ good.good_in_cart.shop_product.store.name }}</div>
                           </div>
                           <div class="Cart-block Cart-block_amount">1 шт.</div>
                         </div>
