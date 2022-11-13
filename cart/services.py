@@ -15,9 +15,9 @@ from config.settings.base import CART_SESSION_ID
 class Cart(object):
     """Класс, описывающий корзину пользователя"""
     exclude_fields_for_iter = ('store__description', 'store__slug', 'store__address', 'store__email', 'store__phone',
-                               'store__logo', 'product__category_id', 'product__rating', 'product__characteristic',
-                               'amount', 'product__created_at', 'product__updated_at', 'product__views', 'add_at',
-                               'store__holder_id')
+                               'store__logo', 'product__category_id', 'amount', 'product__created_at',
+                               'product__updated_at', 'product__views', 'add_at', 'store__holder_id',
+                               )
 
     def __init__(self, request) -> None:
         """Инициализируем корзину"""
