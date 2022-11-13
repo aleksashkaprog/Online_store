@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block main%}
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block main%}
 <div class="Middle Middle_top" xmlns="http://www.w3.org/1999/html">
   <div class="Middle-top">
     <div class="wrap">
@@ -56,7 +56,7 @@
               <div class="Order-infoBlock">
                 <div class="Order-personal">
                   <div class="row">
-                    <div class="row-block">
+                    <div class="row-block" style="margin-bottom: 30px">
                       <div class="Order-info">
                         <div class="Order-infoType">ФИО:</div>
                         <div class="Order-infoContent">
@@ -203,9 +203,13 @@
                       ><span class="Cart-price_old">{{ order.all_goods_price }}</span>
                     </div>
                     <div class="Cart-block">
-                      <button class="btn btn_primary btn_lg" type="submit">
+                        {% if order.payment == "картой" %}
+                      <a class="btn btn_primary btn_lg" type="submit" href="{% url 'payment_order' order_pk=order.pk %}">
                         Оплатить
-                      </button>
+                      </a>
+                        {% else %}
+                            <a class="btn btn_primary btn_lg" type="submit" href="{% url 'history-order' %}">{% translate 'Оплата при получении' %}</a>
+                        {% endif %}
                     </div>
                   </div>
                 </div>
