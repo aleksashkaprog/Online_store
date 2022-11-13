@@ -12,10 +12,13 @@ class CatalogTestCase(TestCase):
             name='test_name',
             image='file.svg'
         )
-        cls.products: list = [Product.objects.create(
-            name='test_name_{}'.format(_),
-            category=cls.category,
-        ) for _ in range(10)]
+        cls.products = Product.objects.bulk_create(
+            [Product(
+                name='test_name_{}'.format(_),
+                slug='test-name-{}'.format(_),
+                category=cls.category,
+            ) for _ in range(10)]
+        )
         cls.categories: list = [Category.objects.create(
             name='test_name_{}'.format(_),
             image='file_{}.svg'
@@ -33,6 +36,7 @@ class CatalogTestCase(TestCase):
 
     def test_catalog_template(self) -> None:
         response = self.client.get(reverse('catalog'))
+        print(response)
         self.assertTemplateUsed(response, 'catalog.html')
 
     def test_catalog_category_get(self):
