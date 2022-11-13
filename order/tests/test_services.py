@@ -4,14 +4,15 @@ from order.models import Order
 from order.services import PaymentService
 from payment.models import PaymentInfo, ErrorMessage
 from fixtures.test_services.services import create_user, create_shop_product, create_shop, create_product, \
-    create_order, create_order_good, create_payment_info
+    create_order, create_order_good, create_payment_info, add_product_in_cart
 
 
 def get_payment_info() -> PaymentInfo:
     user = create_user()
     order = create_order(user)
-    create_order_good(order, create_shop_product(create_shop(user), create_product()))
-
+    good = create_shop_product(create_shop(user), create_product())
+    good_in_cart = add_product_in_cart(user=user, product=good)
+    create_order_good(order=order, good=good_in_cart)
     return create_payment_info(order)
 
 

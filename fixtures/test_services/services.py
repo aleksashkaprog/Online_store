@@ -6,6 +6,7 @@ from category.models import Category
 from payment.models import PaymentInfo
 from shop.models import Shop, ShopProduct
 from order.models import Order, OrderGood
+from cart.models import ProductInCart
 
 
 def create_product(name: str = 'test') -> Product:
@@ -48,10 +49,14 @@ def create_order(user: CustomUser) -> Order:
                                 delivery='обычная', payment='картой', city='Test', address='Test', cost_delivery=1000)
 
 
-def create_order_good(order: Order, shop_product: ShopProduct) -> OrderGood:
+def add_product_in_cart(user: CustomUser, product: ShopProduct) -> Order:
+    """ Функция добавляет продукт в корзину пользователя"""
+    return ProductInCart.objects.create(user=user, shop_product=product, quantity=1)
+
+
+def create_order_good(order: Order, good: ProductInCart) -> OrderGood:
     """ Функция, создает товар в составе заказа для тестов"""
-    return OrderGood.objects.create(good=order, seller_good=shop_product,
-                                    price_eventual=shop_product.price, quantity=2)
+    return OrderGood.objects.create(good_in_order=order, good_in_cart=good)
 
 
 def create_payment_info(order: Order) -> PaymentInfo:
