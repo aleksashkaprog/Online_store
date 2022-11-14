@@ -9,7 +9,7 @@ import redis
 connection = redis.Redis(host='redis', port=6379, db=0)
 
 
-STATUS_IMPORT_DATA: dict = {
+STATUS_IMPORT_DATA = {
     True: {
         'tag': messages.ERROR,
         'message': _('Идет импорт'),

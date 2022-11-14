@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -9,7 +10,8 @@ from . import tools
 from . import utility
 
 
-class Product(utility.ProductRatingMixin, models.Model):
+class Product(utility.ProductRatingMixin, utility.ProductPriceMixin, models.Model):
+
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
     slug = models.SlugField(blank=True)
@@ -26,6 +28,9 @@ class Product(utility.ProductRatingMixin, models.Model):
     def save(self, *args, **kwargs) -> 'Product':
         self.slug: str = get_slug(self.name)
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = _('продукт')

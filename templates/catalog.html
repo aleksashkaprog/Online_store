@@ -26,11 +26,11 @@
               <strong class="Section-title">{% translate 'Фильтр' %}</strong>
             </header>
             <div class="Section-columnContent">
-              <form class="form" action="#" method="post">
+              <form class="form" method="get">
                 <div class="form-group">
                   <div class="range Section-columnRange">
-                    <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="7"
-                           data-max="50" data-from="7" data-to="27"/>
+                    <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="50"
+                           data-max="5000" data-from="7" data-to="27"/>
                     <div class="range-price">Price:&#32;
                       <div class="rangePrice">
                       </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
-                  <select class="form-select">
+                  <select class="form-select" name="seller">
                     <option value="seller" selected="selected" disabled="disabled">
                       {% translate 'Продавец' %}
                     </option>
@@ -56,19 +56,20 @@
                 </div>
                 <div class="form-group">
                   <label class="toggle">
-                    <input type="checkbox"/>
+                    <input type="checkbox" name="is_exist"/>
                     <span class="toggle-box"></span><span class="toggle-text">{% translate 'Только товары в наличии' %}</span>
                   </label>
                 </div>
                 <div class="form-group">
                   <label class="toggle">
-                    <input type="checkbox"/>
+                    <input type="checkbox" name="free_delivery"/>
                     <span class="toggle-box"></span><span class="toggle-text">{% translate 'С бесплатной доставкой' %}</span>
                   </label>
                 </div>
                 <div class="form-group">
                   <div class="buttons">
-                    <a class="btn btn_square btn_dark btn_narrow" href="#">{% translate 'Фильтр' %}</a>
+                    <button class="btn btn_square btn_dark btn_narrow">{% translate 'Фильтр' %}</button>
+{#                    <a class="btn btn_square btn_dark btn_narrow" href="#">{% translate 'Фильтр' %}</a>#}
                   </div>
                 </div>
               </form>
@@ -95,10 +96,37 @@
               {% translate 'Сортировать по' %}:
             </div>
             <div class="Sort-variants">
-              <a class="Sort-sortBy Sort-sortBy_dec" href="#">{% translate 'Популярности' %}</a>
-              <a class="Sort-sortBy" href="#">{% translate 'Цене' %}</a>
-              <a class="Sort-sortBy" href="#">{% translate 'Отзывам' %}</a>
-              <a class="Sort-sortBy Sort-sortBy_inc" href="#">{% translate 'Новизне' %}</a> {# ссылки сортировки #}
+              <a class="Sort-sortBy Sort-sortBy_dec" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_views' category_slug %}
+              {% else %}
+                {% url 'catalog_order_by_views' %}
+              {% endif %}
+              ">{% translate 'Популярности' %}</a>
+
+              <a class="Sort-sortBy" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_price' category_slug %}
+               {% else %}
+                {% url 'catalog_order_by_price' %}
+              {% endif %}">{% translate 'Цене' %}</a>
+
+
+              <a class="Sort-sortBy" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_rating' category_slug %}
+              {% else %}
+                {% url 'catalog_order_by_rating' %}
+              {% endif %}
+              ">{% translate 'Отзывам' %}</a>
+
+              <a class="Sort-sortBy Sort-sortBy_inc" href="
+              {% if category_slug %}
+                {% url 'catalog_category_order_by_date' category_slug %}
+              {% else %}
+                {% url 'catalog_order_by_date' %}
+              {% endif %}
+              ">{% translate 'Новизне' %}</a> {# ссылки сортировки #}
             </div>
           </div>
           <div class="Cards">
@@ -106,12 +134,13 @@
               <div class="Card
                   {% if forloop.counter > 4 %} hide_md {% endif %}
                   {% if forloop.counter > 6 %} hide_1450 {% endif %}">
-                <a class="Card-picture" href="{% url 'product' product.slug product.id %}">
+
+                <a class="Card-picture" href="">
                   <img src="{{ product.image }}" alt="card.jpg"/>
                 </a>
                 <div class="Card-content">
                   <strong class="Card-title">
-                    <a href="{% url 'product' product.slug product.id %}">{{ product.name }}</a>
+                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                   </strong>
                   <div class="Card-description">
                     <div class="Card-cost">
@@ -123,13 +152,13 @@
                     <div class="Card-category">{{ product.category }}
                     </div>
                     <div class="Card-hover">
-                      <a class="Card-btn" href="{% url 'product' product.slug product.id %}">
+                      <a class="Card-btn" href="{{ product.get_absolute_url }}">
                         <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
                       </a>
-                      <a class="Card-btn" href="{% url 'cart_add' product.id %}">
+                      <a class="Card-btn" href="{% url 'cart:random_add' product.pk %}">
                         <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                       </a>
-                      <a class="Card-btn" href="{% url 'compare' product.id %}">
+                      <a class="Card-btn" href="{% url 'add_to_compare' product.pk %}">
                         <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
                       </a>
                     </div>
@@ -142,19 +171,9 @@
               </div>
             {% endfor %}
           </div>
-          <div class="Pagination">
-            <div class="Pagination-ins">
-              <a class="Pagination-element Pagination-element_prev" href="#">
-                <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
-              </a>
-              <a class="Pagination-element Pagination-element_current" href="#"><span class="Pagination-text">1</span></a>
-              <a class="Pagination-element" href="#"><span class="Pagination-text">2</span></a> {# ссылки пагинации #}
-              <a class="Pagination-element" href="#"><span class="Pagination-text">3</span></a>
-              <a class="Pagination-element Pagination-element_prev" href="#">
-                <img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg"/>
-              </a>
-            </div>
-          </div>
+          {% block pagination %}
+            {% include 'inc/blocks/pagination.html' %}
+          {% endblock %}
         </div>
       </div>
     </div>
