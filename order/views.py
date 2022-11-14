@@ -16,9 +16,7 @@ class OrderHistory(View):
 
 
 class OrderView(DetailView):
-    # model = Order
     template_name = "order/order.html"
-    # context_object_name = "goods_in_order"
 
     def get(self, request, *args, **kwargs):
         goods_in_order = Order.objects.get(pk=kwargs["order_pk"])
@@ -59,7 +57,7 @@ class StepTwo(View):
 
     def post(self, request, *args, **kwargs):
         form = StepTwoForm(request.POST)
-        order = Order.objects.get(consumer=request.user, order_in=False)
+        order = Order.objects.filter(consumer=request.user, order_in=False).first()
         if form.is_valid():
             order.delivery = form.cleaned_data["delivery"]
             order.city = form.cleaned_data["city"]
@@ -78,7 +76,7 @@ class StepThree(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = StepThreeForm(request.POST)
-        order = Order.objects.get(consumer=request.user, order_in=False)
+        order = Order.objects.filter(consumer=request.user, order_in=False).first()
         if form.is_valid():
             order.payment = form.cleaned_data["payment"]
             order.order_in = True
@@ -92,5 +90,21 @@ class StepFour(View):
     template_name = "order/step_four.html"
 
     def get(self, request, *args, **kwargs):
-        order = Order.objects.filter(consumer=request.user, order_in=True).last()
+        order = Order.objects.filter(consumer=request.user, order_in=True).first()
+        return render(request, self.template_name, {"order": order})
+
+
+class PaymentView(View):
+    template_name = "payment/payment.html"
+
+    def get(self, request, *args, **kwargs):
+        order = Order.objects.get(consumer=request.user, pk=kwargs["order_pk"])
+        return render(request, self.template_name, {"order": order})
+
+
+class PaymentProcess(View):
+    template_name = "payment/payment_process.html"
+
+    def get(self, request, *args, **kwargs):
+        order = Order.objects.get(pk=kwargs["order_pk"])
         return render(request, self.template_name, {"order": order})
