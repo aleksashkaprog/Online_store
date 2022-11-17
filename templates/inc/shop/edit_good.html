@@ -47,100 +47,36 @@
         <h2 class="Section-title">{% translate 'Изменение товара' %}</h2>
       </header>
       <div class="Profile">
-        <form class="add-product" id="id_add_product" method="GET" action="">
-          <div class="product__left">
-            <label class="form-label" style="font-size: 20px" for="id_category"
-              >{% translate 'Выберите категорию' %}:</label
-            >
-            <select
-              class="border size_custom"
-              name="category_id"
-              required=""
-              id="id_category"
-            >
-              <option value="" selected="">{% translate 'Выбор категории' %}</option>
-              <option value="">{% translate 'Категория 1' %}</option>
-              <option value="">{% translate 'Категория 2' %}</option>
-              <option value="">{% translate 'Категория 3' %}</option>
-            </select>
-            <div class="row">
-              <div class="row-block">
-                <div class="form-group"></div>
-                <div class="form-group">
-                  <label class="form-label" for="id_seller"
-                    >{% translate 'Выберите магазин' %}</label
-                  >
-                  <select
-                    class="border size_custom"
-                    name="seller"
-                    required=""
-                    id="id_seller"
-                  >
-                    <option value="" selected="">{% translate 'Выбор магазина' %}</option>
-                    <option value="">{% translate 'Магазин 1' %}</option>
-                    <option value="">{% translate 'Магазин 2' %}</option>
-                    <option value="">{% translate 'Магазин 3' %}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="block__input-numbers">
-              <div>
-                <label class="form-label" for="id_quantity">{% translate 'Количество' %}: </label>
-                <input
-                  class="form-input border"
-                  type="number"
-                  name="quantity"
-                  id="id_quantity"
-                  required
-                  placeholder="{% translate 'Количество' %}"
-                />
-              </div>
-              <div>
-                <label class="form-label" for="id_price">{% translate 'Цена' %}:</label>
-                <input
-                  class="form-input border"
-                  id="id_price"
-                  name="price"
-                  type="number"
-                  required
-                  placeholder="{% translate 'Цена' %}"
-                />
-              </div>
-            </div>
-            <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
-              <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
-            </div>
-          </div>
-          <div class="product__right">
-            <div class="form-group">
-              <label class="form-label" for="id_name">{% translate 'Название товара' %}</label>
-              <input
-                class="form-input border"
-                id="id_name"
-                required
-                name="name"
-                type="text"
-                placeholder="{% translate 'Введите название' %}"
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="id_description"
-                >{% translate 'Описание товара' %}</label
-              >
-              <textarea
-                class="border"
-                name="description"
-                cols="40"
-                rows="7"
-                maxlength="255"
-                id="id_description"
-                placeholder="Описание"
-              ></textarea>
-            </div>
-          </div>
-        </form>
+       <form
+        class="block__create-store-form"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+          <div class="row">
+                      <div class="row-block">
+                          <div class="form-group">
+                              <label class="form-label" for="id_quantity">{% trans 'Количество' %}:
+                              </label>
+                              <input value="{{ good.amount }}" style="width: 40% !important;" class="border size_custom form-input" type="number" name="amount" required id="id_quantity">
+                          </div>
+                          <div class="form-group">
+                              <label class="form-label" for="id_price">{% trans 'Цена' %} ({{ good.price }}):</label>
+                              <input value="{{ good.price }}" style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="price" type="number" required step="0.01">
+                          </div>
+                          <div class="form-group">
+                              <label class="form-label" for="id_price">{% trans 'Старая цена' %} ({{ good.old_price }}):</label>
+                              <input value="{{ good.old_price }}" style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="old_price" type="number" required step="0.01">
+                          </div>
+                           <div style="width: 40% !important;" class="Profile-btn">
+                        <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+                        <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
+                    </div>
+                      </div>
+
+                  </div>
+
+              </form>
       </div>
     </div>
   </div>

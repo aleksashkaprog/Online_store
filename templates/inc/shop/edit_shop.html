@@ -51,9 +51,14 @@
       >
         {% csrf_token %}
         <div class="block__create-store-left">
+            <input class="form-input" name="holder"
+                                 value="{{ request.user.id }}"
+                                 type="hidden">
+
           <div class="form-group">
             <label class="form-label" for="id_name">{% translate 'Название магазина' %}</label>
             <input
+                    value="{{ shop.name }}"
               class="form-input border"
               id="id_name"
               required
@@ -64,21 +69,21 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="id_address">{% translate 'Адрес' %}</label>
-            <textarea
-              class="border"
+            <input
+                value="{{ shop.address }}"
+                class="form-input border"
               name="address"
-              cols="10"
-              rows="4"
               required
-              maxlength="255"
+              type="text"
               id="id_address"
               placeholder="{% translate 'Введите адрес' %}"
-            ></textarea>
+            />
           </div>
 
           <div class="form-group">
             <label class="form-label" for="id_phone">{% translate 'Телефон' %}</label>
             <input
+                    value="{{ shop.phone }}"
               class="form-input border"
               id="id_phone"
               required
@@ -90,6 +95,7 @@
           <div class="form-group form__email">
             <label class="form-label" for="id_email">{% translate 'Почта' %}</label>
             <input
+                    value="{{ shop.email }}"
               class="form-input border"
               id="id_email"
               required
@@ -98,26 +104,12 @@
               placeholder="{% translate 'Введите почту' %}"
             />
           </div>
-        </div>
-        <div class="block__create-store-right">
-          <div class="form-group">
-            <label class="form-label" for="id_description">{% translate 'Описание' %}</label>
-            <textarea
-              class="border"
-              name="description"
-              cols="40"
-              rows="17"
-              maxlength="255"
-              id="id_description"
-              placeholder="{% translate 'Описание' %}"
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
-              <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
+            <div class="form-group">
+                <div class="Profile-btn">
+                    <button style="width: 46%!important;" class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+                    <button style="width: 46%!important;" class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
+                </div>
             </div>
-          </div>
         </div>
       </form>
     </div>

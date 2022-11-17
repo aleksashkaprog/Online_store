@@ -51,6 +51,9 @@
       >
         {% csrf_token %}
         <div class="block__create-store-left">
+            <input class="form-input" name="holder"
+                                 value="{{ request.user.id }}"
+                                 type="hidden">
           <div class="form-group">
             <label class="form-label" for="id_name">{% translate 'Название магазина' %}</label>
             <input
@@ -105,20 +108,37 @@
             <textarea
               class="border"
               name="description"
-              cols="40"
-              rows="17"
+              cols="25"
+              rows="13"
               maxlength="255"
               id="id_description"
               placeholder="{% translate 'Описание' %}"
             ></textarea>
           </div>
-          <div class="form-group">
-            <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
-              <button class="btn btn_success" type="submit">{% translate 'Создать' %}</button>
-            </div>
+            <div class="form-group">
+            <label class="form-label" for="url_shop">{% translate 'Слаг' %}</label>
+            <input
+              class="form-input border"
+              id="url_shop"
+              required
+              name="slug"
+              type="text"
+              placeholder="{% translate 'Введите слаг' %}"
+            />
           </div>
+            <div class="form-group">
+                <label for="avatar">{% trans 'Choose logo'  %}</label>
+                <input  id="avatar" name="logo" type="file"/>
+            </div>
+            <div class="form-group">
+                <div class="Profile-btn">
+                    <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+                    <button class="btn btn_success" type="submit">{% translate 'Создать' %}</button>
+                </div>
+            </div>
         </div>
+
+
       </form>
     </div>
   </div>
