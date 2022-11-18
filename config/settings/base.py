@@ -205,6 +205,14 @@ CELERY_BEAT_SCHEDULE = {
     },
     'update_day_offer': {
         'task': 'main_page.tasks.day_offer_update',
-        'schedule': crontab()
+        'schedule': crontab(hour=0, minute=0)
     }
 }
+
+""" Настройки количества выводимых объектов на главной странице """
+
+BANNERS_LEN = 3         # банеры
+FAVOURITE_CAT_LEN = 3       # избранные категории
+TOP_PRODUCTS_LEN = 8        # популярные товары
+HOT_OFFERS_LEN = 9          # горячие предложения
+LIMITED_OFFERS_LEN = 16     # ограниченные предложения

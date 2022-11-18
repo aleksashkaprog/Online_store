@@ -9,7 +9,7 @@ from . import tools
 from . import utility
 
 
-class Product(utility.ProductRatingMixin, models.Model):
+class Product(utility.ProductMixin, models.Model):
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
     slug = models.SlugField(blank=True)
@@ -19,6 +19,8 @@ class Product(utility.ProductRatingMixin, models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('дата обновления'))
     description = models.TextField(verbose_name=_('описание'))
     property = models.ManyToManyField('Property', through='ProductProperty', verbose_name=_('характеристики'))
+    sort_index = models.PositiveSmallIntegerField(validators=(MaxValueValidator(1000),),
+                                                  default=0, verbose_name=_('индекс сортировки'))
 
     def __str__(self) -> str:
         return self.name

@@ -18,6 +18,9 @@ class Category(utility.StrMixin, MPTTModel):
         self.slug = tools.get_slug(self.name)
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = _('категория')
         verbose_name_plural = _('категории')

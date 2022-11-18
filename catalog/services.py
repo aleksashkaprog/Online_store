@@ -11,4 +11,3 @@ class CatalogProduct:
             products_pk.append(pk)
         self.session['compare'] = products_pk
         return redirect(reverse(self.META.get('HTTP_REFERER', 'catalog')))
-

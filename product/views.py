@@ -28,6 +28,10 @@ class ProductDetail(DetailView):
         context['paginator'] = paginator
         return context
 
+    def get(self, request, *args, **kwargs):
+        ProductService.views_increment(self)
+        return super(ProductDetail, self).get(request, *args, **kwargs)
+
     def post(self, request, **kwargs):
         self.object = self.get_object()
         ProductService.review_form_save(instance=self, request=request)

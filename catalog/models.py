@@ -1,29 +1,26 @@
-import datetime
-
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from category.models import Category
 from product.models import Product
-from users.models import CustomUser
 
 
 class Favourite(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE,
-                                related_name='favourites', verbose_name=_('продукт'))
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
-                             related_name='favourites', verbose_name=_('пользователь'))
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name='favourites', verbose_name=_('категория'))
 
     class Meta:
-        verbose_name = _('любимый товар')
-        verbose_name_plural = _('любимые товары')
+        verbose_name = _('избранная категория')
+        verbose_name_plural = _('избранные категории')
 
     def __str__(self):
-        return str(self.product)
+        return str(self.category)
 
 
 class DayOffer(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='day_offers', verbose_name=_('продукт'))
-    day = models.DateField(default=datetime.date.today(), verbose_name=_('день'))
+    day = models.DateField(default=timezone.now, verbose_name=_('день'))
 
     class Meta:
         verbose_name = _('предложение дня')

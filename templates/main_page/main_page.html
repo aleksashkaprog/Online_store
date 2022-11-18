@@ -66,7 +66,7 @@
                       <div class="Card-category">{{ day_offer.product.category }}
                       </div>
                     </div>
-                    <div class="CountDown" data-date="{{ day_offer.day|date:"d.m.Y" }} 00:00">
+                    <div class="CountDown" data-date="{{ day_offer.day|date:"d.m.Y" }} 23:59">
                       {# format 31.09.2020 03:59 время истечение лимитированного приложения #}
                       <div class="CountDown-block">
                         <div class="CountDown-wrap">
@@ -113,9 +113,8 @@
             <div class="Cards">
 
               {% if top_products %}
-                {% for top_prod in top_products %}
-                  {% with top_prod.product as top_product %}
-                    <div class="Card"><a class="Card-picture" href="#"><img
+                {% for top_product in top_products %}
+                    <div class="Card"><a class="Card-picture" href="{% url 'product' top_product.slug top_product.id %}"><img
                         src="{{ top_product.images.all.0.file.url }}"
                         alt="card.jpg"/></a> {# альт для карнтинки #}
                       <div class="Card-content">
@@ -147,7 +146,6 @@
                         <div class="Card-sale">{{ top_product.discount }}</div>
                       {% endif %}
                     </div>
-                  {% endwith %}
                 {% endfor %}
               {% endif %}
             </div>
@@ -202,7 +200,7 @@
                               </div>
                             </div>
                             {% if hot_offer.discount %}
-                              <div class="Card-sale">-{{ hot_offer.discount }}%</div>
+                              <div class="Card-sale">{{ hot_offer.discount }}</div>
                             {% endif %}
                           </div>
                         </div>
