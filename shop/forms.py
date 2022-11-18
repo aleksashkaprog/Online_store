@@ -17,10 +17,10 @@ class AddProductToTheShop(forms.ModelForm):
 class EditShop(forms.ModelForm):
     class Meta:
         model = Shop
-        fields = ("name", "address", "email", "phone", "logo")
+        fields = ("name", "address", "email", "phone")
 
 
 class EditProductInTheShop(forms.ModelForm):
     class Meta:
         model = ShopProduct
-        fields = ("price", "amount")
+        fields = ("old_price", "price", "amount")

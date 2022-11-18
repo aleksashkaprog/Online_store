@@ -154,8 +154,16 @@
                     {{ product.name }}
                   </div>
                   <div class="Compare-feature">
-                    <strong class="Compare-priceOld">${{ product.old_price }}</strong>
-                    <strong class="Compare-price">${{ product.price }}</strong>
+                    <strong class="Compare-priceOld">
+                      {% if product.old_price %}
+                        ${{ product.old_price | get_value }}
+                      {% endif %}
+                    </strong>
+                    <strong class="Compare-price">
+                      {% if product.price %}
+                        {% translate 'от' %} $ {{ product.price }}
+                      {% endif %}
+                    </strong>
                   </div>
                 </div>
               {% endfor %}

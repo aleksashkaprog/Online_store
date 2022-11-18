@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from mptt.models import MPTTModel, TreeForeignKey
@@ -17,6 +18,9 @@ class Category(utility.StrMixin, MPTTModel):
     def save(self, *args, **kwargs):
         self.slug = tools.get_slug(self.name)
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('catalog_category', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.name

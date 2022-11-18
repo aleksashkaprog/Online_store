@@ -11,10 +11,7 @@ PAYMENT_CHOICES = [("картой", _("Картой")), ("наличными", _
 
 class Order(models.Model):
     consumer = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name="orders",
-        verbose_name=_("потребитель")
+        CustomUser, on_delete=models.CASCADE, related_name="orders", verbose_name=_("потребитель")
     )
     first_second_names = models.TextField(null=True, blank=True, verbose_name=_("ФИО"))
     phone = models.CharField(null=True, blank=True, max_length=13, verbose_name=_("телефон"))
@@ -54,16 +51,14 @@ class Order(models.Model):
         return sum + self.cost_delivery
 
     class Meta:
+        ordering = ["-ordered"]
         verbose_name = _("заказ")
         verbose_name_plural = _("заказы")
 
 
 class OrderGood(models.Model):
     good_in_order = models.ForeignKey(
-        Order,
-        on_delete=models.CASCADE,
-        related_name="order_goods",
-        verbose_name=_("продукт в заказе")
+        Order, on_delete=models.CASCADE, related_name="order_goods", verbose_name=_("продукт в заказе")
     )
     good_in_cart = models.ForeignKey(
         ProductInCart,

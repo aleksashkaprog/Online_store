@@ -37,6 +37,7 @@ class OrderTest(TestCase):
         self.assertContains(response, "375299999999")
         self.assertContains(response, "1")
         self.assertContains(response, "2")
+        self.assertContains(response, "Оплата при получении")
 
     def test_history_order(self):
         response = self.client.get("/order/history/")
@@ -51,4 +52,8 @@ class OrderTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "1")
         self.assertContains(response, "2")
-        self.assertContains(response, "Оплатить")
+        self.assertContains(response, "Не оплачен")
+
+    def test_page_payment_number_card(self):
+        response = self.client.get("/order/payment/order/5/")
+        self.assertContains(response, "Номер карты")

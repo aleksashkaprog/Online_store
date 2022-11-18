@@ -25,7 +25,7 @@ class ProductTestCase(TestCase):
 
         cls.user = user
         cls.product = product
-        cls.product_url = reverse('product', kwargs={'slug': product.slug, 'pk': product.id})
+        cls.product_url = reverse('product', kwargs={'slug': product.slug})
 
     def test_product_view(self) -> None:
         response = self.client.get(self.product_url)

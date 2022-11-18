@@ -13,7 +13,10 @@ class MainPageView(View):
         favourite_categories = MainPage.get_favourite_categories()
         day_offer = MainPage.get_day_offer()
         limited_offers = MainPage.get_limited_offers()
-        main_cache = Cache.objects.get(name='Main cache').value
+        try:
+            main_cache = Cache.objects.get(name='Main cache')
+        except Cache.DoesNotExist:
+            main_cache = None
         context = {
             'banners': banners,
             'favourite_categories': favourite_categories,
@@ -21,7 +24,7 @@ class MainPageView(View):
             'top_products': top_products,
             'hot_offers': hot_offers,
             'limited_offers': limited_offers,
-            'main_cache': main_cache,
+            'main_cache': main_cache.value if main_cache is not None else main_cache,
         }
         return render(request, 'main_page/main_page.html', context)
 

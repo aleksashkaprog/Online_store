@@ -1,6 +1,9 @@
+
 from django import forms
 from django.core.validators import ValidationError
 from django.utils.translation import gettext_lazy as _
+
+from pydantic import ValidationError as PydanticValidationError
 
 from . import tasks
 from . import data_validators
@@ -30,10 +33,19 @@ class LoadData(forms.Form):
         return methods_dict.get(key)
 
     def clean_file(self):
+
         if redis.connection.get('import_data'):
             raise ValidationError(_('Идет импорт'))
+
         if self.check_file(self.cleaned_data['file']) != 'json':
             raise ValidationError(_('Файл должен быть формата json'))
+
+        try:
+            self.data = self.import_data()
+            self.methods(self.check_file(self.cleaned_data['file']))(self.data)
+        except PydanticValidationError as e:
+            raise ValidationError(_('Неверно составлен файл.') + '\n{}'.format(e))
+
         return self.cleaned_data['file']
 
     def import_data(self):
@@ -43,5 +55,5 @@ class LoadData(forms.Form):
         return data
 
     def load(self, request):
-        data = self.import_data().decode('utf-8')
+        data = self.data.decode('utf-8')
         tasks.import_data_to_db.delay(data, request.user.email)
