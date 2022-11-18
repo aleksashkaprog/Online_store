@@ -3,9 +3,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from category.models import Category
 from product.models import Product
+from .utility import FavouriteLowestPriceMixin
 
 
-class Favourite(models.Model):
+class Favourite(FavouriteLowestPriceMixin, models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name='favourites', verbose_name=_('категория'))
 

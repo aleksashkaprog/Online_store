@@ -37,7 +37,6 @@ class Product(utility.ProductRatingMixin, utility.ProductPriceMixin, utility.Pro
     class Meta:
         verbose_name = _('продукт')
         verbose_name_plural = _('продукция')
-        ordering = ['-sort_index']
 
 
 class ProductProperty(models.Model):

@@ -15,23 +15,23 @@
             <div class="BannersHome">
 
               {% for cat in favourite_categories %}
-
-                <a class="BannersHomeBlock" href="{% url 'category' cat.slug cat.id %}">
+                {% with cat.category as category %}
+                <a class="BannersHomeBlock" href="{{ category.get_absolute_url}}">
                   <div class="BannersHomeBlock-row">
                     <div class="BannersHomeBlock-block">
-                      <strong class="BannersHomeBlock-title">{{ cat.name }}
+                      <strong class="BannersHomeBlock-title">{{ category.name }}
                       </strong>
                       <div class="BannersHomeBlock-content">
-                        from&#32;<span class="BannersHomeBlock-price">{{ cat.lowest_price }}</span>
+                        {% trans 'от' %}&#32;<span class="BannersHomeBlock-price">{{ cat.lowest_price }} {% trans 'рублей' %}</span>
                       </div>
                     </div>
                     <div class="BannersHomeBlock-block">
-                      <div class="BannersHomeBlock-img"><img src="{{ cat.image }}" alt="cat_image.png"/>
+                      <div class="BannersHomeBlock-img"><img src="{{ category.image.url }}" alt="{{ category.id }}.svg"/>
                       </div>
                     </div>
                   </div>
                 </a>
-
+              {% endwith %}
               {% endfor %}
 
             </div>
