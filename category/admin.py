@@ -5,4 +5,5 @@ from . import models
 
 @admin.register(models.Category)
 class CategoryModelAdmin(admin.ModelAdmin):
-    pass
+    exclude = ['slug']
+    list_display = ['name', 'slug']

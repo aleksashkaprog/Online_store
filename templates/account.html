@@ -138,7 +138,7 @@
                               {{ product.category }}
                             </div>
                             <div class="Card-hover">
-                              <a class="Card-btn" href="{% url 'product' product.slug product.id %}">
+                              <a class="Card-btn" href="{% url 'product' product.slug %}">
                                 <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
                               </a>
                               <a class="Card-btn" href="{% url 'cart_add' product.id %}">

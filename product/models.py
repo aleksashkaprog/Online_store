@@ -10,7 +10,7 @@ from . import tools
 from . import utility
 
 
-class Product(utility.ProductRatingMixin, utility.ProductPriceMixin, models.Model):
+class Product(utility.ProductRatingMixin, utility.ProductPriceMixin, utility.ProductDiscountMixin, models.Model):
 
     """Модель товара"""
     name = models.CharField(max_length=512, unique=True, verbose_name=_('название'))
@@ -37,6 +37,7 @@ class Product(utility.ProductRatingMixin, utility.ProductPriceMixin, models.Mode
     class Meta:
         verbose_name = _('продукт')
         verbose_name_plural = _('продукция')
+        ordering = ['-sort_index']
 
 
 class ProductProperty(models.Model):

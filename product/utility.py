@@ -20,6 +20,8 @@ class ProductPriceMixin:
     def old_price(self):
         return self.shop_products.aggregate(Max('old_price')).get('old_price__max')
 
+
+class ProductDiscountMixin:
     @property
     def discount(self):
         """Отображает приоритетную скидку на продукт в текстовом варианте,
