@@ -14,4 +14,4 @@ class Banner(models.Model):
         verbose_name_plural = _('баннеры')
 
     def __str__(self):
-        return self.product
+        return str(self.product)

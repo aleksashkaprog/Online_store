@@ -23,3 +23,9 @@ class ProductService:
                 review.product = instance.object
                 review.user = request.user
                 review.save()
+
+    @staticmethod
+    def views_increment(instance):
+        product = instance.get_object()
+        product.views += 1
+        product.save()

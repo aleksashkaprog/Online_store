@@ -22,6 +22,9 @@ class Category(utility.StrMixin, MPTTModel):
     def get_absolute_url(self):
         return reverse('catalog_category', kwargs={'slug': self.slug})
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = _('категория')
         verbose_name_plural = _('категории')

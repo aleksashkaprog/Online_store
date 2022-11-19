@@ -1,6 +1,6 @@
 from typing import Optional
-
 from django.db.models import Min
+from product.models import Product
 
 
 class CatalogMixin:
@@ -82,3 +82,13 @@ class FilterMixin:
             'shop_products__product__name__icontains': data.get('title', ''),
             'shop_products__amount__gte': self.is_exist(),
         } | ({'shop_products__store__pk': data.get('seller')} if data.get('seller') else dict())
+
+
+class FavouriteLowestPriceMixin:
+
+    @property
+    def lowest_price(self):
+        lowest_price_aggregation = Product.objects.filter(
+            category=self.category).aggregate(Min('shop_products__price'))
+        lowest_price = lowest_price_aggregation['shop_products__price__min']
+        return lowest_price

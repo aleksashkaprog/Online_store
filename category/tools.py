@@ -19,4 +19,5 @@ def get_slug(name: str) -> str:
     slug: str = name
     if detect_language(name) == 'ru':
         slug = translit(name, reversed=True)
+    slug = slug.replace(' ', '-')
     return slug
