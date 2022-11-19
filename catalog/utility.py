@@ -33,7 +33,7 @@ class CatalogOrderByMixin:
         if reverse is None and all(get_args) is False:
             self.request.session['reverse'] = '-'
 
-        elif reverse == '-' and all(get_args):
+        elif reverse == '-' and all(get_args) is False:
             field = reverse + self.field
             self.request.session['reverse'] = None
         return field

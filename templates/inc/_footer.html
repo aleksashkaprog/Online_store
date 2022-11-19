@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <footer class="Footer">
   <div class="wrap">
     <div class="row Footer-main">
@@ -17,52 +18,37 @@
         {% endblock %}
 
       </div>
+
       <div class="row-block">
         <strong class="Footer-title">Useful Links</strong>
         <ul class="menu menu_vt Footer-menu">
+          {% for category in categories %}
           <li class="menu-item">
-            <a class="menu-link" href="#">Checkout</a>
+            <a class="menu-link" href="{{ category.get_absolute_url }}">{{ category }}</a>
           </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">My Cart</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Delivery</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Order Info</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Terms</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Conditions</a>
-          </li>
+          {% endfor %}
         </ul>
       </div>
+
+      {% if request.user.is_authenticated %}
       <div class="row-block">
         <strong class="Footer-title">My Account</strong>
         <ul class="menu menu_vt Footer-menu">
           <li class="menu-item">
-            <a class="menu-link" href="#">Accessories</a>
+            <a class="menu-link" href="{% url 'history-order' %}">{% translate 'История заказов' %}</a>
           </li>
           <li class="menu-item">
-            <a class="menu-link" href="#">Bags</a>
+            <a class="menu-link" href="{% url 'users:view_history' %}">{% translate 'Просмотренные продукты' %}</a>
           </li>
           <li class="menu-item">
-            <a class="menu-link" href="#">Cameras</a>
+            <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
           </li>
           <li class="menu-item">
-            <a class="menu-link" href="#">Clothings</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Electronics</a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="#">Fashion</a>
+            <a class="menu-link" href="{% url 'import_data' %}">{% translate 'Импортирование данных' %}</a>
           </li>
         </ul>
       </div>
+      {% endif %}
       <div class="row-block">
         <strong class="Footer-title">Contacts</strong>
         <p>
