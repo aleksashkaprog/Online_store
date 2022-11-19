@@ -13,7 +13,7 @@ class CompareServices(View):
     template_name: Optional[str] = None
 
     def get(self, request):
-        objects_ = self.model.objects.filter(pk__in=request.session.get('compare', []))
+        objects_ = self.model.objects.prefetch_related('property').filter(pk__in=request.session.get('compare', []))
         context = {'{}s'.format(self.model.__name__.lower()): objects_}
         return render(request, self.template_name, context)
 

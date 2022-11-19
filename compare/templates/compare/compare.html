@@ -56,7 +56,7 @@
                 {{ product.name }}
               </div>
               <div class="Compare-feature">
-                <a class="Compare-btn" href="">
+                <a class="Compare-btn" href="{% url 'cart:random_add' product.pk %}">
                   <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                 </a>
                 <a class="Compare-btn" href="{% url 'delete_from_compare' product.pk %}">
