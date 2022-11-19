@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from . import decorators
+from . import data_validators
 
 
 class ImportDataService(LoginRequiredMixin, View):
@@ -12,7 +13,8 @@ class ImportDataService(LoginRequiredMixin, View):
     @decorators.check_status_import_data
     def get(self, request):
         return render(request, self.template_name, context={
-            'form': self.form()
+            'form': self.form(),
+            'schema': data_validators.ProductShopData.schema()
         })
 
     def post(self, request):
