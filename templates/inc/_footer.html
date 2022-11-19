@@ -20,7 +20,7 @@
       </div>
 
       <div class="row-block">
-        <strong class="Footer-title">Useful Links</strong>
+        <strong class="Footer-title">{% translate 'полезнаые ссылки' %}</strong>
         <ul class="menu menu_vt Footer-menu">
           {% for category in categories %}
           <li class="menu-item">
@@ -32,7 +32,7 @@
 
       {% if request.user.is_authenticated %}
       <div class="row-block">
-        <strong class="Footer-title">My Account</strong>
+        <strong class="Footer-title">{% translate 'Мой аккаунт' %}</strong>
         <ul class="menu menu_vt Footer-menu">
           <li class="menu-item">
             <a class="menu-link" href="{% url 'history-order' %}">{% translate 'История заказов' %}</a>
@@ -50,7 +50,7 @@
       </div>
       {% endif %}
       <div class="row-block">
-        <strong class="Footer-title">Contacts</strong>
+        <strong class="Footer-title">{% translate 'Контакты' %}</strong>
         <p>
           Phone: 8.800.200.600<br>Email: Support@ninzio.com<br>Skype: techno<br>Address: New York, north<br>Avenue 26/7<br>0057
         </p>
@@ -61,9 +61,9 @@
     <div class="wrap">
       <div class="row row_space">
         <div class="row-block">
-          © Copyright&#32;<a href="#">Megano Store.</a>&#32;All rights reserved.
+          © Copyright&#32;<a href="#">Megano Store.</a>&#32;{% translate 'Все права защищены' %}.
         </div>
-        <div class="row-block"><span>Accepted Payments</span>
+        <div class="row-block"><span>{% translate 'Система оплаты' %}</span>
           <div class="Footer-payments">
             <div>
               <img src="{% static 'assets/img/payments/visa.png' %}" alt="visa.png"/>
