@@ -1,8 +1,8 @@
-from django.contrib.auth import authenticate
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django import forms
+from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 from users.models import CustomUser
 
@@ -11,7 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email', )
+        fields = ('email', 'password1', 'password2')
 
 
 class CustomUserChangeForm(UserChangeForm):

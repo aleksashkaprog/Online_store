@@ -1,6 +1,6 @@
-from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import Group
 
 from cart.models import ProductInCart
 from administration.models import Cache
@@ -51,9 +51,7 @@ class CartAddViewTest(TestCase):
         )
 
     def test_cart_add(self):
-        """
-        Тест корректности добавления товара в корзину, тест слияния корзины после авторизации
-        """
+        """Тест корректности добавления товара в корзину, тест слияния корзины после авторизации"""
         ProductInCart.objects.create(user=self.user, shop_product=self.shop_product, quantity=1)
 
         response = self.client.post(self.page_name_add, data={'quantity': 1})
@@ -69,9 +67,7 @@ class CartAddViewTest(TestCase):
         self.assertEqual(user_cart.all()[0].quantity, 2)
 
     def test_save_cart_after_register(self):
-        """
-        Тест переноса корзины после регистрации
-        """
+        """Тест переноса корзины после регистрации"""
         self.client.post(self.page_name_add, data={'quantity': 1})
         Group.objects.create(name='customer').save()
         self.client.post(
@@ -82,9 +78,7 @@ class CartAddViewTest(TestCase):
         self.assertEqual(user.user_carts.count(), 1)
 
     def test_change_seller(self):
-        """
-        Тест смены продавца в корзине при добавлении в корзину товара от другого продавца
-        """
+        """Тест смены продавца в корзине при добавлении в корзину товара от другого продавца"""
         self.client.force_login(user=self.user)
         self.client.get(self.page_name_add)
         seller_1 = self.user.user_carts.all()[0].shop_product.id
@@ -102,17 +96,13 @@ class CartAddViewTest(TestCase):
         self.assertEqual(self.user.user_carts.count(), 1)
 
     def test_cart_random_add_invalid_quantity_value(self):
-        """
-        Тест не добавления товара в корзину без выбора продавца с невалидным значением кол-ва
-        """
+        """Тест не добавления товара в корзину без выбора продавца с невалидным значением кол-ва"""
         self.client.force_login(user=self.user)
         self.client.post(path=self.page_name_random_add, data={'quantity': 'q'})
         self.assertEqual(self.user.user_carts.count(), 0)
 
     def test_save_cart_after_logout(self):
-        """
-        Тест сохранения корзины пользователя после выхода из системы
-        """
+        """Тест сохранения корзины пользователя после выхода из системы"""
         self.client.force_login(user=self.user)
         self.client.post(self.page_name_add, data={'quantity': 1})
         self.client.logout()
@@ -134,13 +124,10 @@ class CartRemoveViewTest(TestCase):
             kwargs={
                 'product_pk': product.id,
                 'shop_product_pk': shop_product.id
-            }
-        )
+            })
 
     def test_cart_remove_post(self):
-        """
-        Тест корректности удаления товара из корзины
-        """
+        """Тест корректности удаления товара из корзины"""
         self.client.post(self.page_name_add, data={'quantity': 1})
         response = self.client.post(self.page_name_delete)
 
@@ -148,9 +135,7 @@ class CartRemoveViewTest(TestCase):
         self.assertEqual(len(self.client.session['cart']), 0)
 
     def test_cart_remove_product_that_not_in_cart(self):
-        """
-        Тест появления ошибки при попытке удалить товар, которого нет в корзине у пользователя
-        """
+        """Тест появления ошибки при попытке удалить товар, которого нет в корзине у пользователя"""
         self.client.force_login(user=self.user)
         response = self.client.post(self.page_name_delete)
 
@@ -173,38 +158,28 @@ class CartChangeViewTest(TestCase):
             kwargs={'product_pk': product.id, 'shop_product_pk': shop_product.id}
         )
         cls.page_name_change = reverse(
-                viewname='cart:change',
-                kwargs={'shop_product_pk': shop_product.id, 'quantity': '-1'}
-            )
+            viewname='cart:change',
+            kwargs={'shop_product_pk': shop_product.id, 'quantity': '-1'}
+        )
 
     def test_change_count_product_that_not_in_cart(self):
-        """
-        Тест появления ошибки при попытке изменить кол-во товара, которого нет в корзине или нет вообще
-        """
+        """Тест появления ошибки при попытке изменить кол-во товара, которого нет в корзине или нет вообще"""
         response = self.client.get(self.page_name_change)
         self.assertEqual(response.status_code, 404)
 
     def test_change_count(self):
-        """
-        Тест корректности изменения кол-ва товара в корзине
-        """
+        """Тест корректности изменения кол-ва товара в корзине"""
         self.client.post(self.page_name_add, data={'quantity': 1})
         response = self.client.get(
             reverse(
                 viewname='cart:change',
-                kwargs={
-                    'shop_product_pk': self.shop_product.id,
-                    'quantity': '+1'
-                }
-            )
-        )
-        self.assertTrue(response.status_code == 302)
+                kwargs={'shop_product_pk': self.shop_product.id, 'quantity': '+1'}
+            ))
+        self.assertRedirects(response, expected_url=reverse('cart:cart'))
         self.assertEqual(self.client.session['cart'][str(self.product.pk)]['quantity'], 2)
 
     def test_delete_product(self):
-        """
-        Тест корректности удаления товара из корзины при изменении кол-ва до 0
-        """
+        """Тест корректности удаления товара из корзины при изменении кол-ва до 0"""
         self.client.post(self.page_name_add, data={'quantity': 1})
         response = self.client.get(self.page_name_change)
 

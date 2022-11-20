@@ -19,28 +19,29 @@ class PaymentService:
     @staticmethod
     def try_to_pay(payment_info: PaymentInfo) -> Response:
         """Функция делает запрос к сервису оплаты, возвращает ответ от сервиса"""
-        total_cost = str(payment_info.order.all_goods_price + payment_info.order.cost_delivery)
-
         url = "http://0.0.0.0:8000" + reverse(
             viewname="payment:pay",
-            kwargs={"card_number": payment_info.cart_number, "cost": total_cost},
+            kwargs={
+                "card_number": payment_info.cart_number,
+                "cost": payment_info.order.all_goods_price_disc_delivery()
+            },
         )
 
         return requests.get(url)
 
-    @staticmethod
+    @classmethod
     @transaction.atomic
-    def update_payment_info(response: Response, payment_info: PaymentInfo) -> None:
+    def update_payment_info(cls, response: Response, payment_info: PaymentInfo) -> None:
         """Функция обрабатывает ответ от сервиса оплаты"""
         response_data = response.json()
 
         if response.status_code == 201:
-            PaymentService.update_after_success_pay(payment_info)
+            cls.update_after_success_pay(payment_info)
         else:
-            PaymentService.update_after_fail_pay(payment_info, response_data["error"])
+            cls.update_after_fail_pay(payment_info, response_data['error'])
 
-    @staticmethod
-    def update_after_success_pay(payment_info: PaymentInfo) -> None:
+    @classmethod
+    def update_after_success_pay(cls, payment_info: PaymentInfo) -> None:
         """Функция выставляет заказу статус оплачен и убирает заказ из таблицы неоплаченных заказов"""
         order = payment_info.order
         order.paid = True
@@ -48,8 +49,8 @@ class PaymentService:
 
         payment_info.delete()
 
-    @staticmethod
-    def update_after_fail_pay(payment_info: PaymentInfo, error_message: str) -> None:
+    @classmethod
+    def update_after_fail_pay(cls, payment_info: PaymentInfo, error_message: str) -> None:
         """Функция выставляет заказу статус не оплачен и добавляет сообщение с текстом ошибки"""
         payment_info.status = "f"
         payment_info.save()

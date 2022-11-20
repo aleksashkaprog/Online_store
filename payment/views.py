@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from payment.services import check_cart_number, get_exc_to_pay
+from payment.enums import get_random_exc
+from payment.services import check_cart_number
 
 
 class PaymentAPIView(APIView):
@@ -13,7 +14,7 @@ class PaymentAPIView(APIView):
         }
 
         if not check_cart_number(card_number=card_number):
-            return_data['error'] = get_exc_to_pay()
+            return_data['error'] = get_random_exc()
             return Response(return_data, status=400)
 
         return Response(return_data, status=201)

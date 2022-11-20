@@ -1,8 +1,7 @@
+from django.views import View
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
-from django.urls import reverse
-from django.views import View
 
 from personal_account.models import ViewsHistory
 from users.forms import CustomUserCreationForm, ResetPasswordForm, LogInForm
@@ -11,9 +10,7 @@ from .services import register_user, password_change, login_user
 
 
 def register_view(request):
-    """
-    Представление с регистрацией пользователя
-    """
+    """Представление с регистрацией пользователя"""
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
@@ -22,12 +19,13 @@ def register_view(request):
         if form.is_valid():
             register_user(request, user_form=form)
 
-            return redirect(to=reverse('main_page'))
+            return redirect(to='main_page')
 
     return render(request, template_name='users/register.html', context={'form': form})
 
 
 def user_login(request):
+    """Представление с авторизацией пользователя"""
     form = LogInForm()
 
     if request.method == 'POST':
@@ -36,7 +34,7 @@ def user_login(request):
         if form.is_valid():
             login_user(request, form)
 
-            return redirect(to=reverse(viewname='main_page'))
+            return redirect(to='main_page')
 
     return render(request, 'users/login.html', {'form': form})
 
@@ -46,9 +44,7 @@ class LogOutView(LogoutView):
 
 
 def reset_password(request):
-    """
-    Представление с регистрацией пользователя
-    """
+    """Представление с регистрацией пользователя"""
     form = ResetPasswordForm()
 
     if request.method == 'POST':
