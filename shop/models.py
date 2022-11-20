@@ -21,23 +21,25 @@ class Shop(models.Model):
         return f"Магазин {self.name}"
 
     class Meta:
-        verbose_name = _('магазин')
-        verbose_name_plural = _('магазины')
+        verbose_name = _("магазин")
+        verbose_name_plural = _("магазины")
 
 
 class ShopProduct(models.Model):
     """Модель продукта магазина"""
 
-    store = models.ForeignKey(
-        Shop, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("магазин")
-    )
+    store = models.ForeignKey(Shop, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("магазин"))
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="shop_products", verbose_name=_("продукт")
     )
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('цена'))
-    old_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_('старая цена'))
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_("цена"))
+    old_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=_("старая цена"))
     amount = models.IntegerField(default=0, verbose_name=_("количество"))
-    add_at = models.DateField(auto_now_add=True, verbose_name=_("дата добавления"))
+    add_at = models.DateTimeField(auto_now_add=True, verbose_name=_("дата добавления"))
 
     def __str__(self):
         return f"Продукт {self.product} из магазина {self.store}"
+
+    class Meta:
+        verbose_name = _("продукт магазина")
+        verbose_name_plural = _("продукты магазинов")

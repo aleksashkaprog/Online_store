@@ -1,8 +1,11 @@
+import decimal
+
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from product.models import Product
 from users.models import CustomUser
-from cart.models import ProductInCart
 
 DELIVERY_CHOICES = [("обычная", _("Обычная доставка")), ("экспресс", _("Экспресс доставка"))]
 
@@ -37,18 +40,39 @@ class Order(models.Model):
         return reverse("one-order", args=[str(self.id)])
 
     @property
-    def all_goods_price(self):
+    def all_goods_price_old(self):
         sum = 0
         for good in self.order_goods.all():
-            sum += good.good_in_cart.shop_product.amount * good.good_in_cart.shop_product.old_price
+            sum += good.amount * good.old_price
         return sum
 
     @property
-    def all_goods_price_disc_delivery(self):
-        sum = 0
+    def all_goods_price_new(self):
+        sum = decimal.Decimal(0.00)
         for good in self.order_goods.all():
-            sum += good.good_in_cart.shop_product.amount * good.good_in_cart.shop_product.price
-        return sum + self.cost_delivery
+            sum += good.amount * good.price
+        return sum
+
+    @property
+    def delivery_cost(self):
+        if self.delivery == "экспресс":
+            self.cost_delivery = decimal.Decimal(self.all_goods_price_new * decimal.Decimal(0.20)).quantize(
+                decimal.Decimal("1.00")
+            )
+            return self.cost_delivery
+        else:
+            if self.all_goods_price_new > decimal.Decimal(100.00):
+                self.cost_delivery = decimal.Decimal(self.all_goods_price_new * decimal.Decimal(0.03)).quantize(
+                    decimal.Decimal("1.00")
+                )
+                return self.cost_delivery
+            else:
+                self.cost_delivery = decimal.Decimal(0.00)
+                return self.cost_delivery
+
+    @property
+    def all_goods_price_disc_delivery(self):
+        return decimal.Decimal(self.all_goods_price_new) + decimal.Decimal(self.delivery_cost)
 
     class Meta:
         ordering = ["-ordered"]
@@ -61,15 +85,18 @@ class OrderGood(models.Model):
         Order, on_delete=models.CASCADE, related_name="order_goods", verbose_name=_("продукт в заказе")
     )
     good_in_cart = models.ForeignKey(
-        ProductInCart,
+        Product,
         default=None,
         on_delete=models.CASCADE,
         related_name="order_goods",
         verbose_name=_("продукт в корзине"),
     )
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name=_("конечная цена"))
+    old_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name=_("конечная цена"))
+    amount = models.PositiveIntegerField(default=0, verbose_name=_("количество"))
 
     def __str__(self):
-        return f"Продукт в заказе №{self.id}"
+        return f"Продукт в заказе №{self.id} в количестве {self.amount}"
 
     class Meta:
         verbose_name = _("продукт в заказе")

@@ -23,4 +23,4 @@ class EditShop(forms.ModelForm):
 class EditProductInTheShop(forms.ModelForm):
     class Meta:
         model = ShopProduct
-        fields = ("price", "amount")
+        fields = ("old_price", "price", "amount")

@@ -213,13 +213,13 @@
                     <div class="Cart-product">
                       <div class="Cart-block Cart-block_row">
                         <div class="Cart-block Cart-block_pict">
-                          <a class="Cart-pict" href="{% url 'product' product.slug product.id %}">
+                          <a class="Cart-pict" href="{% url 'product' product.slug %}">
                             <img class="Cart-img" src="{{ product.image }}" alt="card.jpg"/>
                           </a>
                         </div>
                         <div class="Cart-block Cart-block_info">
                           <a class="Cart-title"
-                             href="{% url 'product' product.slug product.id %}">{{ product.name }}</a>
+                             href="{% url 'product' product.slug %}">{{ product.name }}</a>
                           <div class="Cart-desc">{{ product.description }}</div>
                         </div>
                         <div class="Cart-block Cart-block_price">

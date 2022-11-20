@@ -5,7 +5,7 @@
       <div class="Middle-header">
         <h1 class="Middle-title">Оформление заказа</h1>
         <ul class="breadcrumbs Middle-breadcrumbs">
-          <li class="breadcrumbs-item"><a href="index.html">home</a></li>
+          <li class="breadcrumbs-item"><a href="{% url 'account' %}">Профиль</a></li>
           <li class="breadcrumbs-item breadcrumbs-item_current">
             <span>Оформление заказа</span>
           </li>
@@ -60,21 +60,18 @@
                       <div class="Order-info">
                         <div class="Order-infoType">ФИО:</div>
                         <div class="Order-infoContent">
-{#                          Фамилия Имя Отчество#}
                             {{ order.first_second_names }}
                         </div>
                       </div>
                       <div class="Order-info">
                         <div class="Order-infoType">Телефон:</div>
                         <div class="Order-infoContent">
-{#                            +7000000000#}
                             {{ order.phone }}
                         </div>
                       </div>
                       <div class="Order-info">
                         <div class="Order-infoType">E-mail:</div>
                         <div class="Order-infoContent">
-{#                            test@test.test#}
                             {{ order.email }}
                         </div>
                       </div>
@@ -83,21 +80,18 @@
                       <div class="Order-info Order-info_delivery">
                         <div class="Order-infoType">Тип доставки:</div>
                         <div class="Order-infoContent">
-{#                            Обычная доставка#}
                             {{ order.delivery }}
                         </div>
                       </div>
                       <div class="Order-info">
                         <div class="Order-infoType">Город:</div>
                         <div class="Order-infoContent">
-{#                            Город#}
                         {{ order.city }}
                         </div>
                       </div>
                       <div class="Order-info">
                         <div class="Order-infoType">Адрес:</div>
                         <div class="Order-infoContent">
-{#                            Какой-то адрес#}
                         {{ order.address }}
                         </div>
                       </div>
@@ -109,59 +103,6 @@
                   </div>
                 </div>
                 <div class="Cart Cart_order">
-{#                  <div class="Cart-product">#}
-{#                    <div class="Cart-block Cart-block_row">#}
-{#                      <div class="Cart-block Cart-block_pict">#}
-{#                        <a class="Cart-pict" href="#"#}
-{#                          ><img#}
-{#                            class="Cart-img"#}
-{#                            src="{%  static 'assets/img/content/home/card.jpg' %}"#}
-{#                            alt="card.jpg"#}
-{#                        /></a>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_info">#}
-{#                        <a class="Cart-title" href="#">Ноутбук</a>#}
-{#                        <div class="Cart-desc">Ноутбук</div>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_price">#}
-{#                        <div class="Cart-price">10.00$</div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="Cart-block Cart-block_row">#}
-{#                      <div class="Cart-block Cart-block_seller">#}
-{#                        <div>Продавец:</div>#}
-{#                        <div>Продавец</div>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_amount">1 шт.</div>#}
-{#                    </div>#}
-{#                  </div>#}
-{#                  <div class="Cart-product">#}
-{#                    <div class="Cart-block Cart-block_row">#}
-{#                      <div class="Cart-block Cart-block_pict">#}
-{#                        <a class="Cart-pict" href="#"#}
-{#                          ><img#}
-{#                            class="Cart-img"#}
-{#                            src="{%  static 'assets/img/content/sale/product.png' %}"#}
-{#                            alt="product.png"#}
-{#                        /></a>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_info">#}
-{#                        <a class="Cart-title" href="#">Планшет</a>#}
-{#                        <div class="Cart-desc">Планшет</div>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_price">#}
-{#                        <div class="Cart-price_old">20.00$</div>#}
-{#                        <div class="Cart-price">10.00$</div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="Cart-block Cart-block_row">#}
-{#                      <div class="Cart-block Cart-block_seller">#}
-{#                        <div>Продавец:</div>#}
-{#                        <div>Продавец</div>#}
-{#                      </div>#}
-{#                      <div class="Cart-block Cart-block_amount">1 шт.</div>#}
-{#                    </div>#}
-{#                  </div>#}
                      {% for good in order.order_goods.all %}
                         <div class="Cart-product">
                         <div class="Cart-block Cart-block_row">
@@ -169,25 +110,24 @@
                             <a class="Cart-pict" href="#"
                               ><img
                                 class="Cart-img"
-                                src="{%  static 'assets/img/content/home/card.jpg' %}"
+                                src="{{ good.good_in_cart.images.all.0.file.url }}"
                                 alt="card.jpg"
                             /></a>
                           </div>
                           <div class="Cart-block Cart-block_info">
-                            <a class="Cart-title" href="#">{{ good.good_in_cart.shop_product.product.name }}</a>
-                            <div class="Cart-desc">{{ good.good_in_cart.shop_product.product.description }}</div>
+                            <a class="Cart-title" href="{{ good.good_in_cart.get_absolute_url }}">{{ good.good_in_cart.name }}</a>
+                            <div class="Cart-desc">{{ good.good_in_cart.description }}</div>
                           </div>
                           <div class="Cart-block Cart-block_price">
-                              <div class="Cart-price_old">{{ good.good_in_cart.shop_product.old_price }}</div>
-                            <div class="Cart-price">{{ good.good_in_cart.shop_product.price }}</div>
+                              <div class="Cart-price_old">{{ good.old_price }}</div>
+                            <div class="Cart-price">{{ good.price }}</div>
                           </div>
                         </div>
                         <div class="Cart-block Cart-block_row">
                           <div class="Cart-block Cart-block_seller">
-                            <div>Продавец:</div>
-                            <div>{{ good.good_in_cart.shop_product.store.name }}</div>
+                            <div></div>
                           </div>
-                          <div class="Cart-block Cart-block_amount">1 шт.</div>
+                          <div class="Cart-block Cart-block_amount">{{ good.amount}} шт.</div>
                         </div>
                       </div>
                     {% endfor %}
@@ -195,12 +135,12 @@
                       <div class="Cart-block Cart-block_total">
                       <strong class="Cart-title">Доставка:
                       </strong>
-                        <span class="Cart-price">{{ order.cost_delivery }}</span>
+                        <span class="Cart-price">{{ order.delivery_cost }}</span>
                     </div>
                     <div class="Cart-block Cart-block_total">
                       <strong class="Cart-title">Итого: </strong
-                      ><span class="Cart-price">{{ order.all_goods_price_disc_delivery }}</span
-                      ><span class="Cart-price_old">{{ order.all_goods_price }}</span>
+                      ><span class="Cart-price">{{ order.all_goods_price_disc_delivery}}</span
+                      ><span class="Cart-price_old">{{ order.all_goods_price_old }}</span>
                     </div>
                     <div class="Cart-block">
                         {% if order.payment == "картой" %}

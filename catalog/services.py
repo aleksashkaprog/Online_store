@@ -46,18 +46,3 @@ class CatalogProductService(utility.FilterMixin, utility.SearchMixin, utility.Ca
 
 class CatalogProductOrderByService(utility.CatalogOrderByMixin, CatalogProductService):
     pass
-
-
-class Discount:
-
-    def check_product_discount(self):
-        """ Проверка скидки по продукту """
-        pass
-
-    def check_pack_discount(self):
-        """ Проверка скидки по набору """
-        pass
-
-    def check_cart_discount(self):
-        """ Проверка скидки по корзине """
-        pass

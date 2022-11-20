@@ -13,4 +13,9 @@
     {% include 'inc/blocks/menu_search_panel.html' %}
   {% endblock %}
 
+{% if request.path == '/' %}
+  {% block banner %}
+    {% include 'inc/blocks/banner.html' %}
+  {% endblock %}
+{% endif %}
 </header>

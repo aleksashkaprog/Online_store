@@ -49,14 +49,14 @@ def create_order(user: CustomUser) -> Order:
                                 delivery='обычная', payment='картой', city='Test', address='Test', cost_delivery=1000)
 
 
-def add_product_in_cart(user: CustomUser, product: ShopProduct) -> Order:
+def add_product_in_cart(user: CustomUser, product: ShopProduct) -> ProductInCart:
     """ Функция добавляет продукт в корзину пользователя"""
     return ProductInCart.objects.create(user=user, shop_product=product, quantity=1)
 
 
 def create_order_good(order: Order, good: ProductInCart) -> OrderGood:
     """ Функция, создает товар в составе заказа для тестов"""
-    return OrderGood.objects.create(good_in_order=order, good_in_cart=good)
+    return OrderGood.objects.create(good_in_order=order, good_in_cart=good.shop_product.product)
 
 
 def create_payment_info(order: Order) -> PaymentInfo:
