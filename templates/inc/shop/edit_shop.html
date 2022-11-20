@@ -6,9 +6,9 @@
 <div class="Middle-top">
   <div class="wrap">
     <div class="Middle-header">
-      <h1 class="Middle-title">{% translate 'Измнение магазина' %}</h1>
+      <h1 class="Middle-title">{% translate 'Изменение магазина' %}</h1>
       <ul class="breadcrumbs Middle-breadcrumbs">
-        <li class="breadcrumbs-item"><a href="#">{% translate 'Домой' %}</a></li>
+          <li class="breadcrumbs-item"><a href="{% url 'account' %}">{% translate 'Профиль' %}</a></li>
         <li class="breadcrumbs-item breadcrumbs-item_current">
           <span>{% translate 'Комната продавцов' %}</span>
         </li>
@@ -27,13 +27,13 @@
           <div class="NavigateProfile">
             <ul class="menu menu_vt">
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'Профиль' %}</a>
+                <a class="menu-link" href="{% url 'account' %}">{% translate 'Профиль' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'История заказов' %}</a>
+                <a class="menu-link" href="{% url 'history-order' %}">{% translate 'История заказов' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'Просмотренные продукты' %}</a>
+                <a class="menu-link" href="{% url 'users:view_history' %}">{% translate 'Просмотренные продукты' %}</a>
               </li>
               <li class="menu-item_ACTIVE menu-item">
                 <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
@@ -79,7 +79,6 @@
               placeholder="{% translate 'Введите адрес' %}"
             />
           </div>
-
           <div class="form-group">
             <label class="form-label" for="id_phone">{% translate 'Телефон' %}</label>
             <input
@@ -111,6 +110,25 @@
                 </div>
             </div>
         </div>
+          <div class="form-group">
+              <label class="form-label" for="avatar">{% trans 'Avatar' %}</label>
+              {% if shop.logo %}
+                  <div style="border-radius: 25px" class="Profile-avatar">
+              {% else %}
+                  <div style="border-radius: 25px" class="Profile-avatar Profile-avatar_noimg" >
+              {% endif %}
+              <div class="Profile-img">
+                  {%  if shop.logo %}
+                      <img src="{{ shop.logo.url }}" alt="#.png">
+                  {% else %}
+                      <img src="assets/img/#.png" alt="#.png">
+                  {% endif %}
+              </div>
+              <span class="avatar-span">{% trans 'Выбрать/Изменить' %}</span>
+              <input class="Profile-file form-input border" id="avatar" accept="image/*" name="logo" type="file" data-validate="onlyImgAvatar">
+              </div>
+              </div>
+          </div>
       </form>
     </div>
   </div>

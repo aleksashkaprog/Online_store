@@ -32,7 +32,7 @@ class ShopRoomView(ShopServices, ListView):
     context_object_name = "shops"
 
     def get_queryset(self):
-        return self.get_all_shops()
+        return self.get_user_shop(user=self.request.user)
 
 
 class ShopRoomDetailView(DetailView):

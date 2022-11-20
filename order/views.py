@@ -11,7 +11,7 @@ class OrderHistory(View):
     template_name = "order/historyorder.html"
 
     def get(self, request, *args, **kwargs):
-        orders = Order.objects.all().filter(consumer=request.user)
+        orders = Order.objects.all().filter(consumer=request.user, order_in=True)
         return render(request, self.template_name, {"orders": orders})
 
 
@@ -38,7 +38,11 @@ class StepOne(View):
         order = Order.objects.create(consumer=request.user, order_in=False)
         q = ProductInCart.objects.filter(user=request.user).select_related("shop_product__product")
         for good in q:
-            OrderGood.objects.create(good_in_order=order, good_in_cart=good)
+            OrderGood.objects.create(good_in_order=order,
+                                     good_in_cart=good.shop_product.product,
+                                     amount=good.quantity,
+                                     price=good.shop_product.price,
+                                     old_price=good.shop_product.old_price)
         if form.is_valid():
             order.first_second_names = form.cleaned_data["first_second_names"]
             order.email = form.cleaned_data["email"]

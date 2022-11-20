@@ -17,7 +17,7 @@ class AddProductToTheShop(forms.ModelForm):
 class EditShop(forms.ModelForm):
     class Meta:
         model = Shop
-        fields = ("name", "address", "email", "phone")
+        fields = ("name", "address", "email", "phone", "logo")
 
 
 class EditProductInTheShop(forms.ModelForm):
