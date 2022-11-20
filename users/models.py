@@ -14,9 +14,7 @@ def update_avatar(instance, filename):
 
 
 class CustomUser(AbstractUser):
-    """
-    Модель кастомного пользователя
-    """
+    """Модель кастомного пользователя"""
     username = None
     email = models.EmailField(verbose_name=_('электронная почта'), max_length=128, unique=True)
     phone_number = models.CharField(verbose_name=_('телефон'), max_length=12, blank=True)

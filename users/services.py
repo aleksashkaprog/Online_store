@@ -1,16 +1,14 @@
 from typing import Optional
 
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate, login
 
-from cart.models import ProductInCart
 from users.models import CustomUser
+from cart.models import ProductInCart
 
 
 def register_user(request, user_form) -> None:
-    """
-    Функция, создает пользователя и авторизует его
-    """
+    """Функция, создает пользователя и авторизует его"""
     user_form.save()
 
     anonim_cart = get_cart_from_anonim(request)
@@ -21,6 +19,7 @@ def register_user(request, user_form) -> None:
 
     if anonim_cart and user:
         move_cart_from_session(anonim_cart, user)
+        del request.session['cart']
 
     group = Group.objects.get(name='customer')
     user.groups.add(group)
@@ -29,23 +28,18 @@ def register_user(request, user_form) -> None:
 
 
 def login_user(request, form) -> CustomUser:
-    """
-    Функция, авторизует пользователя
-    """
+    """Функция, авторизует пользователя"""
     anonim_cart = get_cart_from_anonim(request)
     user = form.cleaned_data
     login(request, user)
 
     if anonim_cart and user:
         move_cart_from_session(anonim_cart, user)
-
-    return user
+        del request.session['cart']
 
 
 def password_change(request, user_form) -> None:
-    """
-    Функция заглушка для представления восстановления пароля
-    """
+    """Функция заглушка для представления восстановления пароля"""
     email = user_form.cleaned_data.get('email')
     user = CustomUser.objects.get(email=email)
     user.set_password('qwerty1234')
@@ -53,9 +47,7 @@ def password_change(request, user_form) -> None:
 
 
 def get_cart_from_anonim(request) -> Optional[dict]:
-    """
-    Функция, возвращает корзину не авторизованного пользователя
-    """
+    """Функция, возвращает корзину не авторизованного пользователя"""
     cart = request.session.get('cart')
     if cart:
         data = {}
@@ -75,19 +67,13 @@ def move_cart_from_session(cart: dict, user: CustomUser) -> None:
     если у пользователя уже были такие товары в корзине, суммирует количество
     """
     for product_id, data in cart.items():
-        try:
-            product = ProductInCart.objects.get(user=user, shop_product__product__id=product_id)
+        obj, created = ProductInCart.objects.get_or_create(
+            user=user,
+            shop_product__product_id=product_id,
+            defaults={
+                'shop_product_id': data['shop_product_id'],
+            })
 
-            if product.shop_product.id == data['shop_product_id']:
-                product.quantity += data['quantity']
-                product.save()
-            else:
-                product.delete()
-                raise ProductInCart.DoesNotExist
-
-        except ProductInCart.DoesNotExist:
-            ProductInCart.objects.create(
-                user=user,
-                shop_product_id=data['shop_product_id'],
-                quantity=data['quantity']
-            )
+        obj.shop_product_id = data['shop_product_id']
+        obj.quantity += data['quantity']
+        obj.save()

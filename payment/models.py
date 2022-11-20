@@ -3,19 +3,19 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from order.models import Order
+from payment.enums import PaymentStatus
 
 
 class PaymentInfo(models.Model):
     """Модель неоплаченных заказов"""
-    WAIT, FAIL = 'w', 'f'
-
-    PAYMENT_STATUS = [
-        (WAIT, _('Ожидание оплаты')),
-        (FAIL, _('Не оплачен')),
-    ]
-
     order = models.ForeignKey(to=Order, on_delete=models.CASCADE, related_name='payment_info', verbose_name=_('заказ'))
-    status = models.CharField(max_length=1, choices=PAYMENT_STATUS, default=WAIT, verbose_name=_('статус заказа'))
+
+    status = models.CharField(
+        max_length=1,
+        choices=PaymentStatus.choices,
+        default=PaymentStatus.WAIT,
+        verbose_name=_('статус заказа')
+    )
 
     cart_number = models.PositiveIntegerField(
         verbose_name=_('номер карты'),
