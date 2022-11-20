@@ -43,9 +43,6 @@ class OrderTest(TestCase):
         response = self.client.get("/order/history/")
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "Ваша история заказов")
-        self.assertContains(response, "1")
-        self.assertContains(response, "обычная")
-        self.assertContains(response, "Не оплачен")
 
     def test_history_detail_order(self):
         response = self.client.get("/order/history/1/")

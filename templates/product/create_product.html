@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 {% block main %}
 
 <div class="Middle-top">
   <div class="wrap">
     <div class="Middle-header">
-      <h1 class="Middle-title">{% translate 'Создание магазина' %}</h1>
+      <h1 class="Middle-title">{% translate 'Создание продукта' %}</h1>
       <ul class="breadcrumbs Middle-breadcrumbs">
         <li class="breadcrumbs-item"><a href="{% url 'account' %}">{% translate 'Профиль' %}</a></li>
         <li class="breadcrumbs-item breadcrumbs-item_current">
@@ -51,11 +51,8 @@
       >
         {% csrf_token %}
         <div class="block__create-store-left">
-            <input class="form-input" name="holder"
-                                 value="{{ request.user.id }}"
-                                 type="hidden">
           <div class="form-group">
-            <label class="form-label" for="id_name">{% translate 'Название магазина' %}</label>
+            <label class="form-label" for="id_name">{% translate 'Название продукта' %}</label>
             <input
               class="form-input border"
               id="id_name"
@@ -66,39 +63,14 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-label" for="id_address">{% translate 'Адрес' %}</label>
-            <textarea
-              class="border"
-              name="address"
-              cols="10"
-              rows="4"
-              required
-              maxlength="255"
-              id="id_address"
-              placeholder="{% translate 'Введите адрес' %}"
-            ></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="id_phone">{% translate 'Телефон' %}</label>
+            <label class="form-label" for="url_product">{% translate 'Слаг' %}</label>
             <input
               class="form-input border"
-              id="id_phone"
+              id="url_product"
               required
-              name="phone"
+              name="slug"
               type="text"
-              placeholder="{% translate 'Введите телефон' %}"
-            />
-          </div>
-          <div class="form-group form__email">
-            <label class="form-label" for="id_email">{% translate 'Почта' %}</label>
-            <input
-              class="form-input border"
-              id="id_email"
-              required
-              name="email"
-              type="email"
-              placeholder="{% translate 'Введите почту' %}"
+              placeholder="{% translate 'Введите слаг' %}"
             />
           </div>
         </div>
@@ -109,41 +81,36 @@
               class="border"
               name="description"
               cols="25"
-              rows="13"
+              rows="10"
               maxlength="255"
               id="id_description"
               placeholder="{% translate 'Описание' %}"
             ></textarea>
           </div>
             <div class="form-group">
-            <label class="form-label" for="url_shop">{% translate 'Слаг' %}</label>
-            <input
-              class="form-input border"
-              id="url_shop"
-              required
-              name="slug"
-              type="text"
-              placeholder="{% translate 'Введите слаг' %}"
+              <label class="form-label" for="avatar">{% trans 'Категория' %}</label>
+                <select style="width: 90% !important;" class="border size_custom" name="category" required="" id="id_seller">
+                                  <option value="" selected="">---------------------------</option>
+                              {% if categories %}
+                                  {% for category in categories %}
+                                  <option value="{{ category.id }}">{{ category.name }}</option>
+                                  {% endfor %}
+                              {% else %}
+                              <option value="Нет категорий">{% trans 'Нет категорий' %}</option>
+                              {% endif %}
+                </select>
+            </div>
+            <div>
+                <label class="form-label" for="id_index">{% trans 'Индекс' %}</label>
+                <input
+                class="form-input border"
+                id="id_index"
+                required
+                name="sort_index"
+                type="number"
+                placeholder="{% translate 'Введите индекс' %}"
             />
-          </div>
-            <div class="form-group">
-              <label class="form-label" for="avatar">{% trans 'Выберите лого' %}</label>
-              {% if shop.logo %}
-                  <div style="border-radius: 25px" class="Profile-avatar">
-              {% else %}
-                  <div style="border-radius: 25px" class="Profile-avatar Profile-avatar_noimg" >
-              {% endif %}
-              <div class="Profile-img">
-                  {%  if shop.logo %}
-                      <img src="{{ shop.logo.url }}" alt="#.png">
-                  {% else %}
-                      <img src="assets/img/#.png" alt="#.png">
-                  {% endif %}
-              </div>
-                <span class="avatar-span">{% trans 'Выбрать/Изменить' %}</span>
-                <input class="Profile-file form-input border" id="avatar" accept="image/*" name="logo" type="file" data-validate="onlyImgAvatar">
-              </div>
-                </div>
+            </div>
             <div class="form-group">
                 <div class="Profile-btn">
                     <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
@@ -155,4 +122,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}
