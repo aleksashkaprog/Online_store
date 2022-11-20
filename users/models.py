@@ -21,8 +21,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(verbose_name=_('электронная почта'), max_length=128, unique=True)
     phone_number = models.CharField(verbose_name=_('телефон'), max_length=12, blank=True)
     full_name = models.CharField(verbose_name=_('ФИО'), max_length=256, blank=True)
-    avatar = models.ImageField(verbose_name=_('аватар'), upload_to=update_avatar)
-
+    # avatar = models.ImageField(verbose_name=_('аватар'), upload_to=update_avatar)
+    avatar = models.ImageField(verbose_name=_('аватар'), upload_to="users")
     is_staff = models.BooleanField(verbose_name=_('работник'), default=False)
     is_active = models.BooleanField(verbose_name=_('флаг активности'), default=True)
 

@@ -5,9 +5,11 @@
       <div class="Middle-header">
         <h1 class="Middle-title">Заказ №2</h1>
         <ul class="breadcrumbs Middle-breadcrumbs">
-          <li class="breadcrumbs-item">
-            <a href="#">ДОМОЙ</a>
-          </li>
+         <li class="breadcrumbs-item">
+                    <a href="{% url 'account' %}">
+                        <span>{% translate 'Аккаунт' %}</span>
+                    </a>
+                </li>
           <li class="breadcrumbs-item breadcrumbs-item_current">
             <span>ПРОФИЛЬ</span>
           </li>
@@ -110,32 +112,30 @@
                 <div class="Cart-block Cart-block_row">
                   <div class="Cart-block Cart-block_pict">
                     <a class="Cart-pict" href="#"
-                      ><img class="Cart-img" src="" alt="фото товара"
+                      ><img class="Cart-img" src="{{ good.good_in_cart.images.all.0.file.url }}" alt="фото товара"
                     /></a>
                   </div>
                   <div class="Cart-block Cart-block_info">
-                    <a class="Cart-title" href="#">Товар</a>
-                    <div class="Cart-desc">{{ order.good_in_cart.shop_product.product.description}}</div>
+                    <a class="Cart-title" href="{{ good.good_in_cart.get_absolute_url }}">{{ good.good_in_cart.name }}</a>
+                    <div class="Cart-desc">{{ good.good_in_cart.description}}</div>
                   </div>
                   <div class="Cart-block Cart-block_price">
-                    <div class="Cart-price_old">{{ order.good_in_cart_shop_product.product.old_price }}$</div>
-                    <div class="Cart-price">{{ order.good_in_cart_shop_product.product.price }}$</div>
+                    <div class="Cart-price_old">{{ good.old_price }}$</div>
+                    <div class="Cart-price">{{ good.price }}$</div>
                   </div>
                 </div>
                 <div class="Cart-block Cart-block_row">
                   <div class="Cart-block Cart-block_seller">
-                    <div>Продавец:</div>
-                    <div>{{ order.good_in_cart.shop_product.store.name }}</div>
+                    <div></div>
                   </div>
-                  <div class="Cart-block Cart-block_amount">{{ order.good_in_cart.quantity }} шт.</div>
+                  <div class="Cart-block Cart-block_amount">{{ good.amount }} шт.</div>
                 </div>
               </div>
               {% endfor %}
               <div class="Cart-total">
                 <div class="Cart-block Cart-block_total">
                   <strong class="Cart-title">Итого:
-                      <span class="Cart-price">{{ order.all_goods_price_disc_delivery }}$</span>
-                      <span class="Cart-price_old">{{ order.all_goods_price }}$</span>
+                      <span class="Cart-price">{{ goods_in_order.all_goods_price_disc_delivery }}$</span>
                   </strong>
                 </div>
                   {% if goods_in_order.paid == False %}
