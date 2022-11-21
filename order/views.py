@@ -1,10 +1,13 @@
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import TemplateView, DetailView
 import datetime
+from cart.services import Cart
 from .models import Order, OrderGood
 from .forms import StepOneForm, StepTwoForm, StepThreeForm
 from cart.models import ProductInCart
+from .services import PaymentService
 
 
 class OrderHistory(View):
@@ -94,6 +97,7 @@ class StepFour(View):
     template_name = "order/step_four.html"
 
     def get(self, request, *args, **kwargs):
+        Cart(request).clear()
         order = Order.objects.filter(consumer=request.user, order_in=True).first()
         return render(request, self.template_name, {"order": order})
 
@@ -103,7 +107,18 @@ class PaymentView(View):
 
     def get(self, request, *args, **kwargs):
         order = Order.objects.get(consumer=request.user, pk=kwargs["order_pk"])
+        if order.payment == 'random':
+            self.template_name = 'payment/payment_random.html'
         return render(request, self.template_name, {"order": order})
+
+    def post(self, request, order_pk):
+        try:
+            raw_card_number = request.POST['numero1']
+            card_number = int(raw_card_number.replace(' ', ''))
+            PaymentService.add_order_to_payment_queue(order_id=order_pk, cart_number=card_number)
+            return redirect('payment_progress', order_pk=order_pk)
+        except ValueError:
+            raise Http404
 
 
 class PaymentProcess(View):

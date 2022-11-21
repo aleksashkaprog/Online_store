@@ -9,7 +9,10 @@ from users.models import CustomUser
 
 DELIVERY_CHOICES = [("обычная", _("Обычная доставка")), ("экспресс", _("Экспресс доставка"))]
 
-PAYMENT_CHOICES = [("картой", _("Картой")), ("наличными", _("Наличными"))]
+
+class PaymentChoices(models.TextChoices):
+    card = "card", _("Онлайн картой")
+    random = "random", _("Онлайн со случайного чужого счёта")
 
 
 class Order(models.Model):
@@ -20,7 +23,8 @@ class Order(models.Model):
     phone = models.CharField(null=True, blank=True, max_length=13, verbose_name=_("телефон"))
     email = models.EmailField(null=True, blank=True, verbose_name=_("почта"))
     delivery = models.CharField(max_length=10, default="обычная", choices=DELIVERY_CHOICES, verbose_name=_("доставка"))
-    payment = models.CharField(max_length=10, default="картой", choices=PAYMENT_CHOICES, verbose_name=_("оплата"))
+    payment = models.CharField(max_length=10, default=PaymentChoices.card,
+                               choices=PaymentChoices.choices, verbose_name=_("оплата"))
     city = models.CharField(null=True, blank=True, max_length=30, verbose_name=_("город"))
     address = models.CharField(null=True, blank=True, max_length=50, verbose_name=_("адрес"))
     paid = models.BooleanField(default=False, verbose_name=_("оплачен заказ"))
