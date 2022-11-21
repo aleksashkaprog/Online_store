@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 17:41+0000\n"
+"POT-Creation-Date: 2022-11-21 04:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,8 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: administration/models.py:11
-#, fuzzy
-#| msgid "название"
 msgid "кэширование"
 msgstr "name"
 
@@ -28,124 +26,99 @@ msgstr "name"
 msgid "корзина"
 msgstr "cart"
 
-#: cart/models.py:17
+#: cart/models.py:14
 msgid "владелец корзины"
 msgstr "cart owner"
 
-#: cart/models.py:24
+#: cart/models.py:21
 msgid "модель, связывающая товар и магазин"
-msgstr ""
+msgstr "Model with product and shop"
 
-#: cart/models.py:27 order/models.py:62 shop/models.py:39
+#: cart/models.py:24 order/models.py:100 shop/models.py:37
 msgid "количество"
 msgstr "count"
 
-#: cart/models.py:30
+#: cart/models.py:27
 msgid "корзина пользователя"
 msgstr "user's shopping cart"
 
-#: cart/models.py:31
+#: cart/models.py:28
 msgid "корзины пользователей"
 msgstr "user's shopping cart"
 
-#: catalog/models.py:11 catalog/models.py:25 catalog/models.py:38
-#: catalog/models.py:50 catalog/models.py:62 discount/models.py:81
-#: discount/models.py:113 personal_account/models.py:10 product/apps.py:8
-#: product/models.py:31 product/models.py:64 shop/models.py:35
-msgid "продукт"
-msgstr "product"
-
-#: catalog/models.py:13 personal_account/models.py:9 product/models.py:79
-#: users/models.py:35
-msgid "пользователь"
-msgstr "user"
-
-#: catalog/models.py:16
-#, fuzzy
-#| msgid "Имя товара"
-msgid "любимый товар"
-msgstr "Name"
-
-#: catalog/models.py:17
-#, fuzzy
-#| msgid "Популярные товары"
-msgid "любимые товары"
-msgstr "Popular products"
-
-#: catalog/models.py:26
-msgid "день"
-msgstr "day"
-
-#: catalog/models.py:29
-#, fuzzy
-#| msgid "О приложении"
-msgid "предложение дня"
-msgstr "About Megano"
-
-#: catalog/models.py:30
-#, fuzzy
-#| msgid "О приложении"
-msgid "предложения дня"
-msgstr "About Megano"
-
-#: catalog/models.py:41
-#, fuzzy
-#| msgid "Популярные товары"
-msgid "популярный товар"
-msgstr "Popular products"
-
-#: catalog/models.py:42
-#, fuzzy
-#| msgid "Популярные товары"
-msgid "популярные товары"
-msgstr "Popular products"
-
-#: catalog/models.py:53
-#, fuzzy
-#| msgid "Горячие предложения"
-msgid "горячие предложение"
-msgstr "Hot offers"
-
-#: catalog/models.py:54
-#, fuzzy
-#| msgid "Горячие предложения"
-msgid "горячие предложения"
-msgstr "Hot offers"
-
-#: catalog/models.py:65
-#, fuzzy
-#| msgid "Ограниченные предложения"
-msgid "ограниченное предложение"
-msgstr "Limited deals"
-
-#: catalog/models.py:66
-#, fuzzy
-#| msgid "Ограниченные предложения"
-msgid "ограниченные предложения"
-msgstr "Limited deals"
-
-#: category/apps.py:8 category/models.py:22 discount/models.py:89
-#: discount/models.py:121
+#: catalog/models.py:11 category/apps.py:8 category/models.py:29
+#: discount/models.py:89 discount/models.py:121
 msgid "категория"
 msgstr "category"
 
-#: category/models.py:12
+#: catalog/models.py:14
+msgid "избранная категория"
+msgstr "Choose category"
+
+#: catalog/models.py:15
+msgid "избранные категории"
+msgstr "Category selection"
+
+#: catalog/models.py:23 catalog/models.py:36 catalog/models.py:48
+#: catalog/models.py:60 discount/models.py:81 discount/models.py:113
+#: personal_account/models.py:10 product/apps.py:8 product/models.py:38
+#: product/models.py:71 shop/models.py:33
+msgid "продукт"
+msgstr "product"
+
+#: catalog/models.py:24
+msgid "день"
+msgstr "day"
+
+#: catalog/models.py:27 templates/main_page/main_page.html:51
+msgid "предложение дня"
+msgstr "About Megano"
+
+#: catalog/models.py:28
+msgid "предложения дня"
+msgstr "About Megano"
+
+#: catalog/models.py:39
+msgid "популярный товар"
+msgstr "Popular products"
+
+#: catalog/models.py:40
+msgid "популярные товары"
+msgstr "Popular products"
+
+#: catalog/models.py:51
+msgid "горячие предложение"
+msgstr "Hot offers"
+
+#: catalog/models.py:52
+msgid "горячие предложения"
+msgstr "Hot offers"
+
+#: catalog/models.py:63
+msgid "ограниченное предложение"
+msgstr "Limited deals"
+
+#: catalog/models.py:64
+msgid "ограниченные предложения"
+msgstr "Limited deals"
+
+#: category/models.py:13
 msgid "наименование"
 msgstr "name"
 
-#: category/models.py:13
+#: category/models.py:14
 msgid "slug"
 msgstr "slug"
 
-#: category/models.py:14
+#: category/models.py:15
 msgid "родитель"
 msgstr "parent"
 
-#: category/models.py:15
+#: category/models.py:16
 msgid "иконка"
 msgstr "icon"
 
-#: category/models.py:23 discount/models.py:66 discount/models.py:98
+#: category/models.py:30 discount/models.py:66 discount/models.py:98
 msgid "категории"
 msgstr "category"
 
@@ -180,25 +153,22 @@ msgstr "Rating"
 
 #: compare/templates/compare/compare.html:148
 #: templates/inc/product/good_detail.html:33
-#: templates/inc/shop/create_good.html:100
-#: templates/inc/shop/create_good.html:107
-#: templates/inc/shop/edit_good.html:100 templates/inc/shop/edit_good.html:107
+#: templates/inc/shop/create_good.html:96 templates/inc/shop/edit_good.html:69
 msgid "Цена"
 msgstr "Price"
 
-#: compare/templatetags/get_value.py:11
-msgid "Нет информации"
-msgstr "No information"
+#: compare/templates/compare/compare.html:164
+#: templates/discount/base_discount.html:38
+#: templates/discount/cart_discount.html:8
+#: templates/main_page/main_page.html:25
+msgid "от"
+msgstr "from"
 
 #: discount/admin.py:50
-#, fuzzy
-#| msgid "Главная страница"
 msgid "валидная скидка"
 msgstr "home"
 
 #: discount/admin.py:59
-#, fuzzy
-#| msgid "Значение"
 msgid "Значение условия"
 msgstr "Value"
 
@@ -211,8 +181,6 @@ msgid "сумма"
 msgstr "sum"
 
 #: discount/models.py:11
-#, fuzzy
-#| msgid "Гарантированная оплата"
 msgid "фиксированная цена"
 msgstr "Guaranted payments"
 
@@ -221,14 +189,10 @@ msgid "первая группа"
 msgstr "first group"
 
 #: discount/models.py:16 templates/discount/pack_discount.html:17
-#, fuzzy
-#| msgid "старая цена"
 msgid "вторая группа"
 msgstr "old price"
 
 #: discount/models.py:20
-#, fuzzy
-#| msgid "количество"
 msgid "количество товаров"
 msgstr "count"
 
@@ -236,7 +200,7 @@ msgstr "count"
 msgid "заголовок"
 msgstr "title"
 
-#: discount/models.py:29 main_page/models.py:9 product/models.py:20
+#: discount/models.py:29 main_page/models.py:9 product/models.py:22
 #: shop/models.py:16
 msgid "описание"
 msgstr "description"
@@ -254,26 +218,18 @@ msgid "тип скидки"
 msgstr "discount type"
 
 #: discount/models.py:34
-#, fuzzy
-#| msgid "значение"
 msgid "значение скидки"
 msgstr "value"
 
 #: discount/models.py:36
-#, fuzzy
-#| msgid "Выберите магазин"
 msgid "приоритет скидки"
 msgstr "Choose shop"
 
 #: discount/models.py:37
-#, fuzzy
-#| msgid "флаг активности"
 msgid "активность"
 msgstr "flag activity"
 
 #: discount/models.py:38
-#, fuzzy
-#| msgid "логотип"
 msgid "лого"
 msgstr "logo"
 
@@ -286,38 +242,26 @@ msgid "скидка"
 msgstr "discount"
 
 #: discount/models.py:58
-#, fuzzy
-#| msgid "Скидка группе товаров"
 msgid "группа товаров"
 msgstr "Product group discount"
 
 #: discount/models.py:65 discount/models.py:96
-#, fuzzy
-#| msgid "товар"
 msgid "товары"
 msgstr "product"
 
 #: discount/models.py:69
-#, fuzzy
-#| msgid "Скидки на товары"
 msgid "скидка на товары"
 msgstr "Product discount"
 
 #: discount/models.py:70
-#, fuzzy
-#| msgid "Скидки на товары"
 msgid "скидки на товары"
 msgstr "Product discount"
 
 #: discount/models.py:101
-#, fuzzy
-#| msgid "Скидки на товары"
 msgid "скидка на наборы"
 msgstr "Product discount"
 
 #: discount/models.py:102
-#, fuzzy
-#| msgid "Скидки на товары"
 msgid "скидки на наборы"
 msgstr "Product discount"
 
@@ -334,14 +278,10 @@ msgid "максимальное значение условия"
 msgstr "max conditions"
 
 #: discount/models.py:135
-#, fuzzy
-#| msgid "Добавить в корзину"
 msgid "скидка на корзину"
 msgstr "Add to cart"
 
 #: discount/models.py:136
-#, fuzzy
-#| msgid "Добавить в корзину"
 msgid "скидки на корзину"
 msgstr "Add to cart"
 
@@ -349,13 +289,17 @@ msgstr "Add to cart"
 msgid "максимальное значение условия должно быть больше или равно минамальному"
 msgstr "max condition value must be grater or equal min value"
 
-#: import_data/forms.py:34 import_data/redis.py:15
+#: import_data/forms.py:38 import_data/redis.py:15
 msgid "Идет импорт"
 msgstr "Data is importing"
 
-#: import_data/forms.py:36
+#: import_data/forms.py:41
 msgid "Файл должен быть формата json"
 msgstr "File must by json type"
+
+#: import_data/forms.py:47
+msgid "Неверно составлен файл."
+msgstr "Wrong file compilation"
 
 #: import_data/redis.py:19
 msgid "Импорт завершен"
@@ -365,7 +309,7 @@ msgstr "Import is finished"
 msgid "Вы можете импортровать данные"
 msgstr "You can import data"
 
-#: main_page/models.py:8 product/models.py:77
+#: main_page/models.py:8 product/models.py:84
 msgid "товар"
 msgstr "product"
 
@@ -381,241 +325,227 @@ msgstr "banner"
 msgid "баннеры"
 msgstr "banners"
 
-#: order/models.py:6 templates/order_create.html:97
+#: order/models.py:10 templates/order_create.html:97
 msgid "Обычная доставка"
 msgstr "Common"
 
-#: order/models.py:6 templates/order_create.html:103
+#: order/models.py:10 templates/order_create.html:103
 msgid "Экспресс доставка"
 msgstr "Express"
 
-#: order/models.py:8
-msgid "Картой"
-msgstr "Cart"
+#: order/models.py:14 templates/order_create.html:127
+msgid "Онлайн картой"
+msgstr "Online"
 
-#: order/models.py:8
-msgid "Наличными"
-msgstr "cash"
+#: order/models.py:15
+msgid "Онлайн со случайного чужого счёта"
+msgstr "Online, random card"
 
-#: order/models.py:13
-#, fuzzy
-#| msgid "родитель"
+#: order/models.py:20
 msgid "потребитель"
 msgstr "parent"
 
-#: order/models.py:15 templates/order.html:45 templates/order_create.html:57
-#: templates/order_create.html:152 templates/profile.html:66 users/models.py:23
+#: order/models.py:22 templates/order.html:45 templates/order_create.html:57
+#: templates/order_create.html:152 templates/users/profile.html:78
+#: users/models.py:21
 msgid "ФИО"
 msgstr "Fist, last name"
 
-#: order/models.py:16 shop/models.py:15 users/models.py:22
+#: order/models.py:23 shop/models.py:15 users/models.py:20
 msgid "телефон"
 msgstr "phone"
 
-#: order/models.py:17 shop/models.py:14
+#: order/models.py:24 shop/models.py:14
 msgid "почта"
 msgstr "E-mail"
 
-#: order/models.py:18
-#, fuzzy
-#| msgid "Тип доставки"
+#: order/models.py:25
 msgid "доставка"
 msgstr "Delivery type"
 
-#: order/models.py:19
-#, fuzzy
-#| msgid "Оплата"
+#: order/models.py:27
 msgid "оплата"
 msgstr "Payment"
 
-#: order/models.py:20
-#, fuzzy
-#| msgid "Город"
+#: order/models.py:28
 msgid "город"
 msgstr "City"
 
-#: order/models.py:21 shop/models.py:13
+#: order/models.py:29 shop/models.py:13
 msgid "адрес"
 msgstr "address"
 
-#: order/models.py:22
-#, fuzzy
-#| msgid "Дата заказа"
+#: order/models.py:30
 msgid "оплачен заказ"
 msgstr "Order date"
 
-#: order/models.py:24
-#, fuzzy
-#| msgid "Тип доставки"
+#: order/models.py:32
 msgid "стоимость доставки"
 msgstr "Delivery type"
 
-#: order/models.py:26
-#, fuzzy
-#| msgid "Дата заказа"
+#: order/models.py:34
 msgid "в заказе"
 msgstr "Order date"
 
-#: order/models.py:27
-#, fuzzy
-#| msgid "Дата заказа"
+#: order/models.py:35
 msgid "время заказа"
 msgstr "Order date"
 
-#: order/models.py:50 payment/models.py:17
-#, fuzzy
-#| msgid "Заказ"
+#: order/models.py:83 payment/models.py:15
 msgid "заказ"
 msgstr "Order"
 
-#: order/models.py:51
-#, fuzzy
-#| msgid "Заказ"
+#: order/models.py:84
 msgid "заказы"
 msgstr "Order"
 
-#: order/models.py:56
-#, fuzzy
-#| msgid "Оформить заказ"
+#: order/models.py:89 order/models.py:106
 msgid "продукт в заказе"
 msgstr "Checkout"
 
-#: order/models.py:59
-#, fuzzy
-#| msgid "Продавец"
-msgid "продавец"
-msgstr "Seller"
-
-#: order/models.py:61 shop/models.py:37
-msgid "цена"
-msgstr "price"
-
-#: order/models.py:68
-#, fuzzy
-#| msgid "Оформить заказ"
-msgid "продуктв в заказе"
+#: order/models.py:96
+msgid "продукт в корзине"
 msgstr "Checkout"
 
-#: order/models.py:69
-#, fuzzy
-#| msgid "Оформить заказ"
+#: order/models.py:98 order/models.py:99
+msgid "конечная цена"
+msgstr "Guaranted payments"
+
+#: order/models.py:107
 msgid "продукты в заказе"
 msgstr "Checkout"
 
 #: payment/apps.py:8
-#, fuzzy
-#| msgid "Ожидание оплаты"
 msgid "сервис оплаты"
 msgstr "Waiting for payment"
 
-#: payment/models.py:13 templates/payment_process.html:9
+#: payment/enums.py:9 templates/payment/payment_process.html:9
+#: templates/payment/payment_process.html:15 templates/payment_process.html:9
 #: templates/payment_process.html:15
 msgid "Ожидание оплаты"
 msgstr "Waiting for payment"
 
-#: payment/models.py:14
+#: payment/enums.py:10
 msgid "Не оплачен"
 msgstr "No pay"
 
-#: payment/models.py:18
-#, fuzzy
-#| msgid "Дата заказа"
+#: payment/enums.py:16
+msgid "Вашу карту зажевал банкомат"
+msgstr "ATM chewed up your card"
+
+#: payment/enums.py:17
+msgid "Недостаточно средств"
+msgstr "Insufficient funds"
+
+#: payment/enums.py:18
+msgid "Неверный CVC"
+msgstr "Invalid CVC"
+
+#: payment/enums.py:19
+msgid "Это была необдуманная покупка, подумайте еще раз нужно ли оно вам"
+msgstr "It was a rash purchase, think again if you need it"
+
+#: payment/enums.py:20
+msgid "Код ошибки 007, обратитесь в службу поддержки вашего банка"
+msgstr "Error code 007, contact your bank support"
+
+#: payment/models.py:22
 msgid "статус заказа"
 msgstr "Order date"
 
-#: payment/models.py:21
-#, fuzzy
-#| msgid "Номер карты"
+#: payment/models.py:26
 msgid "номер карты"
 msgstr "Card number"
 
-#: payment/models.py:38
-#, fuzzy
-#| msgid "Оформление заказа"
+#: payment/models.py:43
 msgid "неоплаченный заказ"
 msgstr "Checkout"
 
-#: payment/models.py:41
-#, fuzzy
-#| msgid "текст отзыва"
+#: payment/models.py:46
 msgid "текст ошибки"
 msgstr "review text"
 
-#: product/models.py:14 shop/models.py:11
+#: personal_account/models.py:9 product/models.py:86 users/models.py:33
+msgid "пользователь"
+msgstr "user"
+
+#: product/models.py:16 shop/models.py:11
 msgid "название"
 msgstr "name"
 
-#: product/models.py:17
+#: product/models.py:19
 msgid "просмотры"
 msgstr "views"
 
-#: product/models.py:18
+#: product/models.py:20
 msgid "Дата создания"
 msgstr "created at"
 
-#: product/models.py:19
+#: product/models.py:21
 msgid "дата обновления"
 msgstr "updated at"
 
-#: product/models.py:21 product/models.py:58
+#: product/models.py:23 product/models.py:65
 msgid "характеристики"
 msgstr "characteristics"
 
-#: product/models.py:32
+#: product/models.py:25
+msgid "индекс сортировки"
+msgstr "sort index"
+
+#: product/models.py:39
 msgid "продукция"
 msgstr "products"
 
-#: product/models.py:39
+#: product/models.py:46
 msgid "значение"
 msgstr "value"
 
-#: product/models.py:45
+#: product/models.py:52
 msgid "характеристика продукта"
 msgstr "product feature"
 
-#: product/models.py:46
+#: product/models.py:53
 msgid "характеристики продукта"
 msgstr "product feature"
 
-#: product/models.py:57
+#: product/models.py:64
 msgid "характеристика"
 msgstr "characteristic"
 
-#: product/models.py:62
+#: product/models.py:69
 msgid "файл"
 msgstr "file"
 
-#: product/models.py:70
+#: product/models.py:77
 msgid "изображение продукта"
 msgstr "image product"
 
-#: product/models.py:71
+#: product/models.py:78
 msgid "изображения продукта"
 msgstr "image product"
 
-#: product/models.py:80
+#: product/models.py:87
 msgid "текст отзыва"
 msgstr "review text"
 
-#: product/models.py:82
+#: product/models.py:89
 msgid "Оценка"
 msgstr "Rating"
 
-#: product/models.py:83
+#: product/models.py:90
 msgid "дата создания"
 msgstr "created at"
 
-#: product/models.py:92
+#: product/models.py:94
 msgid "отзыв"
 msgstr "review"
 
-#: product/models.py:93
+#: product/models.py:95
 msgid "отзывы"
 msgstr "reviews"
 
 #: shop/apps.py:8
-#, fuzzy
-#| msgid "магазин"
 msgid "маказин"
 msgstr "shop"
 
@@ -627,36 +557,52 @@ msgstr "owners"
 msgid "слаг"
 msgstr "slug"
 
-#: shop/models.py:24 shop/models.py:32
+#: shop/models.py:24 shop/models.py:31
 msgid "магазин"
 msgstr "shop"
 
-#: shop/models.py:25
-#, fuzzy
-#| msgid "Магазины"
+#: shop/models.py:25 templates/inc/shop/shops.html:18
 msgid "магазины"
 msgstr "Shop"
 
-#: shop/models.py:38
+#: shop/models.py:35
+msgid "цена"
+msgstr "price"
+
+#: shop/models.py:36
 msgid "старая цена"
 msgstr "old price"
 
-#: shop/models.py:40
+#: shop/models.py:38
 msgid "дата добавления"
 msgstr "date added"
+
+#: shop/models.py:44
+msgid "продукт магазина"
+msgstr "Checkout"
+
+#: shop/models.py:45
+msgid "продукты магазинов"
+msgstr "Checkout"
 
 #: templates/about_market.html:9
 msgid "О приложении"
 msgstr "About Megano"
 
 #: templates/about_market.html:12 templates/about_seller.html:13
-#: templates/catalog.html:12 templates/contacts.html:12
+#: templates/catalog.html:12
 #: templates/inc/blocks/nav_panel_blocks/shop_nav.html:6
-#: templates/order.html:13 templates/order_create.html:13
-#: templates/order_history.html:11 templates/payment.html:13
-#: templates/payment_process.html:12 templates/payment_random.html:13
-#: templates/profile.html:13 templates/sale.html:14
-#: templates/users/account.html:12 templates/view_history.html:11
+#: templates/inc/shop/create_good.html:11
+#: templates/inc/shop/create_shop.html:12 templates/inc/shop/edit_good.html:11
+#: templates/inc/shop/edit_shop.html:12 templates/inc/shop/seller_home.html:13
+#: templates/inc/shop/seller_shop.html:13 templates/main_page/contacts.html:12
+#: templates/order.html:13 templates/order/historyorder.html:9
+#: templates/order/order.html:9 templates/order_create.html:13
+#: templates/payment/payment.html:13 templates/payment/payment_process.html:12
+#: templates/payment/payment_random.html:13 templates/payment_process.html:12
+#: templates/product/create_product.html:12 templates/sale.html:14
+#: templates/users/account.html:12 templates/users/profile.html:12
+#: templates/users/view_history.html:13
 msgid "Главная страница"
 msgstr "home"
 
@@ -665,32 +611,31 @@ msgid "О нас"
 msgstr "About us"
 
 #: templates/about_market.html:30 templates/about_seller.html:32
-#: templates/contacts.html:30 templates/main_page.html:269
+#: templates/main_page/contacts.html:30
 msgid "доставка и возврат"
 msgstr "shipping & returns"
 
 #: templates/about_market.html:32 templates/about_seller.html:34
-#: templates/contacts.html:32 templates/main_page.html:271
+#: templates/inc/shop/shop_info.html:26 templates/main_page/contacts.html:32
 msgid "Доставка по всему миру"
 msgstr "World wide shipping"
 
 #: templates/about_market.html:43 templates/about_seller.html:45
-#: templates/contacts.html:43 templates/main_page.html:282
+#: templates/main_page/contacts.html:43
 msgid "возврат денег"
 msgstr "money back"
 
 #: templates/about_market.html:45 templates/about_seller.html:47
-#: templates/contacts.html:45 templates/main_page.html:284
+#: templates/main_page/contacts.html:45
 msgid "Гарантированная оплата"
 msgstr "Guaranted payments"
 
 #: templates/about_market.html:56 templates/about_seller.html:58
-#: templates/contacts.html:56 templates/main_page.html:295
+#: templates/main_page/contacts.html:56
 msgid "техническая поддержка"
 msgstr "support policy"
 
 #: templates/about_market.html:58 templates/about_seller.html:60
-#: templates/main_page.html:297
 msgid "Комманда поддержки быстро ответит вам"
 msgstr "Fast support team"
 
@@ -699,7 +644,7 @@ msgid "гаратнтия качества"
 msgstr "quality guarantee"
 
 #: templates/about_market.html:71 templates/about_seller.html:73
-#: templates/contacts.html:71 templates/main_page.html:310
+#: templates/main_page/contacts.html:71
 msgid "Гарантия на лучшие товары"
 msgstr "best guaranted items"
 
@@ -723,15 +668,14 @@ msgstr "History"
 msgid "Информация о"
 msgstr "About"
 
-#: templates/about_seller.html:71 templates/contacts.html:69
-#: templates/main_page.html:308
+#: templates/about_seller.html:71 templates/main_page/contacts.html:69
 msgid "гарантия качества"
 msgstr "quality guarantee"
 
-#: templates/about_seller.html:84 templates/inc/shop/create_shop.html:80
-#: templates/inc/shop/edit_shop.html:80 templates/order.html:53
-#: templates/order_create.html:61 templates/order_create.html:160
-#: templates/profile.html:73 templates/users/profile.html:106
+#: templates/about_seller.html:84 templates/inc/shop/create_shop.html:88
+#: templates/inc/shop/edit_shop.html:88 templates/inc/shop/shop_info.html:71
+#: templates/order.html:53 templates/order_create.html:61
+#: templates/order_create.html:160 templates/users/profile.html:91
 msgid "Телефон"
 msgstr "Phone"
 
@@ -746,87 +690,6 @@ msgstr "Follow us"
 #: templates/about_seller.html:154
 msgid "Популярные товары"
 msgstr "Popular products"
-
-#: templates/account.html:9 templates/account.html:15 templates/account.html:32
-#: templates/inc/blocks/top_nav_panel_blocks/login.html:8
-#: templates/order_history.html:31 templates/profile.html:33
-#: templates/users/account.html:9 templates/view_history.html:31
-msgid "Личный кабинет"
-msgstr "account"
-
-#: templates/account.html:12
-msgid "Главаная страница"
-msgstr "home"
-
-#: templates/account.html:26 templates/order_history.html:25
-#: templates/profile.html:27 templates/view_history.html:25
-msgid "Навигация"
-msgstr "Navigation"
-
-#: templates/account.html:35 templates/inc/shop/create_good.html:29
-#: templates/inc/shop/create_shop.html:30 templates/inc/shop/edit_good.html:29
-#: templates/inc/shop/edit_shop.html:30 templates/inc/shop/seller_home.html:31
-#: templates/order_history.html:34 templates/profile.html:10
-#: templates/profile.html:16 templates/profile.html:36
-#: templates/users/profile.html:9 templates/users/profile.html:16
-#: templates/users/profile.html:37 templates/view_history.html:34
-msgid "Профиль"
-msgstr "Profile"
-
-#: templates/account.html:38 templates/account.html:74
-#: templates/inc/shop/create_good.html:32
-#: templates/inc/shop/create_shop.html:33 templates/inc/shop/edit_good.html:32
-#: templates/inc/shop/edit_shop.html:33 templates/inc/shop/seller_home.html:34
-#: templates/order.html:16 templates/order_history.html:9
-#: templates/order_history.html:14 templates/order_history.html:37
-#: templates/profile.html:39 templates/users/profile.html:40
-#: templates/view_history.html:37
-msgid "История заказов"
-msgstr "Purchase history"
-
-#: templates/account.html:41 templates/order_history.html:40
-#: templates/profile.html:42 templates/view_history.html:9
-#: templates/view_history.html:14 templates/view_history.html:41
-msgid "История просмотра"
-msgstr "View history"
-
-#: templates/account.html:60
-msgid "Редактировать профиль"
-msgstr "Edit profile"
-
-#: templates/account.html:70 templates/order.html:10 templates/order.html:19
-#: templates/order_history.html:56
-msgid "Заказ"
-msgstr "Order"
-
-#: templates/account.html:80 templates/order.html:71
-#: templates/order_create.html:178 templates/order_history.html:63
-msgid "Тип доставки"
-msgstr "Delivery type"
-
-#: templates/account.html:88 templates/order.html:95
-#: templates/order_create.html:202 templates/order_history.html:71
-#: templates/payment.html:10 templates/payment.html:16
-#: templates/payment_random.html:10 templates/payment_random.html:16
-msgid "Оплата"
-msgstr "Payment"
-
-#: templates/account.html:96 templates/order_history.html:79
-msgid "Общая стоимость"
-msgstr "Total cost"
-
-#: templates/account.html:104 templates/order.html:103
-#: templates/order_history.html:89
-msgid "Статус"
-msgstr "Status"
-
-#: templates/account.html:119
-msgid "История просмотров"
-msgstr "View history"
-
-#: templates/account.html:160
-msgid "Перейти на полный список"
-msgstr "All list"
 
 #: templates/base.html:7
 msgid "Описание страницы"
@@ -869,70 +732,29 @@ msgstr "Is exist"
 msgid "С бесплатной доставкой"
 msgstr "Free delivery"
 
-#: templates/catalog.html:79
+#: templates/catalog.html:80
 msgid "Популярные теги"
 msgstr "Popular tags"
 
-#: templates/catalog.html:95
+#: templates/catalog.html:96
 msgid "Сортировать по"
 msgstr "Sort by"
 
-#: templates/catalog.html:98
+#: templates/catalog.html:105
 msgid "Популярности"
 msgstr "Rating"
 
-#: templates/catalog.html:99
+#: templates/catalog.html:112
 msgid "Цене"
 msgstr "Price"
 
-#: templates/catalog.html:100
+#: templates/catalog.html:121
 msgid "Отзывам"
 msgstr "Review"
 
-#: templates/catalog.html:101
+#: templates/catalog.html:129
 msgid "Новизне"
 msgstr "Date"
-
-#: templates/contacts.html:9 templates/contacts.html:15
-#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:20
-msgid "Контакты"
-msgstr "Contacts"
-
-#: templates/contacts.html:58
-msgid "Комманда поддержки быстро вам ответит"
-msgstr "Fast support team"
-
-#: templates/contacts.html:78 templates/inc/blocks/top_nav_panel.html:11
-msgid "Подпишись на нас"
-msgstr "Follow us"
-
-#: templates/contacts.html:143
-msgid "Обратная связь"
-msgstr "Contact form"
-
-#: templates/contacts.html:150 templates/inc/product/good_detail.html:249
-#: templates/inc/shop/seller_home.html:180
-#: templates/inc/shop/seller_home.html:201
-#: templates/inc/shop/seller_home.html:222 templates/users/profile.html:86
-msgid "Имя"
-msgstr "Name"
-
-#: templates/contacts.html:153 templates/order.html:61
-#: templates/order_create.html:65 templates/profile.html:78
-msgid "Электронная почта"
-msgstr "E-mail"
-
-#: templates/contacts.html:156
-msgid "Сайт"
-msgstr "Website"
-
-#: templates/contacts.html:161
-msgid "Сообщение"
-msgstr "Message"
-
-#: templates/contacts.html:164
-msgid "Отправить"
-msgstr "Send"
 
 #: templates/discount/base_discount.html:10
 msgid "Скидка"
@@ -947,21 +769,12 @@ msgid "Сроки действия скидки:"
 msgstr "Discount period"
 
 #: templates/discount/base_discount.html:38
-#: templates/discount/cart_discount.html:8
-msgid "от"
-msgstr "from"
-
-#: templates/discount/base_discount.html:38
 #: templates/discount/cart_discount.html:9
 #: templates/discount/cart_discount.html:12
-#, fuzzy
-#| msgid "дни"
 msgid "до"
 msgstr "days"
 
 #: templates/discount/base_discount.html:43
-#, fuzzy
-#| msgid "дата обновления"
 msgid "не установлены"
 msgstr "updated at"
 
@@ -970,26 +783,21 @@ msgid "Механизм действия скидки:"
 msgstr "About discount"
 
 #: templates/discount/base_discount.html:52
-#, fuzzy
-#| msgid "Сравнение товаров"
 msgid "снижение цены на"
 msgstr "Product comparison"
 
 #: templates/discount/base_discount.html:53
-#, fuzzy
-#| msgid "Сравнение товаров"
 msgid "Снижение цены на"
 msgstr "Product comparison"
 
 #: templates/discount/base_discount.html:54
 #: templates/discount/base_discount.html:55
 #: templates/discount/cart_discount.html:12
+#: templates/main_page/main_page.html:25
 msgid "рублей"
 msgstr "RUB"
 
 #: templates/discount/base_discount.html:55
-#, fuzzy
-#| msgid "Гарантированная оплата"
 msgid "Фиксированная цена:"
 msgstr "Guaranted payments"
 
@@ -1002,8 +810,6 @@ msgid "Для активации скидки в вашей корзине до�
 msgstr "For discount your basket must have "
 
 #: templates/discount/cart_discount.html:9
-#, fuzzy
-#| msgid "товар"
 msgid "товаров"
 msgstr "product"
 
@@ -1016,12 +822,11 @@ msgid "Действующие скидки"
 msgstr "Actual discount"
 
 #: templates/discount/discounts.html:15
-#, fuzzy
-#| msgid "на главную"
 msgid "На главную"
 msgstr "home"
 
 #: templates/discount/discounts.html:17
+#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:13
 msgid "Скидки"
 msgstr "Discount"
 
@@ -1031,8 +836,6 @@ msgid ""
 msgstr "For activation discount add to basket products from two groups"
 
 #: templates/discount/product_discount.html:6
-#, fuzzy
-#| msgid "Гарантия на лучшие товары"
 msgid "Скидка распространяется на следующие товары:"
 msgstr "best guaranted items"
 
@@ -1041,71 +844,77 @@ msgid "продукты на скидке"
 msgstr "products with discount"
 
 #: templates/discount/product_discount.html:20
-#, fuzzy
-#| msgid "категории"
 msgid "категории на скидке"
 msgstr "category"
+
+#: templates/inc/blocks/banner.html:19
+msgid "перейти на страницу"
+msgstr "Get started"
 
 #: templates/inc/blocks/menu_search_panel_blocks/menu_category.html:10
 msgid "Категории"
 msgstr "Category"
 
-#: templates/inc/blocks/menu_search_panel_blocks/search_panel.html:9
+#: templates/inc/blocks/menu_search_panel_blocks/search_panel.html:14
 msgid "Что вы ищете"
 msgstr "What do you search"
 
-#: templates/inc/blocks/menu_search_panel_blocks/search_panel.html:11
+#: templates/inc/blocks/menu_search_panel_blocks/search_panel.html:16
 msgid "Поиск"
 msgstr "Search"
 
 #: templates/inc/blocks/nav_panel.html:23
 msgid "Показать навигацию"
-msgstr ""
+msgstr "Show navigation"
 
 #: templates/inc/blocks/nav_panel_blocks/shop_nav.html:9
 msgid "Новинки"
 msgstr "News"
 
 #: templates/inc/blocks/nav_panel_blocks/shop_nav.html:10
-msgid "Магазин"
+#: templates/inc/product/good_detail.html:91
+msgid "Магазины"
 msgstr "Shop"
 
-#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:13
-msgid "Блог"
-msgstr "Blog"
-
-#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:16
-msgid "горячее"
-msgstr "hot"
-
-#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:17
-msgid "Галлерея"
-msgstr "Gallery"
-
-#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:23
+#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:20
 msgid "Продукция"
 msgstr "Purchase"
 
-#: templates/inc/blocks/slider.html:16 templates/inc/blocks/slider.html:37
-#: templates/main_page.html:22
-msgid "Перейти на страницу"
-msgstr "Get started"
+#: templates/inc/blocks/nav_panel_blocks/shop_nav.html:23
+#: templates/main_page/contacts.html:9 templates/main_page/contacts.html:15
+msgid "Контакты"
+msgstr "Contacts"
 
 #: templates/inc/blocks/top_nav_panel.html:8
 msgid "Бесплатная доставка"
 msgstr "Free delivery"
 
-#: templates/inc/blocks/top_nav_panel_blocks/login.html:9
+#: templates/inc/blocks/top_nav_panel.html:11
+#: templates/main_page/contacts.html:78
+msgid "Подпишись на нас"
+msgstr "Follow us"
+
+#: templates/inc/blocks/top_nav_panel_blocks/login.html:7
+#: templates/inc/shop/create_good.html:31
+#: templates/inc/shop/create_shop.html:32 templates/inc/shop/edit_good.html:31
+#: templates/inc/shop/edit_shop.html:32 templates/inc/shop/seller_home.html:33
+#: templates/inc/shop/seller_shop.html:33 templates/order/historyorder.html:29
+#: templates/order/order.html:29 templates/product/create_product.html:32
+#: templates/users/account.html:9 templates/users/account.html:15
+#: templates/users/account.html:32 templates/users/profile.html:32
+#: templates/users/view_history.html:33
+msgid "Личный кабинет"
+msgstr "account"
+
+#: templates/inc/blocks/top_nav_panel_blocks/login.html:8
 msgid "Выйти из системы"
 msgstr "Logout"
 
-#: templates/inc/blocks/top_nav_panel_blocks/login.html:11
+#: templates/inc/blocks/top_nav_panel_blocks/login.html:10
 msgid "Вход/Регистрация"
 msgstr "Login/Registration"
 
 #: templates/inc/product/good_detail.html:9
-#: templates/inc/shop/create_good.html:118
-#: templates/inc/shop/edit_good.html:118
 msgid "Название товара"
 msgstr "Name"
 
@@ -1114,9 +923,6 @@ msgid "Главаня страница"
 msgstr "home"
 
 #: templates/inc/product/good_detail.html:13
-#: templates/inc/shop/seller_home.html:106
-#: templates/inc/shop/seller_home.html:128
-#: templates/inc/shop/seller_home.html:149
 msgid "Продукт"
 msgstr "Product"
 
@@ -1125,8 +931,6 @@ msgid "Имя товара"
 msgstr "Name"
 
 #: templates/inc/product/good_detail.html:42
-#: templates/inc/shop/create_good.html:130
-#: templates/inc/shop/edit_good.html:130
 msgid "Описание товара"
 msgstr "Description"
 
@@ -1147,22 +951,12 @@ msgstr "Tag"
 
 #: templates/inc/product/good_detail.html:90
 #: templates/inc/product/good_detail.html:103
-#: templates/inc/shop/create_good.html:139
-#: templates/inc/shop/create_shop.html:104
 #: templates/inc/shop/create_shop.html:112
-#: templates/inc/shop/edit_shop.html:104 templates/inc/shop/edit_shop.html:112
-#: templates/inc/shop/seller_home.html:108
-#: templates/inc/shop/seller_home.html:130
-#: templates/inc/shop/seller_home.html:151
-#: templates/inc/shop/seller_home.html:182
-#: templates/inc/shop/seller_home.html:203
-#: templates/inc/shop/seller_home.html:224 templates/product/product.html:102
+#: templates/inc/shop/create_shop.html:120
+#: templates/product/create_product.html:84
+#: templates/product/create_product.html:92 templates/product/product.html:102
 msgid "Описание"
 msgstr "Description"
-
-#: templates/inc/product/good_detail.html:91
-msgid "Магазины"
-msgstr "Shop"
 
 #: templates/inc/product/good_detail.html:93 templates/product/product.html:108
 msgid "Дополнительная информация"
@@ -1194,8 +988,7 @@ msgstr "Value"
 #: templates/inc/product/good_detail.html:125
 #: templates/inc/product/good_detail.html:145
 #: templates/inc/product/good_detail.html:165
-#: templates/inc/shop/create_shop.html:55 templates/inc/shop/edit_shop.html:55
-#: templates/inc/shop/seller_home.html:71
+#: templates/inc/shop/create_shop.html:63 templates/inc/shop/edit_shop.html:64
 msgid "Название магазина"
 msgstr "Name"
 
@@ -1233,8 +1026,14 @@ msgstr "Add comment"
 msgid "Комментарий"
 msgstr "Comment"
 
+#: templates/inc/product/good_detail.html:249
+#: templates/main_page/contacts.html:150
+msgid "Имя"
+msgstr "Name"
+
 #: templates/inc/product/good_detail.html:260
-#: templates/inc/shop/create_shop.html:91 templates/inc/shop/edit_shop.html:91
+#: templates/inc/shop/create_shop.html:99 templates/inc/shop/edit_shop.html:100
+#: templates/inc/shop/shop_info.html:89 templates/users/profile.html:102
 msgid "Почта"
 msgstr "E-mail"
 
@@ -1258,236 +1057,346 @@ msgstr "or"
 msgid "зарегистрируйтесь"
 msgstr "registrate"
 
-#: templates/inc/shop/create_good.html:8 templates/inc/shop/create_good.html:47
+#: templates/inc/shop/create_good.html:8
 msgid "Добавление товара"
 msgstr "Add product"
 
-#: templates/inc/shop/create_good.html:10
-#: templates/inc/shop/create_shop.html:11 templates/inc/shop/edit_good.html:10
-#: templates/inc/shop/edit_shop.html:11 templates/inc/shop/seller_home.html:12
-msgid "Домой"
-msgstr "home"
+#: templates/inc/shop/create_good.html:14
+#: templates/inc/shop/create_good.html:43
+#: templates/inc/shop/create_shop.html:15
+#: templates/inc/shop/create_shop.html:44 templates/inc/shop/edit_good.html:14
+#: templates/inc/shop/edit_good.html:43 templates/inc/shop/edit_shop.html:15
+#: templates/inc/shop/edit_shop.html:44 templates/inc/shop/seller_home.html:10
+#: templates/inc/shop/seller_home.html:16
+#: templates/inc/shop/seller_home.html:45
+#: templates/inc/shop/seller_shop.html:10
+#: templates/inc/shop/seller_shop.html:16
+#: templates/inc/shop/seller_shop.html:45 templates/order/historyorder.html:41
+#: templates/order/order.html:41 templates/product/create_product.html:15
+#: templates/product/create_product.html:44 templates/users/account.html:44
+#: templates/users/profile.html:44 templates/users/view_history.html:45
+msgid "Комната продавца"
+msgstr "Seller room"
 
-#: templates/inc/shop/create_good.html:12
-#: templates/inc/shop/create_good.html:38
-#: templates/inc/shop/create_shop.html:13
-#: templates/inc/shop/create_shop.html:39 templates/inc/shop/edit_good.html:12
-#: templates/inc/shop/edit_good.html:38 templates/inc/shop/edit_shop.html:13
-#: templates/inc/shop/edit_shop.html:39 templates/inc/shop/seller_home.html:40
-#: templates/users/profile.html:55
-msgid "Комната продавцов"
-msgstr "Sellers room"
-
-#: templates/inc/shop/create_good.html:23
-#: templates/inc/shop/create_shop.html:24 templates/inc/shop/edit_good.html:23
-#: templates/inc/shop/edit_shop.html:24 templates/inc/shop/seller_home.html:25
+#: templates/inc/shop/create_good.html:25
+#: templates/inc/shop/create_shop.html:26 templates/inc/shop/edit_good.html:25
+#: templates/inc/shop/edit_shop.html:26 templates/inc/shop/seller_home.html:27
+#: templates/inc/shop/seller_shop.html:27 templates/order/historyorder.html:23
+#: templates/order/order.html:23 templates/product/create_product.html:26
+#: templates/users/account.html:26 templates/users/profile.html:26
+#: templates/users/view_history.html:27
 msgid "Меню"
 msgstr "Menu"
 
-#: templates/inc/shop/create_good.html:35
-#: templates/inc/shop/create_shop.html:36 templates/inc/shop/edit_good.html:35
-#: templates/inc/shop/edit_shop.html:36 templates/inc/shop/seller_home.html:37
-#: templates/users/profile.html:43
+#: templates/inc/shop/create_good.html:34
+#: templates/inc/shop/create_shop.html:35 templates/inc/shop/edit_good.html:34
+#: templates/inc/shop/edit_shop.html:35 templates/inc/shop/seller_home.html:36
+#: templates/inc/shop/seller_shop.html:36 templates/order/historyorder.html:32
+#: templates/order/order.html:32 templates/product/create_product.html:35
+#: templates/users/account.html:35 templates/users/profile.html:9
+#: templates/users/profile.html:15 templates/users/profile.html:35
+#: templates/users/view_history.html:36
+msgid "Профиль"
+msgstr "Profile"
+
+#: templates/inc/shop/create_good.html:37
+#: templates/inc/shop/create_shop.html:38 templates/inc/shop/edit_good.html:37
+#: templates/inc/shop/edit_shop.html:38 templates/inc/shop/seller_home.html:39
+#: templates/inc/shop/seller_shop.html:39 templates/order.html:16
+#: templates/order/historyorder.html:6 templates/order/historyorder.html:12
+#: templates/order/historyorder.html:35 templates/order/order.html:35
+#: templates/product/create_product.html:38 templates/users/account.html:38
+#: templates/users/account.html:82 templates/users/profile.html:38
+#: templates/users/view_history.html:39
+msgid "История заказов"
+msgstr "Purchase history"
+
+#: templates/inc/shop/create_good.html:40
+#: templates/inc/shop/create_shop.html:41 templates/inc/shop/edit_good.html:40
+#: templates/inc/shop/edit_shop.html:41 templates/inc/shop/seller_home.html:42
+#: templates/inc/shop/seller_shop.html:42 templates/order/historyorder.html:38
+#: templates/order/order.html:38 templates/product/create_product.html:41
+#: templates/users/account.html:41 templates/users/profile.html:41
+#: templates/users/view_history.html:42
 msgid "Просмотренные продукты"
 msgstr "Products viewed"
 
-#: templates/inc/shop/create_good.html:53 templates/inc/shop/edit_good.html:53
-msgid "Выберите категорию"
-msgstr "Choose category"
+#: templates/inc/shop/create_good.html:52
+msgid "Добавление товара в магазин"
+msgstr "Add product"
 
-#: templates/inc/shop/create_good.html:61 templates/inc/shop/edit_good.html:61
-msgid "Выбор категории"
-msgstr "Category selection"
-
-#: templates/inc/shop/create_good.html:62 templates/inc/shop/edit_good.html:62
-msgid "Категория 1"
-msgstr "Category 1"
-
-#: templates/inc/shop/create_good.html:63 templates/inc/shop/edit_good.html:63
-msgid "Категория 2"
-msgstr "Category 2"
-
-#: templates/inc/shop/create_good.html:64 templates/inc/shop/edit_good.html:64
-msgid "Категория 3"
-msgstr "Category 3"
-
-#: templates/inc/shop/create_good.html:71 templates/inc/shop/edit_good.html:71
+#: templates/inc/shop/create_good.html:60
 msgid "Выберите магазин"
 msgstr "Choose shop"
 
-#: templates/inc/shop/create_good.html:79 templates/inc/shop/edit_good.html:79
-msgid "Выбор магазина"
-msgstr "Shop selection"
+#: templates/inc/shop/create_good.html:68
+msgid "Нет магазинов"
+msgstr "Your shop"
 
-#: templates/inc/shop/create_good.html:80 templates/inc/shop/edit_good.html:80
-msgid "Магазин 1"
-msgstr "Shop 1"
+#: templates/inc/shop/create_good.html:73
+msgid "Выберите продукт"
+msgstr "Choose avatar"
 
-#: templates/inc/shop/create_good.html:81 templates/inc/shop/edit_good.html:81
-msgid "Магазин 2"
-msgstr "Shop 2"
+#: templates/inc/shop/create_good.html:81
+msgid "Нет товаров"
+msgstr "product"
 
-#: templates/inc/shop/create_good.html:82 templates/inc/shop/edit_good.html:82
-msgid "Магазин 3"
-msgstr "Shop 3"
-
-#: templates/inc/shop/create_good.html:89
-#: templates/inc/shop/create_good.html:96 templates/inc/shop/edit_good.html:89
-#: templates/inc/shop/edit_good.html:96
+#: templates/inc/shop/create_good.html:91 templates/inc/shop/edit_good.html:64
 msgid "Количество"
 msgstr "Count"
 
-#: templates/inc/shop/create_good.html:112
-#: templates/inc/shop/create_shop.html:117
-#: templates/inc/shop/edit_good.html:112 templates/inc/shop/edit_shop.html:117
+#: templates/inc/shop/create_good.html:100 templates/inc/shop/edit_good.html:73
+msgid "Старая цена"
+msgstr "old price"
+
+#: templates/inc/shop/create_good.html:106
+#: templates/inc/shop/create_shop.html:154 templates/inc/shop/edit_good.html:77
+#: templates/inc/shop/edit_shop.html:113
+#: templates/product/create_product.html:121
 msgid "Отменить"
 msgstr "Cancel"
 
-#: templates/inc/shop/create_good.html:113
-#: templates/inc/shop/create_shop.html:118
+#: templates/inc/shop/create_good.html:107
+#: templates/inc/shop/create_shop.html:155
+#: templates/product/create_product.html:122
 msgid "Создать"
 msgstr "Create"
-
-#: templates/inc/shop/create_good.html:125
-#: templates/inc/shop/create_shop.html:62 templates/inc/shop/edit_good.html:125
-#: templates/inc/shop/edit_shop.html:62
-msgid "Введите название"
-msgstr "Input name"
 
 #: templates/inc/shop/create_shop.html:9
 msgid "Создание магазина"
 msgstr "Shop creation"
 
-#: templates/inc/shop/create_shop.html:66 templates/inc/shop/edit_shop.html:66
-#: templates/order.html:87 templates/order_create.html:112
-#: templates/order_create.html:194 templates/users/profile.html:115
-#: templates/users/profile.html:118
+#: templates/inc/shop/create_shop.html:70 templates/inc/shop/edit_shop.html:72
+#: templates/product/create_product.html:67
+msgid "Введите название"
+msgstr "Input name"
+
+#: templates/inc/shop/create_shop.html:74 templates/inc/shop/edit_shop.html:76
+#: templates/inc/shop/shop_info.html:81 templates/order.html:87
+#: templates/order_create.html:112 templates/order_create.html:194
 msgid "Адрес"
 msgstr "Address"
 
-#: templates/inc/shop/create_shop.html:75 templates/inc/shop/edit_shop.html:75
+#: templates/inc/shop/create_shop.html:83 templates/inc/shop/edit_shop.html:84
 msgid "Введите адрес"
 msgstr "Input address"
 
-#: templates/inc/shop/create_shop.html:87 templates/inc/shop/edit_shop.html:87
+#: templates/inc/shop/create_shop.html:95 templates/inc/shop/edit_shop.html:96
 msgid "Введите телефон"
 msgstr "Input phone"
 
-#: templates/inc/shop/create_shop.html:98 templates/inc/shop/edit_shop.html:98
+#: templates/inc/shop/create_shop.html:106
+#: templates/inc/shop/edit_shop.html:108
 msgid "Введите почту"
 msgstr "Input E-mail"
 
-#: templates/inc/shop/edit_good.html:8 templates/inc/shop/edit_good.html:47
+#: templates/inc/shop/create_shop.html:124
+#: templates/product/create_product.html:71
+msgid "Слаг"
+msgstr ""
+
+#: templates/inc/shop/create_shop.html:131
+#: templates/product/create_product.html:78
+msgid "Введите слаг"
+msgstr "Input phone"
+
+#: templates/inc/shop/create_shop.html:135
+msgid "Выберите лого"
+msgstr "Choose shop"
+
+#: templates/inc/shop/create_shop.html:148
+#: templates/inc/shop/edit_shop.html:132 templates/users/profile.html:73
+msgid "Выбрать/Изменить"
+msgstr "Choose avatar"
+
+#: templates/inc/shop/edit_good.html:8 templates/inc/shop/edit_good.html:52
 msgid "Изменение товара"
 msgstr "Edit product"
 
-#: templates/inc/shop/edit_good.html:113 templates/inc/shop/edit_shop.html:118
-#: templates/inc/shop/seller_home.html:79
-#: templates/inc/shop/seller_home.html:121
-#: templates/inc/shop/seller_home.html:142
-#: templates/inc/shop/seller_home.html:163
-#: templates/inc/shop/seller_home.html:194
-#: templates/inc/shop/seller_home.html:215
-#: templates/inc/shop/seller_home.html:236 templates/users/profile.html:143
+#: templates/inc/shop/edit_good.html:78 templates/inc/shop/edit_shop.html:114
+#: templates/inc/shop/seller_shop.html:87
+#: templates/inc/shop/seller_shop.html:124 templates/users/profile.html:113
 msgid "Изменить"
 msgstr "Edit"
 
 #: templates/inc/shop/edit_shop.html:9
-msgid "Измнение магазина"
+msgid "Изменение магазина"
 msgstr "Edit shop"
 
-#: templates/inc/shop/seller_home.html:10
-#: templates/inc/shop/seller_home.html:14
-msgid "Комната продавца"
-msgstr "Seller room"
+#: templates/inc/shop/edit_shop.html:119
+msgid "Avatar"
+msgstr "Avatar"
 
-#: templates/inc/shop/seller_home.html:47
+#: templates/inc/shop/seller_home.html:52
+#: templates/inc/shop/seller_shop.html:51
 msgid "Создание"
 msgstr "Creation"
 
-#: templates/inc/shop/seller_home.html:53
+#: templates/inc/shop/seller_home.html:58
+#: templates/inc/shop/seller_shop.html:57
 msgid "Добавить магазин"
 msgstr "Add shop"
 
-#: templates/inc/shop/seller_home.html:58
+#: templates/inc/shop/seller_home.html:63
+#: templates/inc/shop/seller_shop.html:62
+msgid "Создать продукт"
+msgstr "Add product"
+
+#: templates/inc/shop/seller_home.html:68
+#: templates/inc/shop/seller_shop.html:67
 msgid "Добавить продукт"
 msgstr "Add product"
 
-#: templates/inc/shop/seller_home.html:67
+#: templates/inc/shop/seller_home.html:77
+msgid "Ваши магазины"
+msgstr "Your shop"
+
+#: templates/inc/shop/seller_home.html:104
+msgid "У Вас пока нет созданных магазинов"
+msgstr "You have no orders"
+
+#: templates/inc/shop/seller_shop.html:76
 msgid "Ваш магазин"
 msgstr "Your shop"
 
-#: templates/inc/shop/seller_home.html:77
-#: templates/inc/shop/seller_home.html:119
-#: templates/inc/shop/seller_home.html:140
-#: templates/inc/shop/seller_home.html:161
-#: templates/inc/shop/seller_home.html:192
-#: templates/inc/shop/seller_home.html:213
-#: templates/inc/shop/seller_home.html:234
-msgid "Удалить"
-msgstr "Delete"
-
-#: templates/inc/shop/seller_home.html:87
+#: templates/inc/shop/seller_shop.html:95
 msgid "Ваши продукты"
 msgstr "Your products"
 
-#: templates/inc/shop/seller_home.html:91
-msgid "Показать все продукты"
-msgstr "All products"
+#: templates/inc/shop/shop_info.html:11 templates/inc/shop/shops.html:16
+msgid "Главная"
+msgstr "home"
 
-#: templates/inc/shop/seller_home.html:100
-msgid "Скидки на товары"
+#: templates/inc/shop/shop_info.html:12
+msgid "О магазине"
+msgstr "shop"
+
+#: templates/inc/shop/shop_info.html:25
+msgid "Доставка"
+msgstr "Delivery type"
+
+#: templates/inc/shop/shop_info.html:25
+msgid "Возврат"
+msgstr "money back"
+
+#: templates/inc/shop/shop_info.html:36
+msgid "Возврат денег"
+msgstr "money back"
+
+#: templates/inc/shop/shop_info.html:38
+msgid "Гарантированные платежи"
+msgstr "Guaranted payments"
+
+#: templates/inc/shop/shop_info.html:48
+msgid "Политика поддержки"
+msgstr "support policy"
+
+#: templates/inc/shop/shop_info.html:50
+msgid "Быстрая команда поддержки"
+msgstr "support policy"
+
+#: templates/inc/shop/shop_info.html:60
+msgid "Гарантия качества"
+msgstr "quality guarantee"
+
+#: templates/inc/shop/shop_info.html:62
+msgid "Лучшие товары с гарантией"
+msgstr "Is exist"
+
+#: templates/inc/shop/shop_info.html:95
+msgid "Следи за нами"
 msgstr "Product discount"
 
-#: templates/inc/shop/seller_home.html:174
-msgid "Скидка группе товаров"
-msgstr "Product group discount"
+#: templates/inc/shop/shop_info.html:130 templates/product/product.html:10
+msgid "Товары"
+msgstr "Products"
 
-#: templates/main_page.html:89
+#: templates/inc/shop/shops.html:10
+msgid "Все магазины"
+msgstr "Shop"
+
+#: templates/main_page/contacts.html:58
+msgid "Комманда поддержки быстро вам ответит"
+msgstr "Fast support team"
+
+#: templates/main_page/contacts.html:143
+msgid "Обратная связь"
+msgstr "Contact form"
+
+#: templates/main_page/contacts.html:153 templates/order.html:61
+#: templates/order_create.html:65
+msgid "Электронная почта"
+msgstr "E-mail"
+
+#: templates/main_page/contacts.html:156
+msgid "Сайт"
+msgstr "Website"
+
+#: templates/main_page/contacts.html:161
+msgid "Сообщение"
+msgstr "Message"
+
+#: templates/main_page/contacts.html:164
+msgid "Отправить"
+msgstr "Send"
+
+#: templates/main_page/main_page.html:276
 msgid "Ограниченные предложения"
 msgstr "Limited deals"
 
-#: templates/main_page.html:112
-msgid "дни"
-msgstr "days"
-
-#: templates/main_page.html:119
-msgid "часы"
-msgstr "hours"
-
-#: templates/main_page.html:126
-msgid "минуты"
-msgstr "minuts"
-
-#: templates/main_page.html:133
-msgid "секунды"
-msgstr "seconds"
-
-#: templates/main_page.html:147
-msgid "Популярные продукты"
-msgstr "Popular products"
-
-#: templates/main_page.html:203
-msgid "Горячие предложения"
-msgstr "Hot offers"
-
-#: templates/main_page.html:320
-msgid "Ограниченное количество"
-msgstr "Limited"
+#: templates/order.html:10 templates/order.html:19
+msgid "Заказ"
+msgstr "Order"
 
 #: templates/order.html:37
 msgid "Дата заказа"
 msgstr "Order date"
+
+#: templates/order.html:71 templates/order_create.html:178
+msgid "Тип доставки"
+msgstr "Delivery type"
 
 #: templates/order.html:79 templates/order_create.html:108
 #: templates/order_create.html:186
 msgid "Город"
 msgstr "City"
 
-#: templates/order.html:166 templates/order_create.html:259
-#: templates/payment.html:34 templates/payment_random.html:37
+#: templates/order.html:95 templates/order_create.html:202
+#: templates/payment/payment.html:10 templates/payment/payment.html:16
+#: templates/payment/payment_random.html:10
+#: templates/payment/payment_random.html:16
+msgid "Оплата"
+msgstr "Payment"
+
+#: templates/order.html:103
+msgid "Статус"
+msgstr "Status"
+
+#: templates/order.html:166 templates/order/order.html:149
+#: templates/order_create.html:259 templates/payment/payment.html:34
+#: templates/payment/payment_random.html:37
 msgid "Оплатить"
 msgstr "Pay"
+
+#: templates/order/historyorder.html:50
+msgid "Ваша история заказов"
+msgstr "Purchase history"
+
+#: templates/order/order.html:6 templates/order/order.html:12
+msgid "детали заказа"
+msgstr "Order date"
+
+#: templates/order/order.html:102
+msgid "Оплата не прошла:"
+msgstr "image product"
+
+#: templates/order/order.html:139
+msgid "Итого:"
+msgstr "Total"
+
+#: templates/order/order.html:146
+msgid "Ожидает оплаты"
+msgstr "Waiting for payment"
 
 #: templates/order_create.html:10 templates/order_create.html:16
 msgid "Оформление заказа"
@@ -1513,9 +1422,7 @@ msgstr "Step 3. Payment"
 msgid "Шаг 4. Подтверждение заказа"
 msgstr "Step 4. Confirm"
 
-#: templates/order_create.html:71 templates/profile.html:83
-#: templates/users/profile.html:124 templates/users/profile.html:127
-#: users/forms.py:42
+#: templates/order_create.html:71 users/forms.py:42
 msgid "Пароль"
 msgstr "Password"
 
@@ -1523,8 +1430,7 @@ msgstr "Password"
 msgid "Тут можно изменить пароль"
 msgstr "Here you can change password"
 
-#: templates/order_create.html:76 templates/profile.html:88
-#: templates/users/profile.html:133
+#: templates/order_create.html:76
 msgid "Подтверждение пароля"
 msgstr "Confirm password"
 
@@ -1541,10 +1447,6 @@ msgstr "I've got account"
 msgid "Дальше"
 msgstr "Next"
 
-#: templates/order_create.html:127
-msgid "Онлайн картой"
-msgstr "Online"
-
 #: templates/order_create.html:133
 msgid "Онлайн со случайного чужого счета"
 msgstr "Online, random card"
@@ -1553,29 +1455,45 @@ msgstr "Online, random card"
 msgid "E-mail"
 msgstr "E-mail"
 
-#: templates/order_history.html:102
-msgid "У вас пока нет заказов"
-msgstr "You have no orders"
-
-#: templates/payment.html:28
+#: templates/payment/payment.html:28
 msgid "Номер карты"
 msgstr "Card number"
 
-#: templates/payment_process.html:25
+#: templates/payment/payment_process.html:25 templates/payment_process.html:25
 msgid "Ждем подтверждения оплаты платежной системой"
 msgstr "Waiting for payment"
 
-#: templates/payment_random.html:28
+#: templates/payment/payment_random.html:28
 msgid "Номер счета"
 msgstr "Account number"
 
-#: templates/payment_random.html:33
+#: templates/payment/payment_random.html:33
 msgid "Сгенирировать случайный счет"
 msgstr "Generate random score"
 
-#: templates/product/product.html:10
-msgid "Товары"
-msgstr "Products"
+#: templates/product/create_product.html:9
+msgid "Создание продукта"
+msgstr "image product"
+
+#: templates/product/create_product.html:60
+msgid "Название продукта"
+msgstr "Name"
+
+#: templates/product/create_product.html:96
+msgid "Категория"
+msgstr "Category 1"
+
+#: templates/product/create_product.html:104
+msgid "Нет категорий"
+msgstr "category"
+
+#: templates/product/create_product.html:109
+msgid "Индекс"
+msgstr "Index"
+
+#: templates/product/create_product.html:116
+msgid "Введите индекс"
+msgstr "Input address"
 
 #: templates/product/product.html:105
 msgid "Продавцы"
@@ -1605,18 +1523,6 @@ msgstr "Send review"
 msgid "Чтобы оставить отзыв, вам нужно авторизоваться"
 msgstr "Login"
 
-#: templates/profile.html:55
-msgid "Аватар"
-msgstr "Avatar"
-
-#: templates/profile.html:60
-msgid "Выберите аватар"
-msgstr "Choose avatar"
-
-#: templates/profile.html:94
-msgid "Сохранить"
-msgstr "Save"
-
 #: templates/sale.html:11
 msgid "Товары в продаже"
 msgstr "Products on sale"
@@ -1624,6 +1530,39 @@ msgstr "Products on sale"
 #: templates/sale.html:17
 msgid "Распродажа"
 msgstr "Sale"
+
+#: templates/users/account.html:53 templates/users/profile.html:53
+msgid "Ваш профиль"
+msgstr "Your profile"
+
+#: templates/users/account.html:76
+msgid "Изменить профиль"
+msgstr "Edit profile"
+
+#: templates/users/account.html:86
+msgid "Посмотреть последний заказ"
+msgstr "Checkout"
+
+#: templates/users/account.html:101
+msgid "collapse"
+msgstr "collapse"
+
+#: templates/users/account.html:105
+msgid "Вы ещё ничего не заказывали"
+msgstr "You have no product views"
+
+#: templates/users/account.html:113 templates/users/view_history.html:10
+#: templates/users/view_history.html:16
+msgid "История просмотров"
+msgstr "View history"
+
+#: templates/users/account.html:153
+msgid "Перейти на полный список"
+msgstr "All list"
+
+#: templates/users/account.html:156
+msgid "Ваша история просмотров пока пуста"
+msgstr "View history"
 
 #: templates/users/login.html:7
 msgid "Вы уже авторизованы на сайте"
@@ -1649,39 +1588,19 @@ msgstr "Forget password?"
 msgid "Вы вышли из системы"
 msgstr "You are logout"
 
-#: templates/users/profile.html:12
-msgid "ДОМОЙ"
-msgstr "Home"
-
-#: templates/users/profile.html:64
-msgid "Ваш профиль"
-msgstr "Your profile"
-
-#: templates/users/profile.html:73
-msgid "Фото профиля"
-msgstr "Image profile"
-
-#: templates/users/profile.html:75
-msgid "Выбрать аватар"
-msgstr "Choose avatar"
-
-#: templates/users/profile.html:95
-msgid "Фамилия"
-msgstr "Last name"
-
-#: templates/users/profile.html:136
-msgid "Повторите пароль"
-msgstr "Repeat password"
+#: templates/users/profile.html:60
+msgid "Аватар"
+msgstr "Avatar"
 
 #: templates/users/reset_password.html:9
 msgid "Восстановить пароль"
 msgstr "Restore password"
 
-#: templates/view_history.html:91
-msgid "Вы пока ничего не смотрели"
-msgstr "You have no product views"
+#: templates/users/view_history.html:54
+msgid "Ваша история просмотров"
+msgstr "View history"
 
-#: users/apps.py:8 users/models.py:36
+#: users/apps.py:8 users/models.py:34
 msgid "пользователи"
 msgstr "Users"
 
@@ -1694,8 +1613,6 @@ msgid "Не найдено пары E-mail/пароль"
 msgstr "Input correct E-mail/пароль"
 
 #: users/managers.py:8
-#, fuzzy
-#| msgid "Введите почту"
 msgid "Введите электронную почту"
 msgstr "Input E-mail"
 
@@ -1707,27 +1624,142 @@ msgstr "Superuser must have is_staff=True."
 msgid "У суперпользователя должен быть задан is_superuser=True."
 msgstr "Superuser must have is_superuser=True."
 
-#: users/models.py:21
-#, fuzzy
-#| msgid "Электронная почта"
+#: users/models.py:19
 msgid "электронная почта"
 msgstr "E-mail"
 
-#: users/models.py:24
+#: users/models.py:23
 msgid "аватар"
 msgstr "avatar"
 
-#: users/models.py:26
+#: users/models.py:24
 msgid "работник"
 msgstr "employee"
 
-#: users/models.py:27
+#: users/models.py:25
 msgid "флаг активности"
 msgstr "flag activity"
 
-#: users/models.py:39
+#: users/models.py:37
 msgid "Может делать заказ"
 msgstr "Can make order"
+
+#~ msgid "любимый товар"
+#~ msgstr "Name"
+
+#~ msgid "любимые товары"
+#~ msgstr "Popular products"
+
+#~ msgid "Нет информации"
+#~ msgstr "No information"
+
+#~ msgid "Картой"
+#~ msgstr "Cart"
+
+#~ msgid "Наличными"
+#~ msgstr "cash"
+
+#~ msgid "продавец"
+#~ msgstr "Seller"
+
+#~ msgid "продуктв в заказе"
+#~ msgstr "Checkout"
+
+#~ msgid "Главаная страница"
+#~ msgstr "home"
+
+#~ msgid "Навигация"
+#~ msgstr "Navigation"
+
+#~ msgid "История просмотра"
+#~ msgstr "View history"
+
+#~ msgid "Общая стоимость"
+#~ msgstr "Total cost"
+
+#~ msgid "Магазин"
+#~ msgstr "Shop"
+
+#~ msgid "Блог"
+#~ msgstr "Blog"
+
+#~ msgid "горячее"
+#~ msgstr "hot"
+
+#~ msgid "Галлерея"
+#~ msgstr "Gallery"
+
+#~ msgid "Домой"
+#~ msgstr "home"
+
+#~ msgid "Комната продавцов"
+#~ msgstr "Sellers room"
+
+#~ msgid "Категория 2"
+#~ msgstr "Category 2"
+
+#~ msgid "Категория 3"
+#~ msgstr "Category 3"
+
+#~ msgid "Выбор магазина"
+#~ msgstr "Shop selection"
+
+#~ msgid "Магазин 1"
+#~ msgstr "Shop 1"
+
+#~ msgid "Магазин 2"
+#~ msgstr "Shop 2"
+
+#~ msgid "Магазин 3"
+#~ msgstr "Shop 3"
+
+#~ msgid "Удалить"
+#~ msgstr "Delete"
+
+#~ msgid "Показать все продукты"
+#~ msgstr "All products"
+
+#~ msgid "Скидки на товары"
+#~ msgstr "Product discount"
+
+#~ msgid "Скидка группе товаров"
+#~ msgstr "Product group discount"
+
+#~ msgid "дни"
+#~ msgstr "days"
+
+#~ msgid "часы"
+#~ msgstr "hours"
+
+#~ msgid "минуты"
+#~ msgstr "minuts"
+
+#~ msgid "секунды"
+#~ msgstr "seconds"
+
+#~ msgid "Популярные продукты"
+#~ msgstr "Popular products"
+
+#~ msgid "Горячие предложения"
+#~ msgstr "Hot offers"
+
+#~ msgid "Ограниченное количество"
+#~ msgstr "Limited"
+
+#~ msgid "Сохранить"
+#~ msgstr "Save"
+
+#~ msgid "ДОМОЙ"
+#~ msgstr "Home"
+
+#~ msgid "Фото профиля"
+#~ msgstr "Image profile"
+
+#~ msgid "Фамилия"
+#~ msgstr "Last name"
+
+#~ msgid "Повторите пароль"
+#~ msgstr "Repeat password"
 
 #~ msgid "сессия анонимного пользователя"
 #~ msgstr "anonymous user session"

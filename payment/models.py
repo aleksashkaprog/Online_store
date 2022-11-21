@@ -8,7 +8,12 @@ from payment.enums import PaymentStatus
 
 class PaymentInfo(models.Model):
     """Модель неоплаченных заказов"""
-    order = models.ForeignKey(to=Order, on_delete=models.CASCADE, related_name='payment_info', verbose_name=_('заказ'))
+    order = models.OneToOneField(
+        to=Order,
+        on_delete=models.CASCADE,
+        related_name='payment_info',
+        verbose_name=_('заказ')
+    )
 
     status = models.CharField(
         max_length=1,

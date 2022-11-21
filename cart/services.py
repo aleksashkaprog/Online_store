@@ -156,8 +156,8 @@ class Cart(object):
     def clear(self) -> None:
         """Удаление корзины из БД"""
         if self.auth:
-            for item in self.cart:
-                item['shop_product'].delete()
+            for key, item in self.cart.items():
+                ProductInCart.objects.get(shop_product=item['shop_product_id'], user=self.user).delete()
 
         del self.session[CART_SESSION_ID]
         self.session.modified = True

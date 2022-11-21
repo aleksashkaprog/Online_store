@@ -97,7 +97,7 @@
                       </div>
                       <div class="Order-info Order-info_pay">
                         <div class="Order-infoType">Оплата:</div>
-                        <div class="Order-infoContent">{{ order.payment }}</div>
+                        <div class="Order-infoContent">{{ order.get_payment_display }}</div>
                       </div>
                     </div>
                   </div>
@@ -143,13 +143,9 @@
                       ><span class="Cart-price_old">{{ order.all_goods_price_old }}</span>
                     </div>
                     <div class="Cart-block">
-                        {% if order.payment == "картой" %}
                       <a class="btn btn_primary btn_lg" type="submit" href="{% url 'payment_order' order_pk=order.pk %}">
                         Оплатить
                       </a>
-                        {% else %}
-                            <a class="btn btn_primary btn_lg" type="submit" href="{% url 'history-order' %}">{% translate 'Оплата при получении' %}</a>
-                        {% endif %}
                     </div>
                   </div>
                 </div>

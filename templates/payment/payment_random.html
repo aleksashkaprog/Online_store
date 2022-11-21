@@ -21,7 +21,7 @@
     </div>
     <div class="Section">
       <div class="wrap">
-        <form class="form Payment" action="#" method="post">
+        <form class="form Payment" action="{% url 'payment_order' order.pk %}" method="post">
           {% csrf_token %}
           <div class="Payment-card">
             <div class="form-group">
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="Payment-pay">
-            <a class="btn btn_primary" href="{% url 'payment_progress' %}">{% translate 'Оплатить' %}</a>
+            <button class="btn btn_primary" type="submit">{% translate 'Оплатить' %}</button>
           </div>
         </form>
       </div>

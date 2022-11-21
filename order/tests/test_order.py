@@ -17,23 +17,23 @@ class OrderTest(TestCase):
         self.client.post("/order/step2/", {"city": "Город", "address": "Адрес"})
 
     def test_order_with_credit_card(self):
-        self.client.post("/order/step3/", {"payment": "картой"})
+        self.client.post("/order/step3/", {"payment": "random"})
         response = self.client.get("/order/step4/")
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "test@test.ru")
         self.assertContains(response, "Тест")
-        self.assertContains(response, "картой")
+        self.assertContains(response, "Онлайн со случайного чужого счёта")
         self.assertContains(response, "375299999999")
         self.assertContains(response, "1")
         self.assertContains(response, "2")
 
     def test_order_with_cash(self):
-        self.client.post("/order/step3/", {"payment": "наличными"})
+        self.client.post("/order/step3/", {"payment": "card"})
         response = self.client.get("/order/step4/")
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "test@test.ru")
         self.assertContains(response, "Тест")
-        self.assertContains(response, "наличными")
+        self.assertContains(response, "Онлайн картой")
         self.assertContains(response, "375299999999")
         self.assertContains(response, "1")
         self.assertContains(response, "2")

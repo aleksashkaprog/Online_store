@@ -23,5 +23,5 @@ class ExecPayment:
 
 def get_random_exc() -> str:
     """Функция возвращает случайную ошибку при неудачной оплате"""
-    return random.choices(ExecPayment.EXEC)
+    return random.choice(ExecPayment.EXEC)
 

@@ -19,11 +19,11 @@ class PaymentService:
     @staticmethod
     def try_to_pay(payment_info: PaymentInfo) -> Response:
         """Функция делает запрос к сервису оплаты, возвращает ответ от сервиса"""
-        url = "http://0.0.0.0:8000" + reverse(
+        url = "http://web:8000" + reverse(
             viewname="payment:pay",
             kwargs={
                 "card_number": payment_info.cart_number,
-                "cost": payment_info.order.all_goods_price_disc_delivery()
+                "cost": f'{payment_info.order.all_goods_price_disc_delivery}'
             },
         )
 
@@ -59,4 +59,4 @@ class PaymentService:
     @staticmethod
     def add_order_to_payment_queue(order_id: int, cart_number: int):
         """Функция добавляет заказ в очередь на оплату"""
-        PaymentInfo.objects.create(order_id=order_id, cart_number=cart_number)
+        PaymentInfo.objects.update_or_create(order_id=order_id, defaults={'cart_number': cart_number, 'status': 'w'})

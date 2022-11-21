@@ -191,8 +191,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/my/account/'
-
 CART_SESSION_ID = 'cart'
 
 CELERY_BROKER_URL = 'redis://redis:6379'
@@ -201,7 +199,7 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_BEAT_SCHEDULE = {
     'send_orders_to_pay': {
         'task': 'order.tasks.pay_for_orders',
-        'schedule': crontab(hour="*/1"),
+        'schedule': crontab(minute="*/5"),
     },
     'update_day_offer': {
         'task': 'main_page.tasks.day_offer_update',
