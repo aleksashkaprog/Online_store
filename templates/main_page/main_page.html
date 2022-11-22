@@ -3,48 +3,13 @@
 {% load i18n %}
 {% load cache %}
 {% block header_slider %}
-    {% if banners %}
-    <div class="Header-slider">
-      <div class="Slider Slider_main">
-        <div class="Slider-box">
-          {% for banner in banners %}
-            <div class="Slider-item">
-              <div class="Slider-content">
-                <div class="row">
-                  <div class="row-block">
-                    <strong class="Slider-title">{{ banner.product.name }}</strong>
-                    <div class="Slider-text">
-                      {{ banner.description }}
-                    </div>
-                    <div class="Slider-footer">
-                      <a class="btn btn_primary" href="{% url 'product' banner.product.slug %}">
-                        Get Started
-                      </a>
-                    </div>
-                  </div>
-                  <div class="row-block">
-                    <div class="Slider-img">
-                      <img src="{{ banner.logo }}" alt="slider.png"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="Slider-navigateWrap">
-          <div class="Slider-navigate">
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
 {% endblock %}
 
 {% cache main_cache main %}
   {% block main %}
 
       {% if favourite_categories %}
+        <h2 class="Section-title">Избранные категории</h2>
 
         <div class="Section">
           <div class="wrap">
@@ -184,7 +149,7 @@
           </div>
         </div>
       </div>
-
+      {% if hot_offers %}
       <div class="Section Section_dark">
         <div class="wrap">
           <div class="Section-content">
@@ -197,7 +162,6 @@
                   </div>
                 </div>
               </header>
-              {% if hot_offers %}
                 <div class="Slider-box Cards Cards_hz">
                   {% for hot_offer in hot_offers %}
                       <div class="Slider-item">

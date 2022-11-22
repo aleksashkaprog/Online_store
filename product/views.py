@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import DetailView
 
+from personal_account.services import PersonalAccount
 from .models import Product, Review
 from .forms import CreateProductForm
 from .services import ProductService
@@ -35,6 +36,7 @@ class ProductDetail(DetailView):
 
     def get(self, request, *args, **kwargs):
         ProductService.views_increment(self)
+        PersonalAccount.add_viewed_product(user=request.user.id, product=self.get_object().id)
         return super(ProductDetail, self).get(request, *args, **kwargs)
 
     def post(self, request, **kwargs):

@@ -3,34 +3,39 @@ from .models import ViewsHistory
 
 class PersonalAccount:
 
-    def add_viewed_product(self, user, product):
+    @staticmethod
+    def add_viewed_product(user, product):
         """ Добавление продукта в список просмотренных """
         try:
-            history_object = ViewsHistory.objects.get(user=user, product=product)
+            history_object = ViewsHistory.objects.get(user_id=user, product_id=product)
             history_object.delete()
-            ViewsHistory.objects.create(user=user, product=product)
+            ViewsHistory.objects.create(user_id=user, product_id=product)
         except ViewsHistory.DoesNotExist:
-            ViewsHistory.objects.create(user=user, product=product)
+            ViewsHistory.objects.create(user_id=user, product_id=product)
 
-    def delete_viewed_product(self, user, product):
+    @staticmethod
+    def delete_viewed_product(user, product):
         """ Удаление продукта из списка просмотренных """
-        history_object = ViewsHistory.objects.get(user=user, product=product)
+        history_object = ViewsHistory.objects.get(user_id=user, product_id=product)
         history_object.delete()
 
-    def get_last_viewed(self, user):
+    @staticmethod
+    def get_last_viewed(user):
         """ Получение списка просмотренных продуктов """
-        history_objects = ViewsHistory.objects.filter(user=user).all()
+        history_objects = ViewsHistory.objects.filter(user_id=user).all()
         return history_objects
 
-    def is_viewed(self, user, product):
+    @staticmethod
+    def is_viewed(user, product):
         """ Узнать, есть ли товар в списке просмотренных """
         try:
-            ViewsHistory.objects.get(user=user, product=product)
+            ViewsHistory.objects.get(user_id=user, product_id=product)
             return True
         except ViewsHistory.DoesNotExist:
             return False
 
-    def get_count_viewed(self, user):
+    @staticmethod
+    def get_count_viewed(user):
         """ Получение количества просмотренных продуктов """
         history_objects = ViewsHistory.objects.filter(user=user).count()
         return history_objects
