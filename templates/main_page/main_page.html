@@ -2,11 +2,47 @@
 {% load static %}
 {% load i18n %}
 {% load cache %}
+{% block header_slider %}
+    {% if banners %}
+    <div class="Header-slider">
+      <div class="Slider Slider_main">
+        <div class="Slider-box">
+          {% for banner in banners %}
+            <div class="Slider-item">
+              <div class="Slider-content">
+                <div class="row">
+                  <div class="row-block">
+                    <strong class="Slider-title">{{ banner.product.name }}</strong>
+                    <div class="Slider-text">
+                      {{ banner.description }}
+                    </div>
+                    <div class="Slider-footer">
+                      <a class="btn btn_primary" href="{% url 'product' banner.product.slug %}">
+                        Get Started
+                      </a>
+                    </div>
+                  </div>
+                  <div class="row-block">
+                    <div class="Slider-img">
+                      <img src="{{ banner.logo }}" alt="slider.png"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="Slider-navigateWrap">
+          <div class="Slider-navigate">
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
 
 {% cache main_cache main %}
   {% block main %}
-
-    <div class="Middle">
 
       {% if favourite_categories %}
 
@@ -40,9 +76,6 @@
 
       {% endif %}
 
-
-      <div class="Section Section_column Section_columnLeft Section_columnDesktop">
-        <div class="wrap">
 
           {% if day_offer %}
             <div class="Section-column">
@@ -107,8 +140,7 @@
 
           <div class="Section-content">
             <header class="Section-header">
-              <h2 class="Section-title">Popular Products
-              </h2>
+              <h2 class="Section-title">Популярные товары</h2>
             </header>
             <div class="Cards">
 
@@ -158,7 +190,7 @@
           <div class="Section-content">
             <div class="Slider Slider_carousel">
               <header class="Section-header">
-                <h2 class="Section-title">Hot Offers
+                <h2 class="Section-title">Горячие предложения
                 </h2>
                 <div class="Section-control">
                   <div class="Slider-navigate">
