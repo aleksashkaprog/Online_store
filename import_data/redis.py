@@ -15,8 +15,8 @@ STATUS_IMPORT_DATA = {
         'message': _('Идет импорт'),
     },
     False: {
-        'tag': messages.INFO,
-        'message': _('Импорт завершен'),
+        'tag': messages.ERROR,
+        'message': _('Импорт не выполнен'),
     },
     None: {
         'tag': messages.INFO,

@@ -34,12 +34,6 @@
         </p>
       </article>
       <div class="Compare">
-        <div class="Compare-header">
-          <label class="toggle Compare-checkDifferent">
-            <input type="checkbox" name="differentFeature" value="true" checked="checked"/>
-            <span class="toggle-box"></span><span class="toggle-text">{% translate 'Только различающиеся характеристики' %}</span>
-          </label>
-        </div>
 
         <div class="Compare-row">
           <div class="Compare-title Compare-title_blank"></div>
@@ -62,7 +56,7 @@
                 {{ product.name }}
               </div>
               <div class="Compare-feature">
-                <a class="Compare-btn" href="">
+                <a class="Compare-btn" href="{% url 'cart:random_add' product.pk %}">
                   <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                 </a>
                 <a class="Compare-btn" href="{% url 'delete_from_compare' product.pk %}">

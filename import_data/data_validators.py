@@ -1,7 +1,11 @@
 """Модели из модуля pydantic для валидации импортируемых json данных"""
 
-from pydantic import BaseModel
+from django.utils.translation import gettext_lazy as _
+
+from pydantic import BaseModel, validator
 from typing import Dict, Union
+
+import re
 
 
 class Property(BaseModel):
@@ -27,6 +31,13 @@ class Shop(BaseModel):
     phone: str
     description: str
     slug: str
+
+    @validator('phone')
+    def phone_validator(cls, v: str):
+        result = re.match(r'\+\d{,15}', v)
+        if not result or not v[1:].isdigit():
+            raise ValueError(_('Введите валидный номер телефона'))
+        return v
 
 
 class ProductShopData(BaseModel):
