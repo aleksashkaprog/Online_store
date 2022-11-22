@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -12,7 +13,11 @@ class Shop(models.Model):
     holder = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="shops", verbose_name=_("владелец"))
     address = models.TextField(blank=True, null=True, verbose_name=_("адрес"))
     email = models.EmailField(blank=True, null=True, verbose_name=_("почта"))
-    phone = models.CharField(max_length=16, blank=True, null=True, verbose_name=_("телефон"))
+    validator_phone = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message=' '.join([str(_('Телефон должен быть введён в формате:')), '+777777777777',
+                          str(_('Максимально количество цифр - 15'))]))
+    phone = models.CharField(max_length=16, blank=True, validators=[validator_phone], null=True, verbose_name=_("телефон"))
     description = models.TextField(blank=True, null=True, verbose_name=_("описание"))
     logo = models.ImageField(upload_to="logo", null=True, verbose_name=_("логотип"))
     slug = models.SlugField(unique=True, verbose_name=_("слаг"))

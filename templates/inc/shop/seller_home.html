@@ -81,19 +81,19 @@
 
             {% if shops %}
             {% for shop in shops %}
-                <div class="Seller-wrap" style="justify-content: center;">
+                <div class="Seller-wrap" style="justify-content: center; margin-bottom: 15px">
                 <div class="row row_verticalCenter row_maxHalf">
+                    <a style="display: flex; align-items: center" href="{% url 'seller-shop' shop.pk %}">
                     <div class="row-block">
                       <div class="pict"><img src="{{ shop.logo.url }}" alt="store_icon">
                       </div>
                     </div>
                     <div class="row-block">
-                        <a href="{% url 'seller-shop' shop.pk %}">
                       <h2>
                           {{ shop.name }}
                       </h2>
-                             </a>
                     </div>
+                        </a>
 
                 </div>
             </div>

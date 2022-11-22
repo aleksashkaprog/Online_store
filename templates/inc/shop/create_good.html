@@ -91,14 +91,17 @@
                               <label class="form-label" for="id_quantity">{% trans 'Количество' %}:
                               </label>
                               <input style="width: 40% !important;" class="border size_custom form-input" type="number" name="amount" required id="id_quantity">
+                              <span>{{ form.errors.amount }}</span>
                           </div>
                           <div class="form-group">
                               <label class="form-label" for="id_price">{% trans 'Цена' %}:</label>
-                              <input style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="price" type="number" required step="1.00">
+                              <input style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="price" type="number" required step="0.01">
+                              <span>{{ form.errors.price }}</span>
                           </div>
                           <div class="form-group">
                               <label class="form-label" for="id_price">{% trans 'Старая цена' %}:</label>
-                              <input style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="old_price" type="number" required step="1.00">
+                              <input style="width: 40% !important;" class="border size_custom form-input" id="id_price" name="old_price" type="number" required step="0.01">
+                              <span>{{ form.errors.old_price }}</span>
                           </div>
                       </div>
                   </div>

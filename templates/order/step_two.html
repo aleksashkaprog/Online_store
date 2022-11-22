@@ -57,14 +57,17 @@
               <div class="form-group">
                 <label>Способ доставки</label>
                 {{ form.delivery }}
+                  <span>{{ form.errors.delivery }}</span>
               </div>
               <div class="form-group">
                 <label>Город</label>
                 {{ form.city }}
+                  <span>{{ form.errors.city }}</span>
               </div>
               <div class="form-group">
                 <label>Адрес</label>
                 {{ form.address }}
+                  <span>{{ form.errors.address }}</span>
               </div>
               <div class="Order-footer">
                 <button style="cursor: pointer" class="btn btn_success">

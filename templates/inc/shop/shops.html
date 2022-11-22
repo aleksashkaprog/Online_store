@@ -30,12 +30,11 @@
         {% if shops %}
             <h3 style="font-size: 40px">Магазины</h3>
         {% for store in shops %}
-            <div class="Seller-wrap" style="justify-content: center;">
+            <div class="Seller-wrap" style="justify-content: center; margin-bottom: 10px; border-bottom: 1px solid black ">
                 <div class="row row_verticalCenter row_maxHalf">
-                    <div class="row-block">
-                        <a href="{% url 'shop' shop_pk=store.id %}">
-                      <div class="pict"><img src="{{ store.logo.url }}" alt="store_icon">
-                      </div>
+                    <a style="display: flex; align-items: center" href="{% url 'shop' shop_pk=store.id %}">
+                    <div class="row-block" >
+                      <div class="pict"><img src="{{ store.logo.url }}" alt="store_icon"></div>
                     </div>
                     <div class="row-block">
                       <h2>
@@ -52,32 +51,32 @@
         </div>
       </div>
     </div>
-    <div class="Pagination">
-        <div class="Pagination-ins">
-            <a class="Pagination-element Pagination-element_prev" href="?page={% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% else %}{{ page_obj.number }}{% endif %}">
-                <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
-            </a>
-            {% if page_obj.has_previous %}
-                <a class="Pagination-element" href="?page={{ page_obj.previous_page_number }}">
-                    <span class="Pagination-text">{{ page_obj.previous_page_number }}</span>
-                </a>
-            {% endif %}
-            <a class="Pagination-element Pagination-element_current" href="#">
-                <span class="Pagination-text">{{ page_obj.number }}</span>
-            </a>
-            {% if page_obj.has_next %}
-                <a class="Pagination-element" href="?page={{ page_obj.next_page_number }}">
-                    <span class="Pagination-text">{{ page_obj.next_page_number }}</span>
-                </a>
-            {% endif %}
-            <a class="Pagination-element Pagination-element_prev"
-               href="?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}
-                {% else %}{{ page_obj.number }}{% endif %}">
-                <img
-                        src="{% static 'assets/img/icons/nextPagination.svg' %}"
-                        alt="nextPagination.svg"/>
-            </a>
-        </div>
-    </div>
+{#    <div class="Pagination">#}
+{#        <div class="Pagination-ins">#}
+{#            <a class="Pagination-element Pagination-element_prev" href="?page={% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% else %}{{ page_obj.number }}{% endif %}">#}
+{#                <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>#}
+{#            </a>#}
+{#            {% if page_obj.has_previous %}#}
+{#                <a class="Pagination-element" href="?page={{ page_obj.previous_page_number }}">#}
+{#                    <span class="Pagination-text">{{ page_obj.previous_page_number }}</span>#}
+{#                </a>#}
+{#            {% endif %}#}
+{#            <a class="Pagination-element Pagination-element_current" href="#">#}
+{#                <span class="Pagination-text">{{ page_obj.number }}</span>#}
+{#            </a>#}
+{#            {% if page_obj.has_next %}#}
+{#                <a class="Pagination-element" href="?page={{ page_obj.next_page_number }}">#}
+{#                    <span class="Pagination-text">{{ page_obj.next_page_number }}</span>#}
+{#                </a>#}
+{#            {% endif %}#}
+{#            <a class="Pagination-element Pagination-element_prev"#}
+{#               href="?page={% if page_obj.has_next %}{{ page_obj.next_page_number }}#}
+{#                {% else %}{{ page_obj.number }}{% endif %}">#}
+{#                <img#}
+{#                        src="{% static 'assets/img/icons/nextPagination.svg' %}"#}
+{#                        alt="nextPagination.svg"/>#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
 </div>
 {% endblock %}

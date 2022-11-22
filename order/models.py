@@ -1,5 +1,6 @@
 import decimal
 
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -8,6 +9,8 @@ from product.models import Product
 from users.models import CustomUser
 
 DELIVERY_CHOICES = [("обычная", _("Обычная доставка")), ("экспресс", _("Экспресс доставка"))]
+# validator_number = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+#                                     message='Номер должен быть в следующем формате: +77777777777')
 
 
 class PaymentChoices(models.TextChoices):
@@ -20,7 +23,11 @@ class Order(models.Model):
         CustomUser, on_delete=models.CASCADE, related_name="orders", verbose_name=_("потребитель")
     )
     first_second_names = models.TextField(null=True, blank=True, verbose_name=_("ФИО"))
-    phone = models.CharField(null=True, blank=True, max_length=13, verbose_name=_("телефон"))
+    validator_phone = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message=' '.join([str(_('Телефон должен быть введён в формате:')), '+777777777777',
+                                                   str(_('Максимально количество цифр - 15'))]))
+    phone = models.CharField(null=True, blank=True, validators=[validator_phone], max_length=16, verbose_name=_("телефон"))
     email = models.EmailField(null=True, blank=True, verbose_name=_("почта"))
     delivery = models.CharField(max_length=10, default="обычная", choices=DELIVERY_CHOICES, verbose_name=_("доставка"))
     payment = models.CharField(max_length=10, default=PaymentChoices.card,

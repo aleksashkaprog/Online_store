@@ -12,7 +12,7 @@ from .forms import CreateShop, AddProductToTheShop, EditShop, EditProductInTheSh
 class ShopAllView(ShopServices, ListView):
     model = Shop
     template_name = "inc/shop/shops.html"
-    paginate_by = 6
+    paginate_by = 3
     context_object_name = "shops"
 
     def get_queryset(self):
