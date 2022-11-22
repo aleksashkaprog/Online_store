@@ -1,40 +1,38 @@
-import datetime
-
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from shop.models import ShopProduct
-from users.models import CustomUser
+from category.models import Category
+from product.models import Product
+from .utility import FavouriteLowestPriceMixin
 
 
-class Favourite(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
-                                related_name='favourites', verbose_name=_('продукт'))
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
-                             related_name='favourites', verbose_name=_('пользователь'))
+class Favourite(FavouriteLowestPriceMixin, models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name='favourites', verbose_name=_('категория'))
 
     class Meta:
-        verbose_name = _('любимый товар')
-        verbose_name_plural = _('любимые товары')
+        verbose_name = _('избранная категория')
+        verbose_name_plural = _('избранные категории')
 
     def __str__(self):
-        return self.product
+        return str(self.category)
 
 
 class DayOffer(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='day_offers', verbose_name=_('продукт'))
-    day = models.DateField(default=datetime.date.today(), verbose_name=_('день'))
+    day = models.DateField(default=timezone.now, verbose_name=_('день'))
 
     class Meta:
         verbose_name = _('предложение дня')
         verbose_name_plural = _('предложения дня')
 
     def __str__(self):
-        return self.product
+        return str(self.product)
 
 
 class Top(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='top_products', verbose_name=_('продукт'))
 
     class Meta:
@@ -42,11 +40,11 @@ class Top(models.Model):
         verbose_name_plural = _('популярные товары')
 
     def __str__(self):
-        return self.product
+        return str(self.product)
 
 
 class Hot(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='hots', verbose_name=_('продукт'))
 
     class Meta:
@@ -54,11 +52,11 @@ class Hot(models.Model):
         verbose_name_plural = _('горячие предложения')
 
     def __str__(self):
-        return self.product
+        return str(self.product)
 
 
 class Limit(models.Model):
-    product = models.ForeignKey(ShopProduct, on_delete=models.CASCADE,
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='limits', verbose_name=_('продукт'))
 
     class Meta:
@@ -66,4 +64,4 @@ class Limit(models.Model):
         verbose_name_plural = _('ограниченные предложения')
 
     def __str__(self):
-        return self.product
+        return str(self.product)

@@ -2,7 +2,5 @@ from .services import Cart
 
 
 def cart(request):
-    """
-    Контекстный процессор корзины
-    """
+    """Контекстный процессор корзины"""
     return {'cart': Cart(request)}

@@ -36,7 +36,6 @@ class CatalogTestCase(TestCase):
 
     def test_catalog_template(self) -> None:
         response = self.client.get(reverse('catalog'))
-        print(response)
         self.assertTemplateUsed(response, 'catalog.html')
 
     def test_catalog_category_get(self):

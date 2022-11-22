@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
   <div class="Middle Middle_top">
     <div class="Middle-top">
       <div class="wrap">
         <div class="Middle-header">
-          <h1 class="Middle-title">История просмотра
-          </h1>
+          <h1 class="Middle-title">{% translate 'История просмотров' %}</h1>
           <ul class="breadcrumbs Middle-breadcrumbs">
-            <li class="breadcrumbs-item"><a href="{% url 'main_page' %}">home</a>
+            <li class="breadcrumbs-item">
+              <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
             </li>
-            <li class="breadcrumbs-item breadcrumbs-item_current"><span>История просмотра</span>
+            <li class="breadcrumbs-item breadcrumbs-item_current">
+                <span>{% translate 'История просмотров' %}</span>
             </li>
           </ul>
         </div>
@@ -22,20 +24,25 @@
         <div class="Section-column">
           <div class="Section-columnSection">
             <header class="Section-header">
-              <strong class="Section-title">Навигация
-              </strong>
+              <strong class="Section-title">{% translate 'Меню' %}</strong>
             </header>
             <div class="Section-columnContent">
               <div class="NavigateProfile">
                 <ul class="menu menu_vt">
-                  <li class="menu-item"><a class="menu-link" href="{% url 'account' %}">Личный кабинет</a>
+                  <li class="menu-item">
+                      <a class="menu-link" href="{% url 'account' %}">{% translate 'Личный кабинет' %}</a>
                   </li>
-                  <li class="menu-item"><a class="menu-link" href="{% url 'profile' %}">Профиль</a>
+                  <li class="menu-item">
+                      <a class="menu-link" href="{% url 'profile' %}">{% translate 'Профиль' %}</a>
                   </li>
-{#                  <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="{% url 'order_history' %}">История#}
-{#                    заказов</a>#}
-{#                  </li>#}
-{#                  <li class="menu-item"><a class="menu-link" href="{% url 'view-history' %}">История просмотра</a>#}
+                  <li class=" menu-item">
+                      <a class="menu-link" href="{% url 'history-order' %}">{% translate 'История заказов' %}</a>
+                  </li>
+                  <li class="menu-item_ACTIVE menu-item">
+                      <a class="menu-link" href="{% url 'users:view_history' %}">{% translate 'Просмотренные продукты' %}</a>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-link" href="{% url 'seller-room' %}">{% translate 'Комната продавца' %}</a>
                   </li>
                 </ul>
               </div>
@@ -43,11 +50,14 @@
           </div>
         </div>
         <div class="Section-content">
+          <header class="Section-header margin">
+            <h2 class="Section-title">{% translate 'Ваша история просмотров' %}</h2>
+          </header>
           {% if viewed_products %}
             <div class="Cards">
               {% for product in viewed_products %}
               <div class="Card{% if forloop.counter > 18 %} hide_1450 {% endif %}">
-                <a class="Card-picture" href="{% url 'product' product.slug product.id %}">
+                <a class="Card-picture" href="{% url 'product' product.slug %}">
                   <img src="{{ product.image }}" alt="card.jpg"/>
                 </a>
                 <div class="Card-content">
@@ -62,7 +72,7 @@
                     <div class="Card-category">{{ product.category }}
                     </div>
                     <div class="Card-hover">
-                      <a class="Card-btn" href="{% url 'product' product.slug product.id %}">
+                      <a class="Card-btn" href="{% url 'product' product.slug %}">
                         <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
                       </a>
                       <a class="Card-btn" href="{% url 'cart_add' product.id %}">

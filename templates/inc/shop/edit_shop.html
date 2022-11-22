@@ -6,11 +6,13 @@
 <div class="Middle-top">
   <div class="wrap">
     <div class="Middle-header">
-      <h1 class="Middle-title">{% translate 'Измнение магазина' %}</h1>
+      <h1 class="Middle-title">{% translate 'Изменение магазина' %}</h1>
       <ul class="breadcrumbs Middle-breadcrumbs">
-        <li class="breadcrumbs-item"><a href="#">{% translate 'Домой' %}</a></li>
+          <li class="breadcrumbs-item">
+            <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
+          </li>
         <li class="breadcrumbs-item breadcrumbs-item_current">
-          <span>{% translate 'Комната продавцов' %}</span>
+          <span>{% translate 'Комната продавца' %}</span>
         </li>
       </ul>
     </div>
@@ -27,16 +29,19 @@
           <div class="NavigateProfile">
             <ul class="menu menu_vt">
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'Профиль' %}</a>
+                <a class="menu-link" href="{% url 'account' %}">{% translate 'Личный кабинет' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'История заказов' %}</a>
+                <a class="menu-link" href="{% url 'profile' %}">{% translate 'Профиль' %}</a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" href="#">{% translate 'Просмотренные продукты' %}</a>
+                <a class="menu-link" href="{% url 'history-order' %}">{% translate 'История заказов' %}</a>
+              </li>
+              <li class="menu-item">
+                <a class="menu-link" href="{% url 'users:view_history' %}">{% translate 'Просмотренные продукты' %}</a>
               </li>
               <li class="menu-item_ACTIVE menu-item">
-                <a class="menu-link" href="#">{% translate 'Комната продавцов' %}</a>
+                <a class="menu-link" href="{% url 'seller-room' %}">{% translate 'Комната продавца' %}</a>
               </li>
             </ul>
           </div>
@@ -51,9 +56,14 @@
       >
         {% csrf_token %}
         <div class="block__create-store-left">
+            <input class="form-input" name="holder"
+                                 value="{{ request.user.id }}"
+                                 type="hidden">
+
           <div class="form-group">
             <label class="form-label" for="id_name">{% translate 'Название магазина' %}</label>
             <input
+                    value="{{ shop.name }}"
               class="form-input border"
               id="id_name"
               required
@@ -64,21 +74,20 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="id_address">{% translate 'Адрес' %}</label>
-            <textarea
-              class="border"
+            <input
+                value="{{ shop.address }}"
+                class="form-input border"
               name="address"
-              cols="10"
-              rows="4"
               required
-              maxlength="255"
+              type="text"
               id="id_address"
               placeholder="{% translate 'Введите адрес' %}"
-            ></textarea>
+            />
           </div>
-
           <div class="form-group">
             <label class="form-label" for="id_phone">{% translate 'Телефон' %}</label>
             <input
+                    value="{{ shop.phone }}"
               class="form-input border"
               id="id_phone"
               required
@@ -90,6 +99,7 @@
           <div class="form-group form__email">
             <label class="form-label" for="id_email">{% translate 'Почта' %}</label>
             <input
+                    value="{{ shop.email }}"
               class="form-input border"
               id="id_email"
               required
@@ -98,27 +108,32 @@
               placeholder="{% translate 'Введите почту' %}"
             />
           </div>
-        </div>
-        <div class="block__create-store-right">
-          <div class="form-group">
-            <label class="form-label" for="id_description">{% translate 'Описание' %}</label>
-            <textarea
-              class="border"
-              name="description"
-              cols="40"
-              rows="17"
-              maxlength="255"
-              id="id_description"
-              placeholder="{% translate 'Описание' %}"
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <div class="Profile-btn">
-              <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
-              <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
+            <div class="form-group">
+                <div class="Profile-btn">
+                    <button style="width: 46%!important;" class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+                    <button style="width: 46%!important;" class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>
+                </div>
             </div>
-          </div>
         </div>
+          <div class="form-group">
+              <label class="form-label" for="avatar">{% trans 'Avatar' %}</label>
+              {% if shop.logo %}
+                  <div style="border-radius: 25px" class="Profile-avatar">
+              {% else %}
+                  <div style="border-radius: 25px" class="Profile-avatar Profile-avatar_noimg" >
+              {% endif %}
+              <div class="Profile-img">
+                  {%  if shop.logo %}
+                      <img src="{{ shop.logo.url }}" alt="#.png">
+                  {% else %}
+                      <img src="assets/img/#.png" alt="#.png">
+                  {% endif %}
+              </div>
+              <span class="avatar-span">{% trans 'Выбрать/Изменить' %}</span>
+              <input class="Profile-file form-input border" id="avatar" accept="image/*" name="logo" type="file" data-validate="onlyImgAvatar">
+              </div>
+              </div>
+          </div>
       </form>
     </div>
   </div>

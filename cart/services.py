@@ -14,10 +14,10 @@ from config.settings.base import CART_SESSION_ID
 
 class Cart(object):
     """Класс, описывающий корзину пользователя"""
-    exclude_fields_for_iter = ('store__description', 'store__slug', 'store__address', 'store__email', 'store__phone',
-                               'store__logo', 'product__category_id', 'product__rating', 'product__characteristic',
-                               'amount', 'product__created_at', 'product__updated_at', 'product__views', 'add_at',
-                               'store__holder_id')
+    EXCLUDE_FIELDS = ('store__description', 'store__slug', 'store__address', 'store__email', 'store__phone', 'amount',
+                      'product__category_id', 'product__created_at', 'product__views', 'product__updated_at',
+                      'store__holder_id', 'store__logo',
+                      )
 
     def __init__(self, request) -> None:
         """Инициализируем корзину"""
@@ -37,13 +37,14 @@ class Cart(object):
         """Функция возвращает корзину авторизованного пользователя для сессий"""
         cart = {}
         queryset = ProductInCart.objects.filter(user=self.user).select_related('shop_product__product')
-        if queryset.exists():
-            for cart_item in queryset:
-                cart[str(cart_item.shop_product.product.id)] = {
-                    'shop_product_id': cart_item.shop_product.id,
-                    'price': str(cart_item.shop_product.price),
+
+        for cart_item in queryset:
+            shop_product = cart_item.shop_product
+            cart[str(shop_product.product.id)] = {
+                    'shop_product_id': shop_product.id,
+                    'price': str(shop_product.price),
                     'quantity': cart_item.quantity
-                }
+            }
 
         return cart
 
@@ -52,18 +53,16 @@ class Cart(object):
         shop_product_id = shop_product.id
         product_id = str(shop_product.product.id)
 
-        if self.check_product_in_session_cart(product_id, shop_product_id) and \
-                self.check_product_in_user_cart(shop_product_id):
-            self.change(shop_product, quantity, True)
-
+        if self.product_in_session_cart(product_id, shop_product_id) and self.product_in_user_cart(shop_product_id):
+            self.update(shop_product, quantity, True)
         else:
             self.add(shop_product, quantity)
 
-    def check_product_in_session_cart(self, product_id: str, shop_product_id: int) -> bool:
+    def product_in_session_cart(self, product_id: str, shop_product_id: int) -> bool:
         """Функция проверяет, что товар с нужным продавцом есть в корзине для неавторизованного пользователя"""
         return product_id in self.cart and self.cart[product_id]['shop_product_id'] == shop_product_id
 
-    def check_product_in_user_cart(self, shop_product_id: int) -> bool:
+    def product_in_user_cart(self, shop_product_id: int) -> bool:
         """Функция проверяет, что товар с нужным продавцом есть в корзине для авторизованного пользователя"""
         return not self.auth or ProductInCart.objects.filter(user=self.user, shop_product_id=shop_product_id).exists()
 
@@ -80,18 +79,14 @@ class Cart(object):
         self.save()
 
         if self.auth:
-            try:
-                cart_product = ProductInCart.objects.only(
-                    'shop_product', 'quantity').get(user=self.user, shop_product__product_id=product_id)
+            (ProductInCart.objects
+                          .update_or_create(
+                              user=self.user,
+                              shop_product__product_id=product_id,
+                              defaults={'shop_product': shop_product, 'quantity': quantity}
+                          ))
 
-                cart_product.shop_product = shop_product
-                cart_product.quantity = quantity
-                cart_product.save(update_fields=['shop_product', 'quantity'])
-
-            except ProductInCart.DoesNotExist:
-                ProductInCart.objects.create(user=self.user, shop_product=shop_product, quantity=quantity)
-
-    def change(self, shop_product: ShopProduct, quantity: int, in_cart: bool = False) -> None:
+    def update(self, shop_product: ShopProduct, quantity: int, in_cart: bool = False) -> None:
         """Метод изменения кол-ва товара в корзине"""
         product_id = str(shop_product.product.id)
 
@@ -137,9 +132,11 @@ class Cart(object):
         """Перебор элементов в корзине"""
         shop_product_ids = [values['shop_product_id'] for values in self.cart.values()]
 
-        shop_products = ShopProduct.objects.filter(
-            id__in=shop_product_ids).select_related('store', 'product').prefetch_related(
-            'product__shop_products__product__images').defer(*self.exclude_fields_for_iter)
+        shop_products = (ShopProduct.objects
+                         .filter(id__in=shop_product_ids)
+                         .select_related('store', 'product')
+                         .prefetch_related('product__shop_products__product__images')
+                         .defer(*self.EXCLUDE_FIELDS))
 
         cart = self.cart.copy()
         for shop_product in shop_products:
@@ -159,15 +156,15 @@ class Cart(object):
     def clear(self) -> None:
         """Удаление корзины из БД"""
         if self.auth:
-            for item in self.cart:
-                item['shop_product'].delete()
+            for key, item in self.cart.items():
+                ProductInCart.objects.get(shop_product=item['shop_product_id'], user=self.user).delete()
 
         del self.session[CART_SESSION_ID]
         self.session.modified = True
 
 
 def get_product(pk: int, *args) -> Product:
-    """Возвращает продукт"""
+    """Возвращает товар"""
     try:
         return Product.objects.only(*args).get(id=pk)
     except Product.DoesNotExist:
@@ -213,11 +210,10 @@ def change_count_cart(request, shop_product_pk, quantity) -> None:
     """Изменяет кол-во товара в корзине"""
     cart = Cart(request)
     shop_product = get_shop_product(shop_product_pk)
-    cart.change(shop_product, quantity)
+    cart.update(shop_product, quantity)
 
 
 def remove_product(request, pk: int) -> None:
     """Удаляет товар из корзины"""
     cart = Cart(request)
-    product = get_product(pk, 'id')
-    cart.remove(str(product.id))
+    cart.remove(str(pk))

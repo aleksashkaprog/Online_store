@@ -6,10 +6,7 @@ from shop.models import ShopProduct
 
 
 class ProductInCart(models.Model):
-    """
-    Модель товара, хранящегося в корзине у пользователя
-    """
-
+    """Модель товара, хранящегося в корзине у пользователя"""
     user = models.ForeignKey(
         to=CustomUser,
         on_delete=models.CASCADE,
@@ -24,7 +21,7 @@ class ProductInCart(models.Model):
         verbose_name=_('модель, связывающая товар и магазин')
     )
 
-    quantity = models.PositiveIntegerField(verbose_name=_('количество'))
+    quantity = models.PositiveIntegerField(verbose_name=_('количество'), default=0)
 
     class Meta:
         verbose_name = _('корзина пользователя')

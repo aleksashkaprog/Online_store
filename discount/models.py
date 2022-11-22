@@ -40,7 +40,7 @@ class BaseDiscount(models.Model):
     def clean_fields(self, exclude=None):
         if self.type == 'percent' and self.value > 99:
             raise ValidationError(_('скидка на процент не может быть больше 99'))
-        super(BaseDiscount, self).clean_fields(self)
+        super(BaseDiscount, self).clean_fields(exclude)
 
     class Meta:
         abstract = True
@@ -144,4 +144,4 @@ class CartDiscount(BaseDiscount):
     def clean_fields(self, exclude=None):
         if self.condition_max_value < self.condition_min_value:
             raise ValidationError(_('максимальное значение условия должно быть больше или равно минамальному'))
-        super(CartDiscount, self).clean_fields(self)
+        super(CartDiscount, self).clean_fields(exclude)

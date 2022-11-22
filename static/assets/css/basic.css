@@ -2145,7 +2145,7 @@ label.toggle {
 
 .block__input-numbers {
   display: flex;
-  width: 95%;
+  width: 93%;
   margin-bottom: 10px;
 }
 
@@ -2238,8 +2238,8 @@ label.toggle {
 
 .btn__show-history {
   color: black;
-  font-size: 35px;
-  font-weight: 300;
+  font-size: 25px;
+  font-weight: 200;
 }
 
 .btn__close {

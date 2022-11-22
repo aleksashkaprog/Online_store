@@ -8,74 +8,55 @@ from django.db import transaction
 from payment.models import PaymentInfo, ErrorMessage
 
 
-class OrderService:
-    def set_user_info(self):
-        """Заполнение информации о пользователе"""
-        pass
-
-    def set_delivery(self):
-        """Выбор способа доставки"""
-        pass
-
-    def set_payment_method(self):
-        """Выбор способа оплаты"""
-        pass
-
-    def check_order_data(self):
-        """Проверка ранее введенных данных при оформлении заказа"""
-        pass
-
-
 class PaymentService:
     """Класс для работы с оплатой заказов"""
+
     @staticmethod
     def get_wait_list() -> List[PaymentInfo]:
         """Функция возвращает список заказов, поставленных на оплату"""
-        return PaymentInfo.objects.filter(status='w').select_related('order').prefetch_related('order__order_goods')
+        return PaymentInfo.objects.filter(status="w").select_related("order").prefetch_related("order__order_goods")
 
     @staticmethod
     def try_to_pay(payment_info: PaymentInfo) -> Response:
         """Функция делает запрос к сервису оплаты, возвращает ответ от сервиса"""
-        total_cost = str(payment_info.order.all_goods_price + payment_info.order.cost_delivery)
-
-        url = 'http://0.0.0.0:8000' + reverse(
-                viewname='payment:pay',
-                kwargs={
-                    'card_number': payment_info.cart_number,
-                    'cost': total_cost
-                },
-            )
+        url = "http://web:8000" + reverse(
+            viewname="payment:pay",
+            kwargs={
+                "card_number": payment_info.cart_number,
+                "cost": f'{payment_info.order.all_goods_price_disc_delivery}'
+            },
+        )
 
         return requests.get(url)
 
-    @staticmethod
+    @classmethod
     @transaction.atomic
-    def update_payment_info(response: Response, payment_info: PaymentInfo) -> None:
+    def update_payment_info(cls, response: Response, payment_info: PaymentInfo) -> None:
         """Функция обрабатывает ответ от сервиса оплаты"""
         response_data = response.json()
 
         if response.status_code == 201:
-            PaymentService.update_after_success_pay(payment_info)
+            cls.update_after_success_pay(payment_info)
         else:
-            PaymentService.update_after_fail_pay(payment_info, response_data['error'])
+            cls.update_after_fail_pay(payment_info, response_data['error'])
 
-    @staticmethod
-    def update_after_success_pay(payment_info: PaymentInfo) -> None:
+    @classmethod
+    def update_after_success_pay(cls, payment_info: PaymentInfo) -> None:
         """Функция выставляет заказу статус оплачен и убирает заказ из таблицы неоплаченных заказов"""
         order = payment_info.order
         order.paid = True
-        order.save(update_fields=['paid'])
+        order.save(update_fields=["paid"])
 
         payment_info.delete()
 
-    @staticmethod
-    def update_after_fail_pay(payment_info: PaymentInfo, error_message: str) -> None:
+    @classmethod
+    def update_after_fail_pay(cls, payment_info: PaymentInfo, error_message: str) -> None:
         """Функция выставляет заказу статус не оплачен и добавляет сообщение с текстом ошибки"""
-        payment_info.status = 'f'
+        payment_info.status = "f"
         payment_info.save()
-        ErrorMessage.objects.update_or_create(payment_info=payment_info, defaults={'message': error_message})
+        ErrorMessage.objects.update_or_create(payment_info=payment_info, defaults={"message": error_message})
 
     @staticmethod
     def add_order_to_payment_queue(order_id: int, cart_number: int):
         """Функция добавляет заказ в очередь на оплату"""
-        PaymentInfo.objects.create(order_id=order_id, cart_number=cart_number)
+        PaymentInfo.objects.update_or_create(order_id=order_id, defaults={'cart_number': cart_number, 'status': 'w'})
