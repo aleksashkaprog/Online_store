@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, View
+from config.settings.base import SHOPS_VIEW
 from .services import ShopServices
 from .models import Shop, ShopProduct
 from .forms import CreateShop, AddProductToTheShop, EditShop, EditProductInTheShop
@@ -12,7 +13,7 @@ from .forms import CreateShop, AddProductToTheShop, EditShop, EditProductInTheSh
 class ShopAllView(ShopServices, ListView):
     model = Shop
     template_name = "inc/shop/shops.html"
-    paginate_by = 3
+    paginate_by = SHOPS_VIEW
     context_object_name = "shops"
 
     def get_queryset(self):
@@ -24,12 +25,14 @@ class ShopDetailView(DetailView):
     template_name = "inc/shop/shop_info.html"
     context_object_name = "shop"
     pk_url_kwarg = "shop_pk"
+    paginate_by = SHOPS_VIEW
 
 
 class ShopRoomView(ShopServices, ListView):
     model = Shop
     template_name = "inc/shop/seller_home.html"
     context_object_name = "shops"
+    paginate_by = SHOPS_VIEW
 
     def get_queryset(self):
         return self.get_user_shop(user=self.request.user)
@@ -40,6 +43,7 @@ class ShopRoomDetailView(DetailView):
     template_name = "inc/shop/seller_shop.html"
     context_object_name = "shop"
     pk_url_kwarg = "shop_pk"
+    paginate_by = SHOPS_VIEW
 
 
 class CreateShopView(ShopServices, View):
