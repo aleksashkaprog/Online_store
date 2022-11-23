@@ -1,6 +1,7 @@
 import os
 
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -17,7 +18,11 @@ class CustomUser(AbstractUser):
     """Модель кастомного пользователя"""
     username = None
     email = models.EmailField(verbose_name=_('электронная почта'), max_length=128, unique=True)
-    phone_number = models.CharField(verbose_name=_('телефон'), max_length=12, blank=True)
+    validator_phone = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message=' '.join([str(_('Телефон должен быть введён в формате:')), '+777777777777',
+                          str(_('Максимально количество цифр - 15'))]))
+    phone_number = models.CharField(verbose_name=_('телефон'), validators=[validator_phone], max_length=16, blank=True)
     full_name = models.CharField(verbose_name=_('ФИО'), max_length=256, blank=True)
     # avatar = models.ImageField(verbose_name=_('аватар'), upload_to=update_avatar)
     avatar = models.ImageField(verbose_name=_('аватар'), upload_to="users")

@@ -68,8 +68,8 @@
                                 {% endif %}">
               </div>
             <div class="Account-column">
-            {% if request.user.fullname %}
-              <div class="Account-name">{{ request.user.fullname }}</div>
+            {% if request.user.full_name %}
+              <div class="Account-name">{{ request.user.full_name }}</div>
             {% else %}
               <div class="Account-name">{{ request.user.email }}</div>
             {% endif %}

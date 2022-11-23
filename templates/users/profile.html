@@ -72,6 +72,7 @@
                                     </div>
                                     <span class="avatar-span">{% trans 'Выбрать/Изменить' %}</span>
                                     <input class="Profile-file form-input" id="avatar" accept="image/*" name="avatar" type="file" data-validate="onlyImgAvatar">
+                                    <span>{{ form.errors.avatar }}</span>
                                 </div>
                             </div>
             <div class="profile__form">
@@ -84,6 +85,7 @@
                 placeholder="ФИО"
                 type="text"
               />
+                <span>{{ form.errors.full_name }}</span>
             </div>
           </div>
           <div class="profile__right">
@@ -97,6 +99,7 @@
                 required
                 type="text"
               />
+                <span>{{ form.errors.phone_number }}</span>
             </div>
 
               <label class="form-label" for="id_phone">{% translate 'Почта' %}</label>
@@ -108,6 +111,7 @@
                 required
                 type="text"
               />
+              <span>{{ form.errors.email }}</span>
             </div>
           <div>
             <button class="btn btn_success" type="submit">{% translate 'Изменить' %}</button>

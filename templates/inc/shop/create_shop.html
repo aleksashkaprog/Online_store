@@ -69,6 +69,7 @@
               type="text"
               placeholder="{% translate 'Введите название' %}"
             />
+              <span>{{ form.errors.name }}</span>
           </div>
           <div class="form-group">
             <label class="form-label" for="id_address">{% translate 'Адрес' %}</label>
@@ -82,6 +83,7 @@
               id="id_address"
               placeholder="{% translate 'Введите адрес' %}"
             ></textarea>
+              <span>{{ form.errors.address }}</span>
           </div>
 
           <div class="form-group">
@@ -94,6 +96,7 @@
               type="text"
               placeholder="{% translate 'Введите телефон' %}"
             />
+              <span>{{ form.errors.phone }}</span>
           </div>
           <div class="form-group form__email">
             <label class="form-label" for="id_email">{% translate 'Почта' %}</label>
@@ -105,6 +108,7 @@
               type="email"
               placeholder="{% translate 'Введите почту' %}"
             />
+              <span>{{ form.errors.email }}</span>
           </div>
         </div>
         <div class="block__create-store-right">
@@ -119,18 +123,20 @@
               id="id_description"
               placeholder="{% translate 'Описание' %}"
             ></textarea>
+              <span>{{ form.errors.description }}</span>
           </div>
             <div class="form-group">
-            <label class="form-label" for="url_shop">{% translate 'Слаг' %}</label>
-            <input
-              class="form-input border"
-              id="url_shop"
-              required
-              name="slug"
-              type="text"
-              placeholder="{% translate 'Введите слаг' %}"
-            />
-          </div>
+                <label class="form-label" for="url_shop">{% translate 'Слаг' %}</label>
+                <input
+                  class="form-input border"
+                  id="url_shop"
+                  required
+                  name="slug"
+                  type="text"
+                  placeholder="{% translate 'Введите слаг' %}"
+                />
+                <span>{{ form.errors.slug }}</span>
+            </div>
             <div class="form-group">
               <label class="form-label" for="avatar">{% trans 'Выберите лого' %}</label>
               {% if shop.logo %}
@@ -149,10 +155,11 @@
                 <input class="Profile-file form-input border" id="avatar" accept="image/*" name="logo" type="file" data-validate="onlyImgAvatar">
               </div>
                 </div>
-            <div class="form-group">
-                <div class="Profile-btn">
-                    <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
-                    <button class="btn btn_success" type="submit">{% translate 'Создать' %}</button>
+                <div class="form-group">
+                    <div class="Profile-btn">
+                        <button class="btn btn_reset" type="reset">{% translate 'Отменить' %}</button>
+                        <button class="btn btn_success" type="submit">{% translate 'Создать' %}</button>
+                    </div>
                 </div>
             </div>
         </div>

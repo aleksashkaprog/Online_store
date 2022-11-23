@@ -61,14 +61,17 @@
                       >Введите Вашу фамилию и Ваше имя
                     </label>
                     {{ form.first_second_names }}
+                      <span>{{ form.errors.first_second_names }}</span>
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="phone">Телефон </label>
                     {{ form.phone }}
+                      <span>{{ form.errors.phone }}</span>
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="mail">E-mail </label>
                     {{ form.email }}
+                      <span>{{ form.errors.email }}</span>
                   </div>
                 </div>
               </div>

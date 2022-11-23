@@ -214,3 +214,4 @@ FAVOURITE_CAT_LEN = 3       # избранные категории
 TOP_PRODUCTS_LEN = 8        # популярные товары
 HOT_OFFERS_LEN = 9          # горячие предложения
 LIMITED_OFFERS_LEN = 16     # ограниченные предложения
+SHOPS_VIEW = 3

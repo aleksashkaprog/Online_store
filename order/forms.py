@@ -36,8 +36,17 @@ class StepTwoForm(forms.ModelForm):
         model = Order
         widgets = {
             "delivery": forms.RadioSelect(attrs={"class": "toggle-box"}),
-            "city": forms.TextInput(attrs={"class": "form-input border-custom"}),
-            "address": forms.Textarea(attrs={"class": "form-textarea border-custom"}),
+            "city": forms.TextInput(attrs={
+                "class": "form-input border-custom",
+                "placeholder": "Введите город",
+                "required": True
+                }
+            ),
+            "address": forms.Textarea(attrs={
+                "class": "form-textarea border-custom",
+                "placeholder": "Введите адрес",
+                "required": True
+            }),
         }
         fields = ["delivery", "city", "address"]
 
