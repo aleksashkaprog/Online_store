@@ -9,12 +9,15 @@
   {% block main %}
 
       {% if favourite_categories %}
-        <h2 class="Section-title">Избранные категории</h2>
+
 
         <div class="Section">
-          <div class="wrap">
-            <div class="BannersHome">
 
+          <div class="wrap">
+            <header class="Section-header">
+              <h2 class="Section-title">Избранные категории</h2>
+            </header>
+            <div class="BannersHome">
               {% for cat in favourite_categories %}
                 {% with cat.category as category %}
                 <a class="BannersHomeBlock" href="{{ category.get_absolute_url}}">
@@ -41,6 +44,8 @@
 
       {% endif %}
 
+        <div class="Section Section_column Section_columnLeft Section_columnDesktop">
+        <div class="wrap">
 
           {% if day_offer %}
             <div class="Section-column">
@@ -115,7 +120,7 @@
                         src="{{ top_product.images.all.0.file.url }}"
                         alt="card.jpg"/></a> {# альт для карнтинки #}
                       <div class="Card-content">
-                        <strong class="Card-title"><a href="#">{{ top_product.name }}</a>
+                        <strong class="Card-title"><a href="{% url 'product' top_product.slug %}">{{ top_product.name }}</a>
                         </strong>
                         <div class="Card-description">
                           <div class="Card-cost">
@@ -171,7 +176,7 @@
                               <img src="{{ hot_offer.images.all.0.file.url }}" alt="card.jpg"/>
                             </a>
                             <div class="Card-content">
-                              <strong class="Card-title"><a href="#">{{ hot_offer.name }}</a>
+                              <strong class="Card-title"><a href="{% url 'product' hot_offer.slug %}">{{ hot_offer.name }}</a>
                               </strong>
                               <div class="Card-description">
                                 <div class="Card-cost">
