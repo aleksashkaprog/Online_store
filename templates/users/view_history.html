@@ -81,6 +81,9 @@
                       <a class="Card-btn" href="{% url 'add_to_compare' product.product.id %}">
                         <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
                       </a>
+                      <a class="Card-btn" href="{% url 'users:history_remove' product.product.id %}">
+                          <img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/>
+                      </a>
                     </div>
                   </div>
                 </div>

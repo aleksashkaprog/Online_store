@@ -67,3 +67,9 @@ class HistoryView(View):
             'viewed_products': viewed_products
         }
         return render(request, 'users/view_history.html', context)
+
+
+def history_remove(request, pk: int):
+    """Представление удаления товара из списка просмотренных"""
+    PersonalAccount.delete_viewed_product(request.user.id, int(pk))
+    return redirect(to='users:view_history')
