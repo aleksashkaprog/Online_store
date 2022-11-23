@@ -9,7 +9,7 @@ class ImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    exclude = ['slug']
+    exclude = ['slug', 'views']
     inlines = [ImageInline]
     list_display = ['id', 'category', 'name', 'slug']
 

@@ -1,9 +1,11 @@
 from category.models import Category
+from personal_account.models import ViewsHistory
 from .models import Product
 from .forms import AddReviewForm
 
 
 class ProductService:
+
     @staticmethod
     def user_has_review(user, product: Product):
         if user.is_authenticated:

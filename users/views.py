@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
 
 from personal_account.models import ViewsHistory
+from personal_account.services import PersonalAccount
 from users.forms import CustomUserCreationForm, ResetPasswordForm, LogInForm
 
 from .services import register_user, password_change, login_user
@@ -61,8 +62,14 @@ def reset_password(request):
 
 class HistoryView(View):
     def get(self, request):
-        viewed_product = ViewsHistory.objects.filter(user=request.user.id)
+        viewed_products = PersonalAccount.get_last_viewed(request.user.id)
         context = {
-            'viewed_product': viewed_product
+            'viewed_products': viewed_products
         }
         return render(request, 'users/view_history.html', context)
+
+
+def history_remove(request, pk: int):
+    """Представление удаления товара из списка просмотренных"""
+    PersonalAccount.delete_viewed_product(request.user.id, int(pk))
+    return redirect(to='users:view_history')

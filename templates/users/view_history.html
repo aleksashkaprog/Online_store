@@ -57,35 +57,38 @@
             <div class="Cards">
               {% for product in viewed_products %}
               <div class="Card{% if forloop.counter > 18 %} hide_1450 {% endif %}">
-                <a class="Card-picture" href="{% url 'product' product.slug %}">
+                <a class="Card-picture" href="{% url 'product' product.product.slug %}">
                   <img src="{{ product.image }}" alt="card.jpg"/>
                 </a>
                 <div class="Card-content">
-                  <strong class="Card-title"><a href="#">{{ product.name }}</a></strong>
+                  <strong class="Card-title"><a href="#">{{ product.product.name }}</a></strong>
                   <div class="Card-description">
                     <div class="Card-cost">
                       {% if product.old_price %}
-                        <span class="Card-priceOld">{{ product.old_price }}</span>
+                        <span class="Card-priceOld">{{ product.product.old_price }}</span>
                       {% endif %}
-                      <span class="Card-price">{{ product.price }}</span>
+                      <span class="Card-price">{{ product.product.price }}</span>
                     </div>
-                    <div class="Card-category">{{ product.category }}
+                    <div class="Card-category">{{ product.product.category }}
                     </div>
                     <div class="Card-hover">
-                      <a class="Card-btn" href="{% url 'product' product.slug %}">
+                      <a class="Card-btn" href="{% url 'product' product.product.slug %}">
                         <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
                       </a>
-                      <a class="Card-btn" href="{% url 'cart_add' product.id %}">
+                      <a class="Card-btn" href="{% url 'cart:random_add' product.product.id %}">
                         <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                       </a>
-                      <a class="Card-btn" href="{% url 'compare' product.id %}">
+                      <a class="Card-btn" href="{% url 'add_to_compare' product.product.id %}">
                         <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
+                      </a>
+                      <a class="Card-btn" href="{% url 'users:history_remove' product.product.id %}">
+                          <img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/>
                       </a>
                     </div>
                   </div>
                 </div>
-                {% if product.discount %}
-                  <div class="Card-sale">{{ product.discount }}
+                {% if product.product.discount %}
+                  <div class="Card-sale">{{ product.product.discount }}
                   </div>
                 {% endif %}
               </div>

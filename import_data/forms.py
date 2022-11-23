@@ -33,8 +33,7 @@ class LoadData(forms.Form):
         return methods_dict.get(key)
 
     def clean_file(self):
-
-        if redis.connection.get('import_data'):
+        if redis.connection.get('import_data') == b'1':
             raise ValidationError(_('Идет импорт'))
 
         if self.check_file(self.cleaned_data['file']) != 'json':

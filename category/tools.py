@@ -16,8 +16,8 @@ def get_path(instance: Type['models.Category'], filename: str) -> str:
 
 def get_slug(name: str) -> str:
     """Возвращает строку slug."""
-    slug: str = name
-    if detect_language(name) == 'ru':
-        slug = translit(name, reversed=True)
-    slug = slug.replace(' ', '-')
+
+    slug: str = name if ' ' not in name else '-'.join(name.split())
+    if detect_language(slug) == 'ru':
+        slug = translit(slug, reversed=True)
     return slug

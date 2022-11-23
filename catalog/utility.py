@@ -24,18 +24,21 @@ class CatalogOrderByMixin:
         return queryset
 
     def switched_field(self):
-
-        field = self.field
-        reverse = self.request.session.get('reverse')
-
         get_args = [self.request.GET.get(_) for _ in ('page', 'query', 'price', 'title', 'is_exist', 'seller')]
+        reverse = self.request.session.get('reverse', '') if not any(get_args) else self.request.session['unreverse']
+        field = reverse + self.field
 
-        if reverse is None and all(get_args) is False:
+        if reverse is None and not any(get_args):
+            self.request.session['reverse'] = ''
+            self.request.session['unreverse'] = '-'
+
+        elif reverse == '' and not any(get_args):
             self.request.session['reverse'] = '-'
+            self.request.session['unreverse'] = ''
 
-        elif reverse == '-' and all(get_args):
-            field = reverse + self.field
-            self.request.session['reverse'] = None
+        elif reverse == '-' and not any(get_args):
+            self.request.session['reverse'] = ''
+            self.request.session['unreverse'] = '-'
         return field
 
 

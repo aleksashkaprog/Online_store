@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 from .logger.logger import logger
 from . import redis
@@ -35,7 +36,13 @@ def loading_status(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         redis.connection.set('import_data', 1)
-        result = func(*args, **kwargs)
-        redis.connection.delete('import_data')
-        return result
+        try:
+            result = func(*args, **kwargs)
+            redis.connection.delete('import_data')
+            return result
+        except ObjectDoesNotExist as err:
+            logger.error('{}'.format(err))
+            redis.connection.set('import_data', 0)
+            return None
+
     return wrapper
