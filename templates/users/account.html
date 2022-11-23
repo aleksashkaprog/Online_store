@@ -267,39 +267,39 @@
                   <h2 class="Section-title">{% translate 'История просмотров' %}</h2>
 >>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
                 </header>
-                {% if user.viewshistorys %}
+                {% if viewshistorys %}
                   <div class="Cards Cards_account">
-                    {% for product in user.viewshistorys %}
+                    {% for product in viewshistorys %}
                       <div class="Card
                         {% if forloop.counter == 2 %}hide_700{% endif %}
                         {% if forloop.counter == 3 %}hide_md{% endif %} ">
-                        <a class="Card-picture" href="#"><img src="{{ product.image }}" alt="card.jpg"/></a>
+                        <a class="Card-picture" href="#"><img src="{{ product.product.image }}" alt="cart.svg"/></a>
                         <div class="Card-content">
-                          <strong class="Card-title"><a href="#">{{ product.name }}</a></strong>
+                          <strong class="Card-title"><a href="#">{{ product.product.name }}</a></strong>
                           <div class="Card-description">
                             <div class="Card-cost">
                               {% if product.old_price %}
-                                <span class="Card-priceOld">{{ product.old_price }}</span>
+                                <span class="Card-priceOld">{{ product.product.old_price }}</span>
                               {% endif %}
-                              <span class="Card-price">{{ product.price }}</span>
+                              <span class="Card-price">{{ product.product.price }}</span>
                             </div>
-                            <div class="Card-category">{{ product.category }}
+                            <div class="Card-category">{{ product.product.category }}
                             </div>
                             <div class="Card-hover">
-                              <a class="Card-btn" href="{% url 'product' product.slug %}">
+                              <a class="Card-btn" href="{% url 'product' product.product.slug %}">
                                 <img src="{% static 'assets/img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
                               </a>
-                              <a class="Card-btn" href="{% url 'cart_add' product.id %}">
+                              <a class="Card-btn" href="{% url 'cart:random_add' product.product.id %}">
                                 <img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg"/>
                               </a>
-                              <a class="Card-btn" href="{% url 'compare' product.id %}">
+                              <a class="Card-btn" href="{% url 'add_to_compare' product.product.id %}">
                                 <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
                               </a>
                             </div>
                           </div>
                         </div>
                         {% if product.discount %}
-                          <div class="Card-sale">-{{ product.discount }}%</div>
+                          <div class="Card-sale">-{{ product.product.discount }}%</div>
                         {% endif %}
                       </div>
                     {% endfor %}
