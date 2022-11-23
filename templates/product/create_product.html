@@ -66,6 +66,7 @@
               type="text"
               placeholder="{% translate 'Введите название' %}"
             />
+              <span>{{ form.errors.name }}</span>
           </div>
           <div class="form-group">
             <label class="form-label" for="url_product">{% translate 'Слаг' %}</label>
@@ -77,6 +78,7 @@
               type="text"
               placeholder="{% translate 'Введите слаг' %}"
             />
+              <span style="font-size: 12px">{{ form.errors.slug }}</span>
           </div>
         </div>
         <div class="block__create-store-right">
@@ -91,6 +93,7 @@
               id="id_description"
               placeholder="{% translate 'Описание' %}"
             ></textarea>
+              <span style="font-size: 12px">{{ form.errors.description }}</span>
           </div>
             <div class="form-group">
               <label class="form-label" for="avatar">{% trans 'Категория' %}</label>
@@ -104,6 +107,7 @@
                               <option value="Нет категорий">{% trans 'Нет категорий' %}</option>
                               {% endif %}
                 </select>
+                <span style="font-size: 12px">{{ form.errors.category }}</span>
             </div>
             <div>
                 <label class="form-label" for="id_index">{% trans 'Индекс' %}</label>
@@ -115,6 +119,7 @@
                 type="number"
                 placeholder="{% translate 'Введите индекс' %}"
             />
+                <span style="font-size: 12px">{{ form.errors.index }}</span>
             </div>
             <div class="form-group">
                 <div class="Profile-btn">
