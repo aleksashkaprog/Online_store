@@ -1,14 +1,44 @@
+from .models import ViewsHistory
 
 
 class PersonalAccount:
 
-    def add_viewed_product(self):
+    @staticmethod
+    def add_viewed_product(user, product):
         """ Добавление продукта в список просмотренных """
-        pass
+        try:
+            history_object = ViewsHistory.objects.get(user_id=user, product_id=product)
+            history_object.delete()
+            ViewsHistory.objects.create(user_id=user, product_id=product)
+        except ViewsHistory.DoesNotExist:
+            ViewsHistory.objects.create(user_id=user, product_id=product)
 
-    def get_last_viewed(self):
+    @staticmethod
+    def delete_viewed_product(user, product):
+        """ Удаление продукта из списка просмотренных """
+        history_object = ViewsHistory.objects.get(user_id=user, product_id=product)
+        history_object.delete()
+
+    @staticmethod
+    def get_last_viewed(user):
         """ Получение списка просмотренных продуктов """
-        pass
+        history_objects = ViewsHistory.objects.filter(user_id=user).all()
+        return history_objects
+
+    @staticmethod
+    def is_viewed(user, product):
+        """ Узнать, есть ли товар в списке просмотренных """
+        try:
+            ViewsHistory.objects.get(user_id=user, product_id=product)
+            return True
+        except ViewsHistory.DoesNotExist:
+            return False
+
+    @staticmethod
+    def get_count_viewed(user):
+        """ Получение количества просмотренных продуктов """
+        history_objects = ViewsHistory.objects.filter(user=user).count()
+        return history_objects
 
     def get_profile_data(self):
         """ Получение данных профиля """

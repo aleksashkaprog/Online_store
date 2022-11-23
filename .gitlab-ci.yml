@@ -23,4 +23,5 @@ build:
   stage: test
   script:
     - docker-compose up -d
+    - docker exec python_django_team14-web python manage.py makemigrations
     - docker exec python_django_team14-web python manage.py test

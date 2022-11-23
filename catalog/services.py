@@ -1,44 +1,48 @@
+from django.shortcuts import redirect
+from django.views.generic import ListView
+from django.urls import reverse
 
-class Catalog:
+from category.models import Category
+from shop.models import Shop
 
-    def get_products(self):
+from . import utility
+
+
+class CatalogCategoryService(utility.FilterMixin, utility.SearchMixin, utility.CatalogMixin, ListView):
+
+    def get_queryset(self):
         """ Получение продуктов в категории """
-        pass
+        queryset = super().get_queryset()
+        category = Category.objects.get(slug=self.kwargs.get('slug'))
+        children = category.get_leafnodes()
+        return queryset.filter(**({'category__in': children} if children else {'category': category}))
 
-    def get_product(self):
-        """ Получение конкретного продукта"""
-        pass
-
-    def get_shop_info(self):
-        """ Получение информации о продавце """
-        pass
-
-    def get_discounts(self):
-        """ Получение информации о скидках """
-        pass
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['category_slug'] = self.kwargs.get('slug')
+        context_data['sellers'] = Shop.objects.select_related('holder')
+        return context_data
 
 
-class CatalogProduct:
+class CatalogCategoryOrderByService(utility.CatalogOrderByMixin, CatalogCategoryService):
+    pass
 
-    def add_review(self):
-        """ Добавление отзыва к продукту """
-        pass
 
-    def add_to_compare(self):
+class CatalogProductService(utility.FilterMixin, utility.SearchMixin, utility.CatalogMixin, ListView):
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data()
+        context_data['sellers'] = Shop.objects.select_related('holder')
+        return context_data
+
+    def add_to_compare(self, pk):
         """ Добавление продукта для сравнения """
-        pass
+        products_pk: list = self.session.get('compare', [])
+        if pk not in products_pk:
+            products_pk.append(pk)
+        self.session['compare'] = products_pk
+        return redirect(self.META.get('HTTP_REFERER', reverse('compare')))
 
 
-class Discount:
-
-    def check_product_discount(self):
-        """ Проверка скидки по продукту """
-        pass
-
-    def check_pack_discount(self):
-        """ Проверка скидки по набору """
-        pass
-
-    def check_cart_discount(self):
-        """ Проверка скидки по корзине """
-        pass
+class CatalogProductOrderByService(utility.CatalogOrderByMixin, CatalogProductService):
+    pass
