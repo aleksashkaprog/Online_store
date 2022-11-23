@@ -12,11 +12,8 @@
             <a href="{% url 'main_page' %}">{% translate 'Главная страница' %}</a>
           </li>
           <li class="breadcrumbs-item breadcrumbs-item_current">
-<<<<<<< HEAD
             <span>{% translate 'ПРОФИЛЬ' %}</span>
-=======
             <span>{% translate 'Личный кабинет' %}</span>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
           </li>
         </ul>
       </div>
@@ -32,7 +29,6 @@
           <div class="Section-columnContent sticky">
             <div class="NavigateProfile">
               <ul class="menu menu_vt">
-<<<<<<< HEAD
                 <li class="menu-item">
                   <a class="menu-link_ACTIVE" href="#">{% translate 'Профиль' %}</a>
                 </li>
@@ -47,7 +43,6 @@
                 </li>
                 <li class="menu-item menu-item">
                   <a class="menu-link" href="{% url 'import_data' %}">{% translate 'Импортирование данных' %}</a>
-=======
                 <li class="menu-item_ACTIVE menu-item">
                   <a class="menu-link" href="{% url 'account' %}">{% translate 'Личный кабинет' %}</a>
                 </li>
@@ -59,7 +54,6 @@
                 </li>
                 <li class="menu-item">
                   <a class="menu-link" href="{% url 'users:view_history' %}">{% translate 'Просмотренные продукты' %}</a>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
                 </li>
                   <li class="menu-item menu-item">
                       <a class="menu-link" href="{% url 'seller-room' %}">{% translate 'Комната продавца' %}</a>
@@ -89,19 +83,15 @@
                                 {% endif %}">
               </div>
             <div class="Account-column">
-<<<<<<< HEAD
               <div class="Account-name">{% translate 'Имя Фамилия' %}</div>
               <a class="Account-editLink" href="{% url 'profile' %}"
-                >{% translate 'Изменить профиль' %}</a
-              >
-=======
+                >{% translate 'Изменить профиль' %}</a>
             {% if request.user.fullname %}
               <div class="Account-name">{{ request.user.fullname }}</div>
             {% else %}
               <div class="Account-name">{{ request.user.email }}</div>
             {% endif %}
             <a class="Account-editLink" href="{% url 'profile' %}">{% translate 'Изменить профиль' %}</a>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
             </div>
           </div>
           <div class="Account-group">
@@ -110,20 +100,15 @@
                 <h2 class="Section-title">{% translate 'История заказов' %}</h2>
               </header>
               <div class="Cards Cards_account" style="position: relative">
-<<<<<<< HEAD
-                <a type="button" class="btn__show-history" href="#"
-                  >{% translate 'Показать историю заказов' %}</a
-                >
-=======
+                <a type="button" class="btn__show-history" href="#">{% translate 'Показать историю заказов' %}</a>
                   {% if last_order.order_in %}
                 <a type="button" class="btn__show-history" href="#">{% translate 'Посмотреть последний заказ' %}</a>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
+
                 <div class="Orders historyOrder">
                   <div class="Order Order_anons">
                     <div class="Order-personal">
                       <div class="row">
                         <div class="row-block">
-<<<<<<< HEAD
                           <a class="Order-title" href="{% url 'one-order' %}"
                             >Заказ&#32;<span class="Order-numberOrder">№1</span
                             >&#32;от&#32;<span class="Order-dateOrder"
@@ -237,12 +222,10 @@
                             <div class="Order-infoType">{% translate 'Статус' %}:</div>
                             <div class="Order-infoContent">{% translate 'Доставляется' %}</div>
                           </div>
-=======
                           <a class="Order-title" href="{{ last_order.get_absolute_url }}">
                               Заказ&#32;<span class="Order-numberOrder">{{ last_order.id }}</span>
                               &#32;от&#32;<span class="Order-dateOrder">{{ last_order.ordered }}</span>
                           </a>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
                         </div>
                       </div>
                     </div>
@@ -260,12 +243,9 @@
           <div class="Account-group">
               <div class="Account-column Account-column_full">
                 <header class="Section-header">
-<<<<<<< HEAD
                   <h2 class="Section-title">{% translate 'История просмотров' %}
                   </h2>
-=======
                   <h2 class="Section-title">{% translate 'История просмотров' %}</h2>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
                 </header>
                 {% if viewshistorys %}
                   <div class="Cards Cards_account">
@@ -295,6 +275,9 @@
                               <a class="Card-btn" href="{% url 'add_to_compare' product.product.id %}">
                                 <img src="{% static 'assets/img/icons/card/change.svg' %}" alt="change.svg"/>
                               </a>
+                              <a class="Card-btn" href="{% url 'users:history_remove' product.product.id %}">
+                                  <img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -305,17 +288,10 @@
                     {% endfor %}
                   </div>
                   <div class="Account-editLink Account-editLink_view">
-<<<<<<< HEAD
-                    <a href="{% url 'view_history' %}">{% translate 'Перейти на полный список' %}</a>
-                  </div>
-                {% else %}
-                    <p>{% translate 'Ваша история просмотров пока пуста' %}</p>
-=======
                     <a href="{% url 'users:view_history' %}">{% translate 'Перейти на полный список' %}</a>
                   </div>
                 {% else %}
-                    <h2 style="text-align: center">{% translate 'Ваша история просмотров пока пуста' %}</h2>
->>>>>>> 9591cceaecc1bc16154eb8cd96b514b461159374
+                    <p>{% translate 'Ваша история просмотров пока пуста' %}</p>
                 {% endif %}
               </div>
             </div>
